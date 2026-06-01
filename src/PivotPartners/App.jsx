@@ -9,6 +9,9 @@ import ServicesPage from "./ServicesPage";
 import DomainsPage from "./DomainsPage";
 import InsightsPage from "./InsightsPage";
 import ContactPage from "./ContactPage";
+import PrivacyPolicyPage from "./PrivacyPolicyPage";
+import TermsPage from "./TermsPage";
+import DisclaimerPage from "./DisclaimerPage";
 
 export default function App() {
   const [page, setPage] = useState("Home");
@@ -20,6 +23,9 @@ export default function App() {
     Domains: <DomainsPage setPage={setPage} />,
     Insights: <InsightsPage setPage={setPage} />,
     Contact: <ContactPage />,
+    Privacy: <PrivacyPolicyPage />,
+    Terms: <TermsPage />,
+    Disclaimer: <DisclaimerPage />,
   };
 
   return (

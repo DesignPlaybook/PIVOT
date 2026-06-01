@@ -739,6 +739,49 @@ function LeadershipPhilosophy() {
   );
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   VisionMission — drop-in replacement component
+   Animated SVG illustrations: Compass (Vision) + Leaders (Mission)
+   Staggered cards: dark teal / light cream, offset vertically
+   Usage: replace the <VisionMission /> call in AboutPage.jsx
+═══════════════════════════════════════════════════════════════ */
+
+const VM_CSS = `
+  @keyframes vm-float-slow { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+  @keyframes vm-float-med  { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+  @keyframes vm-pulse      { 0%,100%{opacity:0.15} 50%{opacity:0.4} }
+  @keyframes vm-rotate     { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  @keyframes vm-dash       { to{stroke-dashoffset:-40} }
+  @keyframes vm-beam       { 0%,100%{opacity:0.08} 50%{opacity:0.22} }
+  @keyframes vm-bob        { 0%,100%{transform:translateY(0)} 33%{transform:translateY(-3px)} 66%{transform:translateY(-1px)} }
+  @keyframes vm-shimmer    { 0%,100%{opacity:0.55} 50%{opacity:1} }
+
+  .vm-card-v { background:#0D3D4E; margin-top:0; box-shadow:0 8px 40px rgba(13,61,78,0.18); }
+  .vm-card-v:hover { box-shadow:0 28px 64px rgba(13,61,78,0.32); }
+  .vm-card-m { background:#F5F0E8; border:1px solid rgba(13,61,78,0.1); margin-top:0px; box-shadow:0 8px 32px rgba(13,61,78,0.06); }
+  .vm-card-m:hover { box-shadow:0 28px 64px rgba(13,61,78,0.14); }
+
+  .vm-needle { animation:vm-float-slow 3.5s ease-in-out infinite; transform-origin:260px 148px; }
+  .vm-star   { animation:vm-shimmer 2.8s ease-in-out infinite; transform-origin:260px 48px; }
+  .vm-ring1  { animation:vm-rotate 18s linear infinite; transform-origin:260px 148px; }
+  .vm-ring2  { animation:vm-rotate 18s linear infinite reverse; transform-origin:260px 148px; }
+  .vm-pulse  { animation:vm-pulse 2.8s ease-in-out infinite; }
+  .vm-beam1  { animation:vm-beam 3.2s ease-in-out infinite 0s; }
+  .vm-beam2  { animation:vm-beam 3.2s ease-in-out infinite 0.5s; }
+
+  .vm-dash   { stroke-dasharray:170; animation:vm-dash 2s linear infinite; }
+  .vm-cdash  { stroke-dasharray:6 4; animation:vm-dash 3s linear infinite; }
+
+  .vm-p1 { animation:vm-bob 2.8s ease-in-out infinite 0s;   transform-origin:240px 130px; }
+  .vm-p2 { animation:vm-bob 2.8s ease-in-out infinite 0.4s; transform-origin:190px 140px; }
+  .vm-p3 { animation:vm-bob 2.8s ease-in-out infinite 0.7s; transform-origin:270px 144px; }
+  .vm-p4 { animation:vm-bob 2.8s ease-in-out infinite 1.1s; transform-origin:155px 152px; }
+
+  .vm-doc1   { animation:vm-float-med 4s ease-in-out infinite 0s; }
+  .vm-doc2   { animation:vm-float-med 4s ease-in-out infinite 0.8s; }
+  .vm-cpulse { animation:vm-pulse 2.2s ease-in-out infinite; }
+`;
+
 function VisionMission() {
   const [hoverV, setHoverV] = useState(false);
   const [hoverM, setHoverM] = useState(false);
@@ -751,6 +794,7 @@ function VisionMission() {
         overflow: "hidden",
       }}
     >
+      <style>{VM_CSS}</style>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         {/* Header */}
         <Fade>
@@ -759,9 +803,9 @@ function VisionMission() {
               display: "flex",
               alignItems: "flex-end",
               justifyContent: "space-between",
-              marginBottom: 80,
-              paddingBottom: 40,
-              borderBottom: `1px solid rgba(13,61,78,0.08)`,
+              marginBottom: 72,
+              paddingBottom: 36,
+              borderBottom: "1px solid rgba(13,61,78,0.08)",
             }}
           >
             <div>
@@ -770,10 +814,10 @@ function VisionMission() {
                   display: "flex",
                   alignItems: "center",
                   gap: 12,
-                  marginBottom: 16,
+                  marginBottom: 14,
                 }}
               >
-                <div style={{ width: 32, height: 1, background: T.gold }} />
+                <div style={{ width: 28, height: 1, background: T.gold }} />
                 <span
                   style={{
                     fontFamily: "'Jost',sans-serif",
@@ -793,6 +837,7 @@ function VisionMission() {
                   fontWeight: 300,
                   color: T.teal,
                   lineHeight: 1.0,
+                  margin: 0,
                 }}
               >
                 Vision &amp; Mission
@@ -800,11 +845,12 @@ function VisionMission() {
             </div>
             <p
               style={{
+                fontFamily: "'Jost',sans-serif",
                 fontSize: 13,
                 fontWeight: 300,
                 lineHeight: 1.85,
                 color: T.textMid,
-                maxWidth: 280,
+                maxWidth: 260,
                 textAlign: "right",
               }}
             >
@@ -814,124 +860,261 @@ function VisionMission() {
           </div>
         </Fade>
 
-        {/* Staggered offset grid */}
+        {/* Staggered cards */}
         <div
           style={{
             position: "relative",
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: 40,
-            alignItems: "start",
+            gap: 32,
+            alignItems: "stretch",
           }}
         >
-          {/* Gold spine line between cards */}
+          {/* Gold spine */}
           <div
             style={{
               position: "absolute",
               left: "50%",
-              top: 40,
-              bottom: 80,
+              top: 32,
+              bottom: 64,
               width: 1,
               background: `linear-gradient(to bottom, transparent, ${T.gold} 15%, ${T.gold} 85%, transparent)`,
-              opacity: 0.2,
+              opacity: 0.18,
+              transform: "translateX(-50%)",
               pointerEvents: "none",
-              transform: "translateX(-50%)",
             }}
           />
-          {/* Gold connector dot — top */}
           <div
             style={{
               position: "absolute",
               left: "50%",
-              top: 40,
+              top: 32,
               width: 7,
               height: 7,
               background: T.gold,
               borderRadius: "50%",
               transform: "translateX(-50%)",
-              opacity: 0.4,
+              opacity: 0.35,
             }}
           />
-          {/* Gold connector dot — bottom */}
           <div
             style={{
               position: "absolute",
               left: "50%",
-              bottom: 80,
+              bottom: 64,
               width: 7,
               height: 7,
               background: T.gold,
               borderRadius: "50%",
               transform: "translateX(-50%)",
-              opacity: 0.4,
+              opacity: 0.35,
             }}
           />
 
-          {/* ── VISION — dark card, sits flush top ── */}
+          {/* ── VISION ── */}
           <Fade delay={0}>
             <div
+              className="vm-card-v"
               onMouseEnter={() => setHoverV(true)}
               onMouseLeave={() => setHoverV(false)}
               style={{
-                background: T.teal,
-                marginTop: 0,
+                overflow: "hidden",
                 transition:
                   "transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s ease",
                 transform: hoverV ? "translateY(-8px)" : "translateY(0)",
-                boxShadow: hoverV
-                  ? "0 32px 64px rgba(13,61,78,0.3)"
-                  : "0 8px 32px rgba(13,61,78,0.12)",
               }}
             >
-              {/* Cropped image window */}
+              {/* Compass illustration */}
               <div
                 style={{
-                  height: 200,
+                  height: 220,
                   overflow: "hidden",
                   position: "relative",
                 }}
               >
-                <img
-                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
-                  alt="Vision"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center 40%",
-                    filter: "brightness(0.3) saturate(0.5)",
-                    transform: hoverV ? "scale(1.07)" : "scale(1)",
-                    transition: "transform 0.9s cubic-bezier(0.16,1,0.3,1)",
-                  }}
-                />
-                {/* Ghost number on image */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 16,
-                    left: 24,
-                    fontFamily: "'Cormorant Garamond',serif",
-                    fontSize: 96,
-                    fontWeight: 300,
-                    color: T.white,
-                    opacity: 0.1,
-                    lineHeight: 1,
-                    pointerEvents: "none",
-                  }}
+                <svg
+                  viewBox="0 0 520 220"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{ width: "100%", height: "100%" }}
                 >
-                  01
-                </div>
-                {/* Label chip */}
+                  <rect width="520" height="220" fill="#0b3244" />
+                  <line
+                    x1="0"
+                    y1="148"
+                    x2="520"
+                    y2="148"
+                    stroke="rgba(184,150,46,0.15)"
+                    strokeWidth="1"
+                  />
+                  <g className="vm-beam1">
+                    <line
+                      x1="260"
+                      y1="148"
+                      x2="100"
+                      y2="20"
+                      stroke="rgba(184,150,46,0.1)"
+                      strokeWidth="1.5"
+                    />
+                    <line
+                      x1="260"
+                      y1="148"
+                      x2="420"
+                      y2="20"
+                      stroke="rgba(184,150,46,0.1)"
+                      strokeWidth="1.5"
+                    />
+                  </g>
+                  <g className="vm-beam2">
+                    <line
+                      x1="260"
+                      y1="148"
+                      x2="170"
+                      y2="20"
+                      stroke="rgba(184,150,46,0.06)"
+                      strokeWidth="1"
+                    />
+                    <line
+                      x1="260"
+                      y1="148"
+                      x2="350"
+                      y2="20"
+                      stroke="rgba(184,150,46,0.06)"
+                      strokeWidth="1"
+                    />
+                  </g>
+                  <circle
+                    className="vm-ring1"
+                    cx="260"
+                    cy="148"
+                    r="52"
+                    stroke="rgba(184,150,46,0.18)"
+                    strokeWidth="1"
+                    fill="none"
+                  />
+                  <circle
+                    className="vm-ring2"
+                    cx="260"
+                    cy="148"
+                    r="52"
+                    stroke="rgba(184,150,46,0.1)"
+                    strokeWidth="0.5"
+                    strokeDasharray="4 8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="260"
+                    cy="148"
+                    r="38"
+                    fill="rgba(13,61,78,0.85)"
+                    stroke="rgba(184,150,46,0.45)"
+                    strokeWidth="1.5"
+                  />
+                  <circle
+                    cx="260"
+                    cy="148"
+                    r="26"
+                    fill="rgba(13,61,78,0.6)"
+                    stroke="rgba(184,150,46,0.2)"
+                    strokeWidth="0.8"
+                  />
+                  <g className="vm-needle">
+                    <polygon
+                      points="260,105 255,148 260,142 265,148"
+                      fill="#B8962E"
+                      opacity="0.9"
+                    />
+                    <polygon
+                      points="260,191 255,148 260,154 265,148"
+                      fill="rgba(184,150,46,0.3)"
+                    />
+                  </g>
+                  <circle cx="260" cy="148" r="5" fill="#B8962E" />
+                  <circle
+                    cx="260"
+                    cy="148"
+                    r="2.5"
+                    fill="rgba(255,255,255,0.8)"
+                  />
+                  <line
+                    x1="260"
+                    y1="112"
+                    x2="260"
+                    y2="118"
+                    stroke="rgba(184,150,46,0.7)"
+                    strokeWidth="2"
+                  />
+                  <line
+                    x1="296"
+                    y1="148"
+                    x2="290"
+                    y2="148"
+                    stroke="rgba(184,150,46,0.4)"
+                    strokeWidth="1.5"
+                  />
+                  <line
+                    x1="260"
+                    y1="184"
+                    x2="260"
+                    y2="178"
+                    stroke="rgba(184,150,46,0.4)"
+                    strokeWidth="1.5"
+                  />
+                  <line
+                    x1="224"
+                    y1="148"
+                    x2="230"
+                    y2="148"
+                    stroke="rgba(184,150,46,0.4)"
+                    strokeWidth="1.5"
+                  />
+                  <g className="vm-star">
+                    <polygon
+                      points="260,34 263,44 273,44 265,50 268,60 260,54 252,60 255,50 247,44 257,44"
+                      fill="#B8962E"
+                      opacity="0.9"
+                    />
+                  </g>
+                  <circle
+                    className="vm-pulse"
+                    cx="260"
+                    cy="48"
+                    r="20"
+                    fill="none"
+                    stroke="rgba(184,150,46,0.3)"
+                    strokeWidth="1"
+                  />
+                  <ellipse
+                    cx="260"
+                    cy="162"
+                    rx="75"
+                    ry="7"
+                    fill="rgba(184,150,46,0.05)"
+                  />
+                  <text
+                    x="490"
+                    y="215"
+                    fontFamily="Georgia,serif"
+                    fontSize="150"
+                    fontWeight="300"
+                    fill="rgba(184,150,46,0.04)"
+                    textAnchor="end"
+                  >
+                    V
+                  </text>
+                </svg>
+              </div>
+              {/* Text */}
+              <div style={{ padding: "36px 40px 44px" }}>
                 <div
                   style={{
-                    position: "absolute",
-                    bottom: 20,
-                    right: 24,
                     display: "flex",
                     alignItems: "center",
                     gap: 8,
+                    marginBottom: 18,
                   }}
                 >
+                  <div style={{ width: 20, height: 1, background: T.gold }} />
                   <span
                     style={{
                       fontFamily: "'Jost',sans-serif",
@@ -941,13 +1124,9 @@ function VisionMission() {
                       color: T.gold,
                     }}
                   >
-                    Vision
+                    Vision — 01
                   </span>
-                  <div style={{ width: 24, height: 1, background: T.gold }} />
                 </div>
-              </div>
-
-              <div style={{ padding: "40px 44px 48px" }}>
                 <h3
                   style={{
                     fontFamily: "'Cormorant Garamond',serif",
@@ -955,7 +1134,7 @@ function VisionMission() {
                     fontWeight: 300,
                     color: T.white,
                     lineHeight: 1.15,
-                    marginBottom: 28,
+                    marginBottom: 24,
                   }}
                 >
                   Defined by Clarity.
@@ -966,19 +1145,21 @@ function VisionMission() {
                 </h3>
                 <div
                   style={{
-                    width: 36,
+                    width: 32,
                     height: 1,
                     background: T.gold,
                     opacity: 0.5,
-                    marginBottom: 24,
+                    marginBottom: 20,
                   }}
                 />
                 <p
                   style={{
+                    fontFamily: "'Jost',sans-serif",
                     fontSize: 13,
                     fontWeight: 300,
                     lineHeight: 1.9,
                     color: "rgba(245,240,232,0.58)",
+                    margin: 0,
                   }}
                 >
                   To grow into a company defined by clarity, disciplined
@@ -988,8 +1169,8 @@ function VisionMission() {
                 </p>
                 <div
                   style={{
-                    marginTop: 32,
-                    paddingTop: 24,
+                    marginTop: 28,
+                    paddingTop: 20,
                     borderTop: "1px solid rgba(245,240,232,0.07)",
                     display: "flex",
                     justifyContent: "space-between",
@@ -1013,7 +1194,7 @@ function VisionMission() {
                       fontSize: 17,
                       fontStyle: "italic",
                       color: T.gold,
-                      opacity: 0.75,
+                      opacity: 0.8,
                     }}
                   >
                     Clarity
@@ -1023,70 +1204,258 @@ function VisionMission() {
             </div>
           </Fade>
 
-          {/* ── MISSION — light card, offset DOWN ── */}
+          {/* ── MISSION ── */}
           <Fade delay={200}>
             <div
+              className="vm-card-m"
               onMouseEnter={() => setHoverM(true)}
               onMouseLeave={() => setHoverM(false)}
               style={{
-                background: T.cream,
-                border: `1px solid rgba(13,61,78,0.1)`,
-                marginTop: 96 /* vertical stagger */,
+                overflow: "hidden",
                 transition:
                   "transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s ease",
                 transform: hoverM ? "translateY(-8px)" : "translateY(0)",
-                boxShadow: hoverM
-                  ? "0 32px 64px rgba(13,61,78,0.14)"
-                  : "0 8px 32px rgba(13,61,78,0.05)",
+                height: "100%",
               }}
             >
-              {/* Cropped image window */}
+              {/* Leaders illustration */}
               <div
                 style={{
-                  height: 200,
+                  height: 220,
                   overflow: "hidden",
                   position: "relative",
                 }}
               >
-                <img
-                  src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80"
-                  alt="Mission"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center 20%",
-                    filter: "brightness(0.45) saturate(0.5)",
-                    transform: hoverM ? "scale(1.07)" : "scale(1)",
-                    transition: "transform 0.9s cubic-bezier(0.16,1,0.3,1)",
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 16,
-                    left: 24,
-                    fontFamily: "'Cormorant Garamond',serif",
-                    fontSize: 96,
-                    fontWeight: 300,
-                    color: T.white,
-                    opacity: 0.12,
-                    lineHeight: 1,
-                    pointerEvents: "none",
-                  }}
+                <svg
+                  viewBox="0 0 520 220"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{ width: "100%", height: "100%" }}
                 >
-                  02
-                </div>
+                  <rect width="520" height="220" fill="#EDE8DE" />
+                  <g className="vm-cdash">
+                    <line
+                      x1="60"
+                      y1="60"
+                      x2="285"
+                      y2="150"
+                      stroke="rgba(13,61,78,0.12)"
+                      strokeWidth="1.5"
+                    />
+                    <line
+                      x1="75"
+                      y1="178"
+                      x2="285"
+                      y2="150"
+                      stroke="rgba(13,61,78,0.12)"
+                      strokeWidth="1.5"
+                    />
+                    <line
+                      x1="28"
+                      y1="118"
+                      x2="285"
+                      y2="150"
+                      stroke="rgba(13,61,78,0.08)"
+                      strokeWidth="1"
+                    />
+                  </g>
+                  <line
+                    className="vm-dash"
+                    x1="290"
+                    y1="150"
+                    x2="468"
+                    y2="150"
+                    stroke="#B8962E"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                  />
+                  <polyline
+                    points="455,140 468,150 455,160"
+                    stroke="#B8962E"
+                    strokeWidth="2.5"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  {/* Person 1 — lead */}
+                  <g className="vm-p1">
+                    <circle
+                      cx="240"
+                      cy="102"
+                      r="14"
+                      fill="#0D3D4E"
+                      opacity="0.75"
+                    />
+                    <ellipse
+                      cx="240"
+                      cy="135"
+                      rx="12"
+                      ry="18"
+                      fill="#0D3D4E"
+                      opacity="0.65"
+                    />
+                    <line
+                      x1="240"
+                      y1="118"
+                      x2="240"
+                      y2="133"
+                      stroke="#B8962E"
+                      strokeWidth="2.5"
+                      opacity="0.85"
+                    />
+                  </g>
+                  {/* Person 2 */}
+                  <g className="vm-p2">
+                    <circle
+                      cx="190"
+                      cy="116"
+                      r="11"
+                      fill="#0D3D4E"
+                      opacity="0.5"
+                    />
+                    <ellipse
+                      cx="190"
+                      cy="144"
+                      rx="9"
+                      ry="14"
+                      fill="#0D3D4E"
+                      opacity="0.45"
+                    />
+                  </g>
+                  {/* Person 3 */}
+                  <g className="vm-p3">
+                    <circle
+                      cx="272"
+                      cy="119"
+                      r="10"
+                      fill="#0D3D4E"
+                      opacity="0.45"
+                    />
+                    <ellipse
+                      cx="272"
+                      cy="147"
+                      rx="8"
+                      ry="13"
+                      fill="#0D3D4E"
+                      opacity="0.4"
+                    />
+                  </g>
+                  {/* Person 4 */}
+                  <g className="vm-p4">
+                    <circle
+                      cx="152"
+                      cy="132"
+                      r="9"
+                      fill="#0D3D4E"
+                      opacity="0.28"
+                    />
+                    <ellipse
+                      cx="152"
+                      cy="157"
+                      rx="7"
+                      ry="11"
+                      fill="#0D3D4E"
+                      opacity="0.25"
+                    />
+                  </g>
+                  <ellipse
+                    cx="230"
+                    cy="162"
+                    rx="65"
+                    ry="5"
+                    fill="rgba(13,61,78,0.05)"
+                  />
+                  <circle
+                    className="vm-cpulse"
+                    cx="290"
+                    cy="150"
+                    r="14"
+                    fill="rgba(184,150,46,0.12)"
+                    stroke="none"
+                  />
+                  <circle cx="290" cy="150" r="6" fill="rgba(184,150,46,0.3)" />
+                  <circle cx="290" cy="150" r="3" fill="#B8962E" />
+                  {/* Complexity docs */}
+                  <g className="vm-doc1" opacity="0.22">
+                    <rect
+                      x="28"
+                      y="46"
+                      width="34"
+                      height="22"
+                      rx="3"
+                      stroke="#0D3D4E"
+                      strokeWidth="1"
+                      fill="none"
+                    />
+                    <line
+                      x1="36"
+                      y1="54"
+                      x2="54"
+                      y2="54"
+                      stroke="#0D3D4E"
+                      strokeWidth="1"
+                    />
+                    <line
+                      x1="36"
+                      y1="59"
+                      x2="50"
+                      y2="59"
+                      stroke="#0D3D4E"
+                      strokeWidth="1"
+                    />
+                  </g>
+                  <g className="vm-doc2" opacity="0.18">
+                    <rect
+                      x="24"
+                      y="162"
+                      width="36"
+                      height="22"
+                      rx="3"
+                      stroke="#0D3D4E"
+                      strokeWidth="1"
+                      fill="none"
+                    />
+                    <line
+                      x1="32"
+                      y1="170"
+                      x2="52"
+                      y2="170"
+                      stroke="#0D3D4E"
+                      strokeWidth="1"
+                    />
+                    <line
+                      x1="32"
+                      y1="175"
+                      x2="46"
+                      y2="175"
+                      stroke="#0D3D4E"
+                      strokeWidth="1"
+                    />
+                  </g>
+                  <text
+                    x="490"
+                    y="215"
+                    fontFamily="Georgia,serif"
+                    fontSize="150"
+                    fontWeight="300"
+                    fill="rgba(13,61,78,0.045)"
+                    textAnchor="end"
+                  >
+                    M
+                  </text>
+                </svg>
+              </div>
+              {/* Text */}
+              <div style={{ padding: "36px 40px 44px" }}>
                 <div
                   style={{
-                    position: "absolute",
-                    bottom: 20,
-                    right: 24,
                     display: "flex",
                     alignItems: "center",
                     gap: 8,
+                    marginBottom: 18,
                   }}
                 >
+                  <div style={{ width: 20, height: 1, background: T.gold }} />
                   <span
                     style={{
                       fontFamily: "'Jost',sans-serif",
@@ -1096,13 +1465,9 @@ function VisionMission() {
                       color: T.gold,
                     }}
                   >
-                    Mission
+                    Mission — 02
                   </span>
-                  <div style={{ width: 24, height: 1, background: T.gold }} />
                 </div>
-              </div>
-
-              <div style={{ padding: "40px 44px 48px" }}>
                 <h3
                   style={{
                     fontFamily: "'Cormorant Garamond',serif",
@@ -1110,7 +1475,7 @@ function VisionMission() {
                     fontWeight: 300,
                     color: T.teal,
                     lineHeight: 1.15,
-                    marginBottom: 28,
+                    marginBottom: 24,
                   }}
                 >
                   Strengthening
@@ -1121,18 +1486,20 @@ function VisionMission() {
                 </h3>
                 <div
                   style={{
-                    width: 36,
+                    width: 32,
                     height: 1,
                     background: T.gold,
-                    marginBottom: 24,
+                    marginBottom: 20,
                   }}
                 />
                 <p
                   style={{
+                    fontFamily: "'Jost',sans-serif",
                     fontSize: 13,
                     fontWeight: 300,
                     lineHeight: 1.9,
                     color: T.textMid,
+                    margin: 0,
                   }}
                 >
                   To strengthen leadership decisions by delivering deep
@@ -1141,8 +1508,8 @@ function VisionMission() {
                 </p>
                 <div
                   style={{
-                    marginTop: 32,
-                    paddingTop: 24,
+                    marginTop: 28,
+                    paddingTop: 20,
                     borderTop: "1px solid rgba(13,61,78,0.08)",
                     display: "flex",
                     justifyContent: "space-between",

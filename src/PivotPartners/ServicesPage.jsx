@@ -328,7 +328,7 @@ function ServicePanel({ num, name, desc, img, reverse = false }) {
           objectPosition: "center",
           transform: hovered ? "scale(1.04)" : "scale(1)",
           transition: "transform 0.9s cubic-bezier(0.16,1,0.3,1)",
-          filter: "brightness(0.25) saturate(0.6)",
+          filter: "brightness(0.55) saturate(0.75)",
         }}
       />
       {/* Directional gradient — text side */}
@@ -337,8 +337,8 @@ function ServicePanel({ num, name, desc, img, reverse = false }) {
           position: "absolute",
           inset: 0,
           background: reverse
-            ? "linear-gradient(to left, rgba(13,61,78,0.97) 0%, rgba(13,61,78,0.75) 50%, transparent 100%)"
-            : "linear-gradient(to right, rgba(13,61,78,0.97) 0%, rgba(13,61,78,0.75) 50%, transparent 100%)",
+            ? "linear-gradient(to left, rgba(13,61,78,0.88) 0%, rgba(13,61,78,0.55) 45%, transparent 100%)"
+            : "linear-gradient(to right, rgba(13,61,78,0.88) 0%, rgba(13,61,78,0.55) 45%, transparent 100%)",
         }}
       />
       {/* Gold accent bar */}
@@ -487,14 +487,14 @@ function DiversityMosaic({ setPage }) {
               height: "100%",
               objectFit: "cover",
               display: "block",
-              filter: "brightness(0.7) saturate(0.7)",
+              filter: "brightness(0.85) saturate(0.8)",
             }}
           />
           <div
             style={{
               position: "absolute",
               inset: 0,
-              background: "rgba(13,61,78,0.35)",
+              background: "rgba(13,61,78,0.15)",
             }}
           />
         </div>
@@ -516,37 +516,40 @@ function DiversityMosaic({ setPage }) {
               height: "100%",
               objectFit: "cover",
               display: "block",
-              filter: "brightness(0.6) saturate(0.6)",
+              filter: "brightness(0.82) saturate(0.78)",
             }}
           />
           <div
             style={{
               position: "absolute",
               inset: 0,
-              background: "rgba(13,61,78,0.4)",
+              background: "rgba(13,61,78,0.15)",
             }}
           />
         </div>
-        {/* Content block — top right (teal) */}
+        {/* Content block — top right (cream) */}
         <div
           style={{
-            background: T.teal,
+            background: T.cream,
             padding: "48px 44px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
+            borderTop: `3px solid ${T.gold}`,
+            border: `1px solid rgba(13,61,78,0.08)`,
+            borderTop: `3px solid ${T.gold}`,
             opacity: vis ? 1 : 0,
             transform: vis ? "none" : "translateY(30px)",
             transition: "opacity 0.8s ease 200ms, transform 0.8s ease 200ms",
           }}
         >
-          <SectionLabel text="Diversity & Inclusion" light />
+          <SectionLabel text="Diversity & Inclusion" />
           <h3
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(24px, 2.5vw, 34px)",
               fontWeight: 300,
-              color: T.white,
+              color: T.teal,
               lineHeight: 1.15,
               marginBottom: 16,
             }}
@@ -567,7 +570,7 @@ function DiversityMosaic({ setPage }) {
               fontSize: 13,
               fontWeight: 300,
               lineHeight: 1.8,
-              color: "rgba(245,240,232,0.65)",
+              color: T.textMid,
             }}
           >
             Diverse leadership strengthens governance, innovation, and
@@ -658,8 +661,8 @@ const HERO_CSS = `
   .sv-load-3 { animation:sv-load-up 1s cubic-bezier(0.16,1,0.3,1) 0.65s both; }
   @keyframes sv-scroll-line { from{height:0;opacity:0} to{height:56px;opacity:1} }
   .sv-scroll-line { animation:sv-scroll-line 1s cubic-bezier(0.16,1,0.3,1) 1s both; }
-  .svc-step:hover .svc-step-num { color: #B8962E !important; opacity: 1 !important; }
-  .svc-step:hover .svc-step-label { color: rgba(245,240,232,1) !important; }
+  .svc-step:hover .svc-step-num { color: #B8962E !important; opacity: 0.7 !important; }
+  .svc-step:hover .svc-step-label { color: #B8962E !important; }
 `;
 
 export default function ServicesPage({ setPage }) {
@@ -669,34 +672,759 @@ export default function ServicesPage({ setPage }) {
     {
       n: "Boards & Governance",
       d: "We advise on board composition, governance effectiveness, and director appointments. Our work supports boards in strengthening oversight, strategic guidance, and leadership succession at the highest levels.",
+      illus: (
+        <svg
+          viewBox="0 0 160 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ width: "100%", height: "100%" }}
+        >
+          <ellipse
+            cx="80"
+            cy="72"
+            rx="52"
+            ry="20"
+            fill="#EDE8DE"
+            stroke="#0D3D4E"
+            strokeWidth="1.5"
+            opacity=".4"
+          />
+          <ellipse
+            cx="74"
+            cy="68"
+            rx="26"
+            ry="8"
+            fill="rgba(255,255,255,0.45)"
+          />
+          {[0, 1, 2, 3, 4].map((i) => {
+            const a = (i / 5) * Math.PI * 2 - Math.PI / 2;
+            return (
+              <g key={i}>
+                <circle
+                  cx={80 + 64 * Math.cos(a)}
+                  cy={72 + 28 * Math.sin(a)}
+                  r="7"
+                  fill="#0D3D4E"
+                  opacity=".18"
+                />
+                <circle
+                  cx={80 + 64 * Math.cos(a)}
+                  cy={72 + 28 * Math.sin(a) - 14}
+                  r="6"
+                  fill="#0D3D4E"
+                  opacity=".25"
+                />
+              </g>
+            );
+          })}
+          <circle cx="80" cy="72" r="8" fill="rgba(184,150,46,0.15)" />
+          <circle cx="80" cy="72" r="4" fill="#B8962E" opacity=".8" />
+          {[
+            [80, 63, 80, 58],
+            [88, 67, 92, 63],
+            [88, 77, 92, 81],
+            [80, 81, 80, 86],
+            [72, 77, 68, 81],
+            [72, 67, 68, 63],
+          ].map(([x1, y1, x2, y2], i) => (
+            <line
+              key={i}
+              x1={x1}
+              y1={y1}
+              x2={x2}
+              y2={y2}
+              stroke="#B8962E"
+              strokeWidth="1.2"
+              opacity=".5"
+            />
+          ))}
+          <polyline
+            points="112,18 120,6 126,13 132,4 138,13 144,6 152,18"
+            stroke="#0D3D4E"
+            strokeWidth="1.8"
+            fill="none"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+            opacity=".35"
+          />
+          <line
+            x1="112"
+            y1="18"
+            x2="152"
+            y2="18"
+            stroke="#0D3D4E"
+            strokeWidth="1.5"
+            opacity=".3"
+          />
+          <text
+            x="80"
+            y="108"
+            textAnchor="middle"
+            style={{
+              fontFamily: "'Jost',sans-serif",
+              fontSize: 8,
+              fill: "#B8962E",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+            }}
+          >
+            Governance
+          </text>
+        </svg>
+      ),
     },
     {
       n: "Chief Executive Officer",
       d: "The CEO defines direction, culture, and performance expectations. We support organisations in identifying leaders capable of aligning strategy with execution, building strong management teams, and sustaining long-term growth.",
+      illus: (
+        <svg
+          viewBox="0 0 160 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ width: "100%", height: "100%" }}
+        >
+          <circle
+            cx="80"
+            cy="56"
+            r="20"
+            fill="#0D3D4E"
+            opacity=".1"
+            stroke="#0D3D4E"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M52 105 Q52 80 80 80 Q108 80 108 105"
+            stroke="#0D3D4E"
+            strokeWidth="1.5"
+            fill="#EDE8DE"
+          />
+          <polyline
+            points="58,42 65,26 72,34 80,18 88,34 95,26 102,42"
+            stroke="#B8962E"
+            strokeWidth="2.2"
+            fill="none"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+          />
+          <line
+            x1="58"
+            y1="42"
+            x2="102"
+            y2="42"
+            stroke="#B8962E"
+            strokeWidth="2"
+          />
+          <circle cx="65" cy="26" r="3" fill="#B8962E" />
+          <circle cx="80" cy="18" r="4" fill="#B8962E" />
+          <circle cx="95" cy="26" r="3" fill="#B8962E" />
+          <line
+            x1="40"
+            y1="56"
+            x2="62"
+            y2="56"
+            stroke="#B8962E"
+            strokeWidth="1"
+            strokeDasharray="3 3"
+            opacity=".5"
+          />
+          <line
+            x1="98"
+            y1="56"
+            x2="120"
+            y2="56"
+            stroke="#B8962E"
+            strokeWidth="1"
+            strokeDasharray="3 3"
+            opacity=".5"
+          />
+          <text
+            x="80"
+            y="115"
+            textAnchor="middle"
+            style={{
+              fontFamily: "'Jost',sans-serif",
+              fontSize: 8,
+              fill: "#B8962E",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+            }}
+          >
+            CEO
+          </text>
+        </svg>
+      ),
     },
     {
       n: "Chief Financial Officer",
       d: "The CFO has evolved into a strategic partner to the CEO and Board. We identify finance leaders who combine financial stewardship with enterprise-level thinking, transformation capability, and governance credibility.",
+      illus: (
+        <svg
+          viewBox="0 0 160 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ width: "100%", height: "100%" }}
+        >
+          <rect
+            x="28"
+            y="22"
+            width="104"
+            height="76"
+            rx="2"
+            stroke="#0D3D4E"
+            strokeWidth="1.5"
+            fill="none"
+            opacity=".25"
+          />
+          <line
+            x1="28"
+            y1="36"
+            x2="132"
+            y2="36"
+            stroke="#B8962E"
+            strokeWidth="1"
+            opacity=".5"
+          />
+          <rect
+            x="36"
+            y="44"
+            width="18"
+            height="46"
+            rx="1"
+            fill="#B8962E"
+            opacity=".2"
+          />
+          <rect
+            x="62"
+            y="34"
+            width="18"
+            height="56"
+            rx="1"
+            fill="#B8962E"
+            opacity=".35"
+          />
+          <rect
+            x="88"
+            y="52"
+            width="18"
+            height="38"
+            rx="1"
+            fill="#B8962E"
+            opacity=".25"
+          />
+          <rect
+            x="114"
+            y="28"
+            width="8"
+            height="62"
+            rx="1"
+            fill="#0D3D4E"
+            opacity=".08"
+          />
+          <polyline
+            points="45,60 71,44 97,64 123,36"
+            stroke="#B8962E"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <circle cx="45" cy="60" r="3" fill="#B8962E" />
+          <circle cx="71" cy="44" r="3" fill="#B8962E" />
+          <circle cx="97" cy="64" r="3" fill="#B8962E" />
+          <circle cx="123" cy="36" r="4" fill="#B8962E" />
+          <text
+            x="80"
+            y="112"
+            textAnchor="middle"
+            style={{
+              fontFamily: "'Jost',sans-serif",
+              fontSize: 8,
+              fill: "#B8962E",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+            }}
+          >
+            Finance
+          </text>
+        </svg>
+      ),
     },
     {
       n: "Marketing & Sales",
       d: "Growth leadership demands commercial acumen, customer insight, and execution discipline. We support organisations in appointing leaders who translate strategy into measurable revenue impact.",
+      illus: (
+        <svg
+          viewBox="0 0 160 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ width: "100%", height: "100%" }}
+        >
+          <circle
+            cx="54"
+            cy="60"
+            r="28"
+            stroke="#0D3D4E"
+            strokeWidth="1.2"
+            fill="none"
+            opacity=".15"
+            strokeDasharray="4 6"
+          />
+          <circle
+            cx="54"
+            cy="60"
+            r="18"
+            stroke="#0D3D4E"
+            strokeWidth="1"
+            fill="none"
+            opacity=".12"
+            strokeDasharray="3 5"
+          />
+          <circle
+            cx="54"
+            cy="60"
+            r="8"
+            fill="#0D3D4E"
+            opacity=".12"
+            stroke="#0D3D4E"
+            strokeWidth="1.2"
+          />
+          <circle cx="54" cy="60" r="3.5" fill="#B8962E" opacity=".8" />
+          <polyline
+            points="88,88 100,70 112,58 124,38 138,24"
+            stroke="#B8962E"
+            strokeWidth="2.5"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <circle cx="100" cy="70" r="3.5" fill="#B8962E" />
+          <circle cx="112" cy="58" r="3.5" fill="#B8962E" />
+          <circle cx="124" cy="38" r="3.5" fill="#B8962E" />
+          <circle cx="138" cy="24" r="4.5" fill="#B8962E" />
+          <polyline
+            points="130,24 138,24 138,32"
+            stroke="#B8962E"
+            strokeWidth="1.8"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <text
+            x="80"
+            y="112"
+            textAnchor="middle"
+            style={{
+              fontFamily: "'Jost',sans-serif",
+              fontSize: 8,
+              fill: "#B8962E",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+            }}
+          >
+            Growth
+          </text>
+        </svg>
+      ),
     },
     {
       n: "Human Resources",
       d: "Human capital strategy is central to organisational performance. We recruit and advise HR leaders across talent strategy, organisational effectiveness, succession planning, change management, and rewards.",
+      illus: (
+        <svg
+          viewBox="0 0 160 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ width: "100%", height: "100%" }}
+        >
+          <circle
+            cx="52"
+            cy="44"
+            r="13"
+            stroke="#0D3D4E"
+            strokeWidth="1.5"
+            fill="none"
+            opacity=".4"
+          />
+          <circle
+            cx="108"
+            cy="44"
+            r="13"
+            stroke="#0D3D4E"
+            strokeWidth="1.5"
+            fill="none"
+            opacity=".4"
+          />
+          <circle
+            cx="80"
+            cy="36"
+            r="16"
+            stroke="#0D3D4E"
+            strokeWidth="1.8"
+            fill="none"
+            opacity=".5"
+          />
+          <circle cx="80" cy="36" r="8" fill="#0D3D4E" opacity=".15" />
+          <path
+            d="M30 98 Q30 76 52 76"
+            stroke="#0D3D4E"
+            strokeWidth="1.5"
+            fill="none"
+            opacity=".3"
+          />
+          <path
+            d="M108 76 Q130 76 130 98"
+            stroke="#0D3D4E"
+            strokeWidth="1.5"
+            fill="none"
+            opacity=".3"
+          />
+          <path
+            d="M52 76 Q66 68 80 68 Q94 68 108 76"
+            stroke="#B8962E"
+            strokeWidth="2"
+            fill="none"
+            opacity=".8"
+          />
+          <circle
+            cx="80"
+            cy="74"
+            r="10"
+            stroke="#B8962E"
+            strokeWidth="1.5"
+            fill="none"
+            opacity=".5"
+          />
+          <circle cx="80" cy="74" r="4" fill="#B8962E" opacity=".7" />
+          <text
+            x="80"
+            y="112"
+            textAnchor="middle"
+            style={{
+              fontFamily: "'Jost',sans-serif",
+              fontSize: 8,
+              fill: "#B8962E",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+            }}
+          >
+            People
+          </text>
+        </svg>
+      ),
     },
     {
       n: "Supply Chain",
       d: "Supply chain leadership is increasingly strategic, balancing efficiency, resilience, risk management, and global complexity. We identify leaders capable of driving operational excellence while adapting to evolving market demands.",
+      illus: (
+        <svg
+          viewBox="0 0 160 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ width: "100%", height: "100%" }}
+        >
+          <rect
+            x="12"
+            y="46"
+            width="28"
+            height="22"
+            rx="2"
+            stroke="#B8962E"
+            strokeWidth="1.5"
+            fill="none"
+            opacity=".7"
+          />
+          <rect
+            x="52"
+            y="38"
+            width="28"
+            height="22"
+            rx="2"
+            stroke="#B8962E"
+            strokeWidth="1.5"
+            fill="none"
+          />
+          <rect
+            x="92"
+            y="46"
+            width="28"
+            height="22"
+            rx="2"
+            stroke="#B8962E"
+            strokeWidth="1.5"
+            fill="none"
+            opacity=".7"
+          />
+          <rect
+            x="130"
+            y="38"
+            width="20"
+            height="22"
+            rx="2"
+            stroke="#0D3D4E"
+            strokeWidth="1.2"
+            fill="none"
+            opacity=".3"
+          />
+          <line
+            x1="40"
+            y1="57"
+            x2="52"
+            y2="50"
+            stroke="#0D3D4E"
+            strokeWidth="1.5"
+            opacity=".4"
+          />
+          <line
+            x1="80"
+            y1="50"
+            x2="92"
+            y2="57"
+            stroke="#0D3D4E"
+            strokeWidth="1.5"
+            opacity=".4"
+          />
+          <line
+            x1="120"
+            y1="57"
+            x2="130"
+            y2="50"
+            stroke="#0D3D4E"
+            strokeWidth="1.2"
+            opacity=".3"
+          />
+          <circle
+            cx="26"
+            cy="76"
+            r="5"
+            fill="none"
+            stroke="#0D3D4E"
+            strokeWidth="1.2"
+            opacity=".35"
+          />
+          <circle
+            cx="34"
+            cy="76"
+            r="5"
+            fill="none"
+            stroke="#0D3D4E"
+            strokeWidth="1.2"
+            opacity=".35"
+          />
+          <circle
+            cx="66"
+            cy="68"
+            r="5"
+            fill="none"
+            stroke="#0D3D4E"
+            strokeWidth="1.2"
+            opacity=".35"
+          />
+          <circle
+            cx="74"
+            cy="68"
+            r="5"
+            fill="none"
+            stroke="#0D3D4E"
+            strokeWidth="1.2"
+            opacity=".35"
+          />
+          <circle
+            cx="106"
+            cy="76"
+            r="5"
+            fill="none"
+            stroke="#0D3D4E"
+            strokeWidth="1.2"
+            opacity=".35"
+          />
+          <circle
+            cx="114"
+            cy="76"
+            r="5"
+            fill="none"
+            stroke="#0D3D4E"
+            strokeWidth="1.2"
+            opacity=".35"
+          />
+          <text
+            x="80"
+            y="105"
+            textAnchor="middle"
+            style={{
+              fontFamily: "'Jost',sans-serif",
+              fontSize: 8,
+              fill: "#B8962E",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+            }}
+          >
+            Operations
+          </text>
+        </svg>
+      ),
     },
     {
       n: "CSR & Sustainability",
       d: "Sustainability and responsible business practices are now integral to strategy. We support organisations in appointing leaders who integrate economic performance with environmental stewardship and stakeholder accountability.",
+      illus: (
+        <svg
+          viewBox="0 0 160 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ width: "100%", height: "100%" }}
+        >
+          <path
+            d="M80 18 Q96 26 100 44 Q104 62 90 74 Q80 82 70 74 Q56 62 60 44 Q64 26 80 18Z"
+            stroke="#0D3D4E"
+            strokeWidth="1.5"
+            fill="none"
+            opacity=".3"
+          />
+          <path
+            d="M80 28 Q66 42 80 62 Q94 42 80 28Z"
+            fill="#B8962E"
+            opacity=".18"
+            stroke="#B8962E"
+            strokeWidth="1.2"
+          />
+          <path
+            d="M60 44 Q44 50 42 66 Q56 72 70 66"
+            stroke="#0D3D4E"
+            strokeWidth="1"
+            fill="none"
+            opacity=".2"
+            strokeDasharray="3 4"
+          />
+          <path
+            d="M100 44 Q116 50 118 66 Q104 72 90 66"
+            stroke="#0D3D4E"
+            strokeWidth="1"
+            fill="none"
+            opacity=".2"
+            strokeDasharray="3 4"
+          />
+          <line
+            x1="80"
+            y1="74"
+            x2="80"
+            y2="96"
+            stroke="#0D3D4E"
+            strokeWidth="1.5"
+            opacity=".3"
+            strokeLinecap="round"
+          />
+          <line
+            x1="64"
+            y1="92"
+            x2="96"
+            y2="92"
+            stroke="#0D3D4E"
+            strokeWidth="1.5"
+            opacity=".3"
+            strokeLinecap="round"
+          />
+          <circle cx="80" cy="44" r="5" fill="#B8962E" opacity=".8" />
+          <text
+            x="80"
+            y="112"
+            textAnchor="middle"
+            style={{
+              fontFamily: "'Jost',sans-serif",
+              fontSize: 8,
+              fill: "#B8962E",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+            }}
+          >
+            ESG
+          </text>
+        </svg>
+      ),
     },
     {
       n: "Artificial Intelligence",
       d: "AI leadership is treated as a horizontal capability — integrated across functions and industries. We identify leaders who can bridge technology and strategy, embed responsible innovation, and translate digital capability into commercial advantage.",
+      illus: (
+        <svg
+          viewBox="0 0 160 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ width: "100%", height: "100%" }}
+        >
+          <circle
+            cx="80"
+            cy="60"
+            r="16"
+            fill="rgba(184,150,46,0.12)"
+            stroke="#B8962E"
+            strokeWidth="1.5"
+          />
+          <circle cx="80" cy="60" r="6" fill="#B8962E" opacity=".8" />
+          {[0, 1, 2, 3, 4, 5].map((i) => {
+            const a = (i / 6) * Math.PI * 2;
+            return (
+              <g key={i}>
+                <line
+                  x1={80 + 18 * Math.cos(a)}
+                  y1={60 + 18 * Math.sin(a)}
+                  x2={80 + 32 * Math.cos(a)}
+                  y2={60 + 32 * Math.sin(a)}
+                  stroke="#B8962E"
+                  strokeWidth="1.2"
+                  opacity=".5"
+                />
+                <circle
+                  cx={80 + 36 * Math.cos(a)}
+                  cy={60 + 36 * Math.sin(a)}
+                  r="5"
+                  fill="none"
+                  stroke="#0D3D4E"
+                  strokeWidth="1.2"
+                  opacity=".5"
+                />
+                <circle
+                  cx={80 + 36 * Math.cos(a)}
+                  cy={60 + 36 * Math.sin(a)}
+                  r="2"
+                  fill="#B8962E"
+                  opacity=".6"
+                />
+              </g>
+            );
+          })}
+          <circle
+            cx="80"
+            cy="60"
+            r="48"
+            stroke="#B8962E"
+            strokeWidth="0.7"
+            opacity=".12"
+            strokeDasharray="3 8"
+          />
+          <circle
+            cx="80"
+            cy="60"
+            r="28"
+            stroke="#0D3D4E"
+            strokeWidth="0.7"
+            opacity=".12"
+            strokeDasharray="2 6"
+          />
+          <text
+            x="80"
+            y="115"
+            textAnchor="middle"
+            style={{
+              fontFamily: "'Jost',sans-serif",
+              fontSize: 8,
+              fill: "#B8962E",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+            }}
+          >
+            AI & Digital
+          </text>
+        </svg>
+      ),
     },
   ];
 
@@ -785,7 +1513,7 @@ export default function ServicesPage({ setPage }) {
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(to top, rgba(13,61,78,0.97) 0%, rgba(13,61,78,0.65) 40%, rgba(13,61,78,0.2) 100%)",
+              "linear-gradient(to top, rgba(13,61,78,0.82) 0%, rgba(13,61,78,0.45) 40%, rgba(13,61,78,0.12) 100%)",
           }}
         />
         <div
@@ -793,7 +1521,7 @@ export default function ServicesPage({ setPage }) {
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(to right, rgba(13,61,78,0.5) 0%, transparent 55%)",
+              "linear-gradient(to right, rgba(13,61,78,0.38) 0%, transparent 55%)",
           }}
         />
 
@@ -918,14 +1646,15 @@ export default function ServicesPage({ setPage }) {
       {/* ══════ 2. PROCESS FRAMEWORK — timeline with animated draw-line ══════ */}
       <section
         style={{
-          background: T.teal,
+          background: T.cream,
           padding: "100px 64px",
           overflow: "hidden",
+          borderBottom: `1px solid rgba(13,61,78,0.08)`,
         }}
       >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <Fade>
-            <SectionLabel text="Our Approach" light />
+            <SectionLabel text="Our Approach" />
             <div
               style={{
                 display: "flex",
@@ -940,7 +1669,7 @@ export default function ServicesPage({ setPage }) {
                   fontFamily: "'Cormorant Garamond', serif",
                   fontSize: "clamp(36px,4vw,52px)",
                   fontWeight: 300,
-                  color: T.white,
+                  color: T.teal,
                   lineHeight: 1.1,
                 }}
               >
@@ -953,7 +1682,7 @@ export default function ServicesPage({ setPage }) {
                   fontSize: 14,
                   fontWeight: 300,
                   lineHeight: 1.8,
-                  color: "rgba(245,240,232,0.55)",
+                  color: T.textMid,
                   maxWidth: 300,
                   paddingBottom: 6,
                 }}
@@ -994,7 +1723,7 @@ export default function ServicesPage({ setPage }) {
                       marginBottom: 24,
                       position: "relative",
                       zIndex: 1,
-                      border: "2px solid rgba(13,61,78,1)",
+                      border: "2px solid #F5F0E8",
                       boxShadow: `0 0 0 4px rgba(184,150,46,0.15)`,
                     }}
                   />
@@ -1004,8 +1733,8 @@ export default function ServicesPage({ setPage }) {
                       fontFamily: "'Cormorant Garamond', serif",
                       fontSize: 44,
                       fontWeight: 300,
-                      color: T.gold,
-                      opacity: 0.25,
+                      color: T.teal,
+                      opacity: 0.18,
                       lineHeight: 1,
                       marginBottom: 12,
                       transition: "opacity 0.3s ease, color 0.3s ease",
@@ -1018,7 +1747,7 @@ export default function ServicesPage({ setPage }) {
                     style={{
                       fontSize: 12,
                       fontWeight: 400,
-                      color: "rgba(245,240,232,0.75)",
+                      color: T.teal,
                       lineHeight: 1.5,
                       marginBottom: 10,
                       transition: "color 0.3s ease",
@@ -1030,7 +1759,7 @@ export default function ServicesPage({ setPage }) {
                     style={{
                       fontSize: 11,
                       fontWeight: 300,
-                      color: "rgba(245,240,232,0.38)",
+                      color: T.textMuted,
                       lineHeight: 1.6,
                     }}
                   >
@@ -1044,7 +1773,7 @@ export default function ServicesPage({ setPage }) {
       </section>
 
       {/* ══════ 3. CORE 4 SERVICES — immersive full-bleed panels ══════ */}
-      <section style={{ background: T.textDark }}>
+      <section style={{ background: T.cream }}>
         <Fade
           style={{
             padding: "80px 64px 56px",
@@ -1052,7 +1781,7 @@ export default function ServicesPage({ setPage }) {
             margin: "0 auto",
           }}
         >
-          <SectionLabel text="Core Advisory" light />
+          <SectionLabel text="Core Advisory" />
           <div
             style={{
               display: "flex",
@@ -1066,7 +1795,7 @@ export default function ServicesPage({ setPage }) {
                 fontFamily: "'Cormorant Garamond', serif",
                 fontSize: "clamp(36px,4vw,52px)",
                 fontWeight: 300,
-                color: T.white,
+                color: T.teal,
                 lineHeight: 1.1,
               }}
             >
@@ -1077,7 +1806,7 @@ export default function ServicesPage({ setPage }) {
                 fontSize: 13,
                 fontWeight: 300,
                 lineHeight: 1.8,
-                color: "rgba(245,240,232,0.5)",
+                color: T.textMid,
                 maxWidth: 320,
                 paddingBottom: 4,
               }}
@@ -1093,7 +1822,7 @@ export default function ServicesPage({ setPage }) {
         <div
           style={{
             height: 0,
-            borderBottom: `1px solid rgba(245,240,232,0.05)`,
+            borderBottom: `1px solid rgba(13,61,78,0.08)`,
           }}
         />
       </section>
@@ -1231,10 +1960,10 @@ export default function ServicesPage({ setPage }) {
         </div>
       </section>
 
-      {/* ══════ 5. FUNCTIONAL EXPERTISE — hover list on dark background ══════ */}
+      {/* ══════ 5. FUNCTIONAL EXPERTISE — hover list on light background ══════ */}
       <section
         style={{
-          background: T.teal,
+          background: T.creamAlt,
           padding: "120px 64px",
           position: "relative",
           overflow: "hidden",
@@ -1250,7 +1979,7 @@ export default function ServicesPage({ setPage }) {
             fontSize: 320,
             fontWeight: 300,
             lineHeight: 1,
-            color: T.white,
+            color: T.teal,
             opacity: 0.03,
             pointerEvents: "none",
             userSelect: "none",
@@ -1259,18 +1988,6 @@ export default function ServicesPage({ setPage }) {
         >
           FX
         </div>
-        {/* Dot grid texture */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage:
-              "radial-gradient(circle at 2px 2px,rgba(255,255,255,0.03) 1px,transparent 0)",
-            backgroundSize: "40px 40px",
-            pointerEvents: "none",
-          }}
-        />
-
         <div
           style={{
             maxWidth: 1200,
@@ -1288,13 +2005,13 @@ export default function ServicesPage({ setPage }) {
             }}
           >
             <div>
-              <SectionLabel text="Functional Expertise" light />
+              <SectionLabel text="Functional Expertise" />
               <h2
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   fontSize: "clamp(36px,4vw,52px)",
                   fontWeight: 300,
-                  color: T.white,
+                  color: T.teal,
                 }}
               >
                 Where We Place
@@ -1305,7 +2022,7 @@ export default function ServicesPage({ setPage }) {
                 fontSize: 13,
                 fontWeight: 300,
                 lineHeight: 1.8,
-                color: "rgba(245,240,232,0.45)",
+                color: T.textMid,
                 maxWidth: 280,
                 textAlign: "right",
               }}
@@ -1324,9 +2041,8 @@ export default function ServicesPage({ setPage }) {
                   alignItems: "center",
                   justifyContent: "space-between",
                   padding: "28px 0",
-                  borderBottom: `1px solid rgba(245,240,232,0.08)`,
+                  borderBottom: `1px solid rgba(13,61,78,0.1)`,
                   cursor: "default",
-                  transition: "background 0.3s ease",
                   paddingLeft: activeFunction === i ? 16 : 0,
                   borderLeft:
                     activeFunction === i
@@ -1355,10 +2071,7 @@ export default function ServicesPage({ setPage }) {
                       fontFamily: "'Cormorant Garamond', serif",
                       fontSize: "clamp(22px,2.5vw,32px)",
                       fontWeight: activeFunction === i ? 400 : 300,
-                      color:
-                        activeFunction === i
-                          ? T.gold
-                          : "rgba(245,240,232,0.85)",
+                      color: activeFunction === i ? T.gold : T.teal,
                       transition: "all 0.35s ease",
                     }}
                   >
@@ -1377,7 +2090,7 @@ export default function ServicesPage({ setPage }) {
                     fontSize: 13,
                     fontWeight: 300,
                     lineHeight: 1.75,
-                    color: "rgba(245,240,232,0.65)",
+                    color: T.textMid,
                   }}
                 >
                   {fn.d}
