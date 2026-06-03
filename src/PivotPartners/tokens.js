@@ -69,7 +69,7 @@ export const css = `
 
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 20px 64px;
+    padding: 5px 64px;
     display: flex; align-items: center; justify-content: space-between;
     background: var(--cream);
     border-bottom: 1px solid rgba(184,150,46,0.2);
