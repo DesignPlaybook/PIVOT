@@ -35,6 +35,18 @@ export default function AboutPage() {
     },
   ];
 
+  useEffect(() => {
+    const target = sessionStorage.getItem("scrollTo");
+    if (target === "how-we-work") {
+      sessionStorage.removeItem("scrollTo");
+      setTimeout(() => {
+        document
+          .getElementById("how-we-work")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 400);
+    }
+  }, []);
+
   return (
     <>
       {/* Hero */}

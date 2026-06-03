@@ -12,6 +12,7 @@ import ContactPage from "./ContactPage";
 import PrivacyPolicyPage from "./PrivacyPolicyPage";
 import TermsPage from "./TermsPage";
 import DisclaimerPage from "./DisclaimerPage";
+import ArticlePage from "./ArticlePage";
 
 export default function App() {
   const [page, setPage] = useState("Home");
@@ -26,6 +27,7 @@ export default function App() {
     Privacy: <PrivacyPolicyPage />,
     Terms: <TermsPage />,
     Disclaimer: <DisclaimerPage />,
+    Article: <ArticlePage setPage={setPage} />,
   };
 
   return (

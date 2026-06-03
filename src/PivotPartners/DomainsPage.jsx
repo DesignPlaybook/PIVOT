@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { T } from "./tokens";
 import { SectionLabel } from "./utils";
+import AI from "./AI.svg";
 
 /* ─── Shared IntersectionObserver hook ─── */
 function useIO(threshold = 0) {
@@ -791,48 +792,58 @@ const FunctionIllustration = ({ name }) => {
       </svg>
     ),
     "Artificial Intelligence": (
-      <svg viewBox="0 0 80 80" fill="none">
-        <circle cx="40" cy="40" r="10" fill="#B8962E" opacity="0.25" />
-        <circle cx="40" cy="40" r="5" fill="#B8962E" opacity="0.7" />
-        {[0, 1, 2, 3, 4, 5].map((i) => {
-          const a = (i / 6) * Math.PI * 2;
-          const x1 = 40 + 14 * Math.cos(a),
-            y1 = 40 + 14 * Math.sin(a);
-          const x2 = 40 + 26 * Math.cos(a),
-            y2 = 40 + 26 * Math.sin(a);
-          return (
-            <g key={i}>
-              <line
-                x1={x1}
-                y1={y1}
-                x2={x2}
-                y2={y2}
-                stroke="#B8962E"
-                strokeWidth="1.5"
-                opacity="0.5"
-              />
-              <circle
-                cx={x2}
-                cy={y2}
-                r="4"
-                fill="none"
-                stroke="#0D3D4E"
-                strokeWidth="1.2"
-                opacity="0.5"
-              />
-            </g>
-          );
-        })}
-        <circle
-          cx="40"
-          cy="40"
-          r="34"
-          stroke="#B8962E"
-          strokeWidth="0.8"
-          opacity="0.1"
-          strokeDasharray="3 6"
-        />
-      </svg>
+      // <svg viewBox="0 0 80 80" fill="none">
+      //   <circle cx="40" cy="40" r="10" fill="#B8962E" opacity="0.25" />
+      //   <circle cx="40" cy="40" r="5" fill="#B8962E" opacity="0.7" />
+      //   {[0, 1, 2, 3, 4, 5].map((i) => {
+      //     const a = (i / 6) * Math.PI * 2;
+      //     const x1 = 40 + 14 * Math.cos(a),
+      //       y1 = 40 + 14 * Math.sin(a);
+      //     const x2 = 40 + 26 * Math.cos(a),
+      //       y2 = 40 + 26 * Math.sin(a);
+      //     return (
+      //       <g key={i}>
+      //         <line
+      //           x1={x1}
+      //           y1={y1}
+      //           x2={x2}
+      //           y2={y2}
+      //           stroke="#B8962E"
+      //           strokeWidth="1.5"
+      //           opacity="0.5"
+      //         />
+      //         <circle
+      //           cx={x2}
+      //           cy={y2}
+      //           r="4"
+      //           fill="none"
+      //           stroke="#0D3D4E"
+      //           strokeWidth="1.2"
+      //           opacity="0.5"
+      //         />
+      //       </g>
+      //     );
+      //   })}
+      //   <circle
+      //     cx="40"
+      //     cy="40"
+      //     r="34"
+      //     stroke="#B8962E"
+      //     strokeWidth="0.8"
+      //     opacity="0.1"
+      //     strokeDasharray="3 6"
+      //   />
+      // </svg>
+      <img
+        src={AI}
+        alt="AI"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "contain",
+          display: "block",
+        }}
+      />
     ),
   };
   return map[name] || map["Artificial Intelligence"];
@@ -868,7 +879,7 @@ const PAGE_CSS = `
    INDUSTRY ACCORDION
 ══════════════════════════════════════════════════════ */
 function IndustryAccordion({ industries }) {
-  const [open, setOpen] = useState(0);
+  const [open, setOpen] = useState(null);
   return (
     <div>
       {industries.map((ind, i) => {
@@ -878,7 +889,7 @@ function IndustryAccordion({ industries }) {
             key={i}
             className="acc-strip"
             style={{ background: isOpen ? "#EDE8DE" : "#F5F0E8" }}
-            onClick={() => setOpen(i)}
+            onClick={() => setOpen(open === i ? null : i)}
           >
             {/* Header row — always visible */}
             <div
@@ -1977,7 +1988,7 @@ export default function DomainsPage({ setPage }) {
     <div>
       <style>{PAGE_CSS}</style>
 
-      {/* ── 1. HERO — full-viewport photo, About-style ── */}
+      {/* ── 1. HERO ── */}
       <section
         ref={heroRef}
         style={{
@@ -2017,63 +2028,6 @@ export default function DomainsPage({ setPage }) {
           }}
         />
 
-        {/* Floating sector tags */}
-        {[
-          {
-            label: "Industrial",
-            style: {
-              top: "28%",
-              right: "16%",
-              animation: "dp-float 6s ease-in-out infinite",
-            },
-          },
-          {
-            label: "Financial Services",
-            style: {
-              top: "42%",
-              right: "30%",
-              animation: "dp-float 7.5s ease-in-out infinite 1s",
-            },
-          },
-          {
-            label: "Healthcare",
-            style: {
-              top: "22%",
-              right: "38%",
-              animation: "dp-float 5.5s ease-in-out infinite 0.5s",
-            },
-          },
-          {
-            label: "Consumer",
-            style: {
-              top: "55%",
-              right: "18%",
-              animation: "dp-float 8s ease-in-out infinite 2s",
-            },
-          },
-          {
-            label: "Technology & Media",
-            style: {
-              top: "35%",
-              right: "52%",
-              animation: "dp-float 6.5s ease-in-out infinite 1.5s",
-            },
-          },
-        ].map((tag, i) => (
-          <div
-            key={i}
-            className="dp-tag"
-            style={{
-              ...tag.style,
-              opacity: heroVis ? 1 : 0,
-              transition: `opacity 0.6s ease ${0.6 + i * 0.12}s`,
-            }}
-          >
-            {tag.label}
-          </div>
-        ))}
-
-        {/* Main content */}
         <div
           style={{
             position: "relative",
@@ -2082,115 +2036,42 @@ export default function DomainsPage({ setPage }) {
             maxWidth: 1200,
             margin: "0 auto",
             padding: "0 64px 96px",
-            display: "grid",
-            gridTemplateColumns: "1.1fr 0.9fr",
-            gap: 80,
-            alignItems: "flex-end",
           }}
         >
-          <div>
-            <div className="dp-l1">
-              <SectionLabel text="Industry Domains" light />
-            </div>
-            <h1
-              className="dp-l2"
-              style={{
-                fontFamily: "'Cormorant Garamond',serif",
-                fontSize: "clamp(60px,7.5vw,100px)",
-                fontWeight: 300,
-                lineHeight: 0.98,
-                color: "#FFFFFF",
-                margin: "16px 0 0",
-              }}
-            >
-              Precision-Led
-              <br />
-              Domain
-              <br />
-              Expertise.
-            </h1>
+          <div className="dp-l1">
+            <SectionLabel text="Industry Domains" light />
           </div>
-          <div className="dp-l3" style={{ paddingBottom: 6 }}>
-            <div
-              style={{
-                width: 48,
-                height: 1,
-                background: "#B8962E",
-                marginBottom: 28,
-              }}
-            />
-            <p
-              style={{
-                fontSize: 16,
-                fontWeight: 300,
-                lineHeight: 1.85,
-                color: "rgba(255,255,255,0.72)",
-                marginBottom: 20,
-              }}
-            >
-              We operate at the intersection of industry nuance and leadership
-              dynamics, delivering bespoke advisory across six critical global
-              markets.
-            </p>
-            <p
-              style={{
-                fontSize: 14,
-                fontWeight: 300,
-                lineHeight: 1.8,
-                color: "rgba(255,255,255,0.42)",
-                marginBottom: 36,
-              }}
-            >
-              The same rigour, discretion, and governance awareness — in every
-              sector, every engagement.
-            </p>
-            {/* Stat strip */}
-            <div style={{ display: "flex", gap: 0 }}>
-              {[
-                { v: "6", s: "", l: "Sectors" },
-                { v: "30", s: "+", l: "Countries" },
-                { v: "500", s: "+", l: "Mandates" },
-                { v: "92", s: "%", l: "Retention" },
-              ].map((st, i) => (
-                <div
-                  key={i}
-                  style={{
-                    paddingRight: 32,
-                    marginRight: 32,
-                    borderRight:
-                      i < 3 ? "1px solid rgba(245,240,232,0.12)" : "none",
-                  }}
-                >
-                  <div
-                    style={{
-                      fontFamily: "'Cormorant Garamond',serif",
-                      fontSize: 36,
-                      fontWeight: 600,
-                      color: "#B8962E",
-                      lineHeight: 1,
-                    }}
-                  >
-                    <Counter target={st.v} suffix={st.s} />
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: "'Jost',sans-serif",
-                      fontSize: 9,
-                      letterSpacing: "0.18em",
-                      textTransform: "uppercase",
-                      color: "rgba(245,240,232,0.4)",
-                      marginTop: 4,
-                    }}
-                  >
-                    {st.l}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <h1
+            className="dp-l2"
+            style={{
+              fontFamily: "'Cormorant Garamond',serif",
+              fontSize: "clamp(60px,7.5vw,100px)",
+              fontWeight: 300,
+              lineHeight: 0.98,
+              color: "#FFFFFF",
+              margin: "16px 0 24px",
+            }}
+          >
+            Precision-Led
+            <br />
+            Domain
+            <br />
+            Expertise.
+          </h1>
+          <p
+            className="dp-l3"
+            style={{
+              fontSize: 14,
+              fontWeight: 300,
+              fontStyle: "italic",
+              color: "rgba(255,255,255,0.45)",
+              letterSpacing: "0.04em",
+            }}
+          >
+            Six sectors. Thirty countries. One standard of rigour.
+          </p>
         </div>
 
-        {/* Scroll cue */}
         <div
           style={{
             position: "absolute",

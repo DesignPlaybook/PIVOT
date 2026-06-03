@@ -3,8 +3,9 @@ import logo from "../assets/PEPLogo.png";
 
 const FOOTER_CSS = `
   .ft-root {
-    background: var(--teal);
-    padding: 48px 64px 28px;
+    background: var(--cream);
+    border-top: 1px solid rgba(13,61,78,0.1);
+    padding: 64px 64px 32px;
     font-family: 'Jost', sans-serif;
   }
 
@@ -12,9 +13,9 @@ const FOOTER_CSS = `
     font-family: 'Jost', sans-serif;
     font-size: 12px;
     font-weight: 300;
-    color: rgba(245,240,232,0.55);
+    color: rgba(13,61,78,0.55);
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     cursor: pointer;
     background: none;
     border: none;
@@ -31,11 +32,12 @@ const FOOTER_CSS = `
     font-size: 9px;
     letter-spacing: 0.26em;
     text-transform: uppercase;
-    color: rgba(184,150,46,0.7);
+    color: var(--gold);
     display: block;
     margin-bottom: 16px;
     padding-bottom: 10px;
-    border-bottom: 1px solid rgba(184,150,46,0.12);
+    border-bottom: 1px solid rgba(184,150,46,0.2);
+    opacity: 0.8;
   }
 
   .ft-legal-link {
@@ -43,7 +45,7 @@ const FOOTER_CSS = `
     font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(245,240,232,0.28);
+    color: rgba(13,61,78,0.3);
     cursor: pointer;
     transition: color 0.25s ease;
     background: none;
@@ -54,8 +56,8 @@ const FOOTER_CSS = `
 
   .ft-divider {
     height: 1px;
-    background: rgba(245,240,232,0.07);
-    margin: 32px 0 20px;
+    background: rgba(13,61,78,0.08);
+    margin: 40px 0 24px;
   }
 
   @media (max-width: 768px) {
@@ -75,7 +77,6 @@ export default function Footer({ setPage }) {
 
   const legalLinks = [
     { label: "Privacy Policy", page: "Privacy" },
-    { label: "Terms of Service", page: "Terms" },
     { label: "Disclaimer", page: "Disclaimer" },
   ];
 
@@ -93,12 +94,12 @@ export default function Footer({ setPage }) {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "200px 1fr 1fr 1fr",
+              gridTemplateColumns: "220px 1fr 1fr 1fr",
               gap: 64,
               alignItems: "start",
             }}
           >
-            {/* Logo */}
+            {/* Logo + tagline */}
             <div>
               <img
                 src={logo}
@@ -109,7 +110,6 @@ export default function Footer({ setPage }) {
                   objectFit: "contain",
                   display: "block",
                   cursor: "pointer",
-                  opacity: 0.9,
                 }}
                 onClick={() => handleNav("Home")}
               />
@@ -118,7 +118,7 @@ export default function Footer({ setPage }) {
                   fontSize: 11,
                   fontWeight: 300,
                   lineHeight: 1.75,
-                  color: "rgba(245,240,232,0.35)",
+                  color: "rgba(13,61,78,0.4)",
                   marginTop: 16,
                   maxWidth: 180,
                 }}
@@ -155,17 +155,18 @@ export default function Footer({ setPage }) {
               ))}
             </div>
 
-            {/* Tagline / conviction */}
+            {/* Conviction */}
             <div>
               <span className="ft-col-label">Our Conviction</span>
               <p
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 16,
+                  fontSize: 17,
                   fontStyle: "italic",
                   fontWeight: 300,
-                  color: "rgba(245,240,232,0.45)",
+                  color: T.teal,
                   lineHeight: 1.65,
+                  opacity: 0.6,
                 }}
               >
                 "When leadership aligns with ambition, advantage begins."
@@ -192,7 +193,8 @@ export default function Footer({ setPage }) {
                     fontSize: 9,
                     letterSpacing: "0.2em",
                     textTransform: "uppercase",
-                    color: "rgba(184,150,46,0.55)",
+                    color: T.gold,
+                    opacity: 0.7,
                   }}
                 >
                   PivotEdge Partners
@@ -218,7 +220,7 @@ export default function Footer({ setPage }) {
               style={{
                 fontFamily: "'Jost', sans-serif",
                 fontSize: 11,
-                color: "rgba(245,240,232,0.22)",
+                color: "rgba(13,61,78,0.28)",
                 fontWeight: 300,
                 letterSpacing: "0.02em",
               }}
@@ -238,7 +240,7 @@ export default function Footer({ setPage }) {
                         width: 3,
                         height: 3,
                         borderRadius: "50%",
-                        background: "rgba(184,150,46,0.3)",
+                        background: "rgba(184,150,46,0.35)",
                         display: "inline-block",
                       }}
                     />

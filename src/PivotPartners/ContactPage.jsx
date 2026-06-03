@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { T } from "./tokens";
 import { SectionLabel } from "./utils";
+import GlobalPresence from "./GlobalPresence";
 
 function useIO(threshold = 0) {
   const ref = useRef(null);
@@ -375,54 +376,106 @@ export default function ContactPage() {
                 height: 1,
                 background: T.gold,
                 opacity: 0.6,
-                marginBottom: 28,
+                marginBottom: 40,
               }}
             />
 
-            {/* Locations */}
-            <LocationCard
-              city="Pune"
-              country="India"
-              region="Headquarters"
-              timezone="IST UTC+5:30"
-              index={0}
-            />
-            <LocationCard
-              city="Dubai"
-              country="UAE"
-              region="Middle East"
-              timezone="GST UTC+4"
-              index={1}
-            />
+            {[
+              {
+                icon: (
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="rgba(184,150,46,0.7)"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  >
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                ),
+                label: "Email",
+                value: "info@pivotedgegroup.com",
+              },
+              {
+                icon: (
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="rgba(184,150,46,0.7)"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  >
+                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.06 1.18 2 2 0 012.03 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+                  </svg>
+                ),
+                label: "Phone",
+                value: "+91 98765 43210",
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                style={{
+                  borderTop: "1px solid rgba(245,240,232,0.1)",
+                  padding: "24px 0",
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: 20,
+                }}
+              >
+                <div style={{ marginTop: 2, flexShrink: 0 }}>{item.icon}</div>
+                <div>
+                  <div
+                    style={{
+                      fontFamily: "'Jost', sans-serif",
+                      fontSize: 9,
+                      letterSpacing: "0.22em",
+                      textTransform: "uppercase",
+                      color: "rgba(184,150,46,0.6)",
+                      marginBottom: 8,
+                    }}
+                  >
+                    {item.label}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontSize: 20,
+                      fontWeight: 300,
+                      color: "rgba(245,240,232,0.75)",
+                      letterSpacing: "0.02em",
+                    }}
+                  >
+                    {item.value}
+                  </div>
+                </div>
+              </div>
+            ))}
+
             <div
               style={{
                 borderTop: "1px solid rgba(245,240,232,0.1)",
-                paddingTop: 28,
+                paddingTop: 24,
                 marginTop: 4,
               }}
             >
-              <div
+              <p
                 style={{
                   fontFamily: "'Jost', sans-serif",
-                  fontSize: 9,
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  color: "rgba(184,150,46,0.6)",
-                  marginBottom: 10,
-                }}
-              >
-                Email
-              </div>
-              <div
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 18,
+                  fontSize: 12,
                   fontWeight: 300,
-                  color: "rgba(245,240,232,0.75)",
+                  lineHeight: 1.8,
+                  color: "rgba(245,240,232,0.3)",
+                  maxWidth: 320,
                 }}
               >
-                executive@pivotedge.com
-              </div>
+                All enquiries are handled with complete discretion. A senior
+                partner will respond within 24 hours.
+              </p>
             </div>
           </div>
         </div>
@@ -874,6 +927,9 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* MAP */}
+      <GlobalPresence />
 
       {/* ══ CONSENT MODAL ══ */}
       {showConsent && (

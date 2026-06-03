@@ -1,6 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { T } from "./tokens";
 import { SectionLabel } from "./utils";
+import vision from "./vision.svg";
+import mission from "./mission.svg";
+import leader from "./leader.svg";
+import Research from "./Research.svg";
 
 const ABOUT_CSS = `
   .ab-hero-img { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%; }
@@ -313,122 +317,123 @@ const CEOIcon = () => (
 );
 
 const FunctionalIcon = () => (
-  <svg
-    width="160"
-    height="160"
-    viewBox="0 0 160 160"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    {/* Strategy arrow pointing right — large */}
-    <rect
-      x="18"
-      y="68"
-      width="88"
-      height="24"
-      rx="4"
-      fill="#0D3D4E"
-      opacity="0.1"
-      stroke="#0D3D4E"
-      strokeWidth="1.5"
-    />
-    <polygon
-      points="106,56 130,80 106,104"
-      fill="#0D3D4E"
-      opacity="0.15"
-      stroke="#0D3D4E"
-      strokeWidth="1.5"
-      strokeLinejoin="round"
-    />
-    {/* "Strategy" label inside arrow */}
-    {/* Three execution blocks below */}
-    <rect
-      x="18"
-      y="118"
-      width="34"
-      height="26"
-      rx="3"
-      fill="#B8962E"
-      opacity="0.2"
-      stroke="#B8962E"
-      strokeWidth="1.5"
-    />
-    <rect
-      x="63"
-      y="118"
-      width="34"
-      height="26"
-      rx="3"
-      fill="#B8962E"
-      opacity="0.35"
-      stroke="#B8962E"
-      strokeWidth="1.5"
-    />
-    <rect
-      x="108"
-      y="118"
-      width="34"
-      height="26"
-      rx="3"
-      fill="#B8962E"
-      opacity="0.55"
-      stroke="#B8962E"
-      strokeWidth="1.5"
-    />
-    {/* Connector lines from arrow to blocks */}
-    <line
-      x1="35"
-      y1="92"
-      x2="35"
-      y2="118"
-      stroke="#0D3D4E"
-      strokeWidth="1.2"
-      opacity="0.3"
-    />
-    <line
-      x1="80"
-      y1="92"
-      x2="80"
-      y2="118"
-      stroke="#0D3D4E"
-      strokeWidth="1.2"
-      opacity="0.3"
-    />
-    <line
-      x1="125"
-      y1="104"
-      x2="125"
-      y2="118"
-      stroke="#0D3D4E"
-      strokeWidth="1.2"
-      opacity="0.3"
-    />
-    {/* Top source block */}
-    <rect
-      x="55"
-      y="28"
-      width="50"
-      height="28"
-      rx="4"
-      fill="#0D3D4E"
-      opacity="0.12"
-      stroke="#0D3D4E"
-      strokeWidth="1.8"
-    />
-    <line
-      x1="80"
-      y1="56"
-      x2="80"
-      y2="68"
-      stroke="#0D3D4E"
-      strokeWidth="1.5"
-      opacity="0.4"
-    />
-    {/* Gold accent dots */}
-    <circle cx="35" cy="131" r="4" fill="#B8962E" opacity="0.7" />
-    <circle cx="80" cy="131" r="4" fill="#B8962E" />
-    <circle cx="125" cy="131" r="4" fill="#B8962E" opacity="0.5" />
-  </svg>
+  // <svg
+  //   width="160"
+  //   height="160"
+  //   viewBox="0 0 160 160"
+  //   fill="none"
+  //   xmlns="http://www.w3.org/2000/svg"
+  // >
+  //   {/* Strategy arrow pointing right — large */}
+  //   <rect
+  //     x="18"
+  //     y="68"
+  //     width="88"
+  //     height="24"
+  //     rx="4"
+  //     fill="#0D3D4E"
+  //     opacity="0.1"
+  //     stroke="#0D3D4E"
+  //     strokeWidth="1.5"
+  //   />
+  //   <polygon
+  //     points="106,56 130,80 106,104"
+  //     fill="#0D3D4E"
+  //     opacity="0.15"
+  //     stroke="#0D3D4E"
+  //     strokeWidth="1.5"
+  //     strokeLinejoin="round"
+  //   />
+  //   {/* "Strategy" label inside arrow */}
+  //   {/* Three execution blocks below */}
+  //   <rect
+  //     x="18"
+  //     y="118"
+  //     width="34"
+  //     height="26"
+  //     rx="3"
+  //     fill="#B8962E"
+  //     opacity="0.2"
+  //     stroke="#B8962E"
+  //     strokeWidth="1.5"
+  //   />
+  //   <rect
+  //     x="63"
+  //     y="118"
+  //     width="34"
+  //     height="26"
+  //     rx="3"
+  //     fill="#B8962E"
+  //     opacity="0.35"
+  //     stroke="#B8962E"
+  //     strokeWidth="1.5"
+  //   />
+  //   <rect
+  //     x="108"
+  //     y="118"
+  //     width="34"
+  //     height="26"
+  //     rx="3"
+  //     fill="#B8962E"
+  //     opacity="0.55"
+  //     stroke="#B8962E"
+  //     strokeWidth="1.5"
+  //   />
+  //   {/* Connector lines from arrow to blocks */}
+  //   <line
+  //     x1="35"
+  //     y1="92"
+  //     x2="35"
+  //     y2="118"
+  //     stroke="#0D3D4E"
+  //     strokeWidth="1.2"
+  //     opacity="0.3"
+  //   />
+  //   <line
+  //     x1="80"
+  //     y1="92"
+  //     x2="80"
+  //     y2="118"
+  //     stroke="#0D3D4E"
+  //     strokeWidth="1.2"
+  //     opacity="0.3"
+  //   />
+  //   <line
+  //     x1="125"
+  //     y1="104"
+  //     x2="125"
+  //     y2="118"
+  //     stroke="#0D3D4E"
+  //     strokeWidth="1.2"
+  //     opacity="0.3"
+  //   />
+  //   {/* Top source block */}
+  //   <rect
+  //     x="55"
+  //     y="28"
+  //     width="50"
+  //     height="28"
+  //     rx="4"
+  //     fill="#0D3D4E"
+  //     opacity="0.12"
+  //     stroke="#0D3D4E"
+  //     strokeWidth="1.8"
+  //   />
+  //   <line
+  //     x1="80"
+  //     y1="56"
+  //     x2="80"
+  //     y2="68"
+  //     stroke="#0D3D4E"
+  //     strokeWidth="1.5"
+  //     opacity="0.4"
+  //   />
+  //   {/* Gold accent dots */}
+  //   <circle cx="35" cy="131" r="4" fill="#B8962E" opacity="0.7" />
+  //   <circle cx="80" cy="131" r="4" fill="#B8962E" />
+  //   <circle cx="125" cy="131" r="4" fill="#B8962E" opacity="0.5" />
+  // </svg>
+  <img src={leader} />
 );
 
 const AIIcon = () => (
@@ -927,182 +932,22 @@ function VisionMission() {
               {/* Compass illustration */}
               <div
                 style={{
-                  height: 220,
-                  overflow: "hidden",
-                  position: "relative",
+                  height: 280,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "20px",
                 }}
               >
-                <svg
-                  viewBox="0 0 520 220"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ width: "100%", height: "100%" }}
-                >
-                  <rect width="520" height="220" fill="#0b3244" />
-                  <line
-                    x1="0"
-                    y1="148"
-                    x2="520"
-                    y2="148"
-                    stroke="rgba(184,150,46,0.15)"
-                    strokeWidth="1"
-                  />
-                  <g className="vm-beam1">
-                    <line
-                      x1="260"
-                      y1="148"
-                      x2="100"
-                      y2="20"
-                      stroke="rgba(184,150,46,0.1)"
-                      strokeWidth="1.5"
-                    />
-                    <line
-                      x1="260"
-                      y1="148"
-                      x2="420"
-                      y2="20"
-                      stroke="rgba(184,150,46,0.1)"
-                      strokeWidth="1.5"
-                    />
-                  </g>
-                  <g className="vm-beam2">
-                    <line
-                      x1="260"
-                      y1="148"
-                      x2="170"
-                      y2="20"
-                      stroke="rgba(184,150,46,0.06)"
-                      strokeWidth="1"
-                    />
-                    <line
-                      x1="260"
-                      y1="148"
-                      x2="350"
-                      y2="20"
-                      stroke="rgba(184,150,46,0.06)"
-                      strokeWidth="1"
-                    />
-                  </g>
-                  <circle
-                    className="vm-ring1"
-                    cx="260"
-                    cy="148"
-                    r="52"
-                    stroke="rgba(184,150,46,0.18)"
-                    strokeWidth="1"
-                    fill="none"
-                  />
-                  <circle
-                    className="vm-ring2"
-                    cx="260"
-                    cy="148"
-                    r="52"
-                    stroke="rgba(184,150,46,0.1)"
-                    strokeWidth="0.5"
-                    strokeDasharray="4 8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="260"
-                    cy="148"
-                    r="38"
-                    fill="rgba(13,61,78,0.85)"
-                    stroke="rgba(184,150,46,0.45)"
-                    strokeWidth="1.5"
-                  />
-                  <circle
-                    cx="260"
-                    cy="148"
-                    r="26"
-                    fill="rgba(13,61,78,0.6)"
-                    stroke="rgba(184,150,46,0.2)"
-                    strokeWidth="0.8"
-                  />
-                  <g className="vm-needle">
-                    <polygon
-                      points="260,105 255,148 260,142 265,148"
-                      fill="#B8962E"
-                      opacity="0.9"
-                    />
-                    <polygon
-                      points="260,191 255,148 260,154 265,148"
-                      fill="rgba(184,150,46,0.3)"
-                    />
-                  </g>
-                  <circle cx="260" cy="148" r="5" fill="#B8962E" />
-                  <circle
-                    cx="260"
-                    cy="148"
-                    r="2.5"
-                    fill="rgba(255,255,255,0.8)"
-                  />
-                  <line
-                    x1="260"
-                    y1="112"
-                    x2="260"
-                    y2="118"
-                    stroke="rgba(184,150,46,0.7)"
-                    strokeWidth="2"
-                  />
-                  <line
-                    x1="296"
-                    y1="148"
-                    x2="290"
-                    y2="148"
-                    stroke="rgba(184,150,46,0.4)"
-                    strokeWidth="1.5"
-                  />
-                  <line
-                    x1="260"
-                    y1="184"
-                    x2="260"
-                    y2="178"
-                    stroke="rgba(184,150,46,0.4)"
-                    strokeWidth="1.5"
-                  />
-                  <line
-                    x1="224"
-                    y1="148"
-                    x2="230"
-                    y2="148"
-                    stroke="rgba(184,150,46,0.4)"
-                    strokeWidth="1.5"
-                  />
-                  <g className="vm-star">
-                    <polygon
-                      points="260,34 263,44 273,44 265,50 268,60 260,54 252,60 255,50 247,44 257,44"
-                      fill="#B8962E"
-                      opacity="0.9"
-                    />
-                  </g>
-                  <circle
-                    className="vm-pulse"
-                    cx="260"
-                    cy="48"
-                    r="20"
-                    fill="none"
-                    stroke="rgba(184,150,46,0.3)"
-                    strokeWidth="1"
-                  />
-                  <ellipse
-                    cx="260"
-                    cy="162"
-                    rx="75"
-                    ry="7"
-                    fill="rgba(184,150,46,0.05)"
-                  />
-                  <text
-                    x="490"
-                    y="215"
-                    fontFamily="Georgia,serif"
-                    fontSize="150"
-                    fontWeight="300"
-                    fill="rgba(184,150,46,0.04)"
-                    textAnchor="end"
-                  >
-                    V
-                  </text>
-                </svg>
+                <img
+                  src={vision}
+                  alt="Vision"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                  }}
+                />
               </div>
               {/* Text */}
               <div style={{ padding: "36px 40px 44px" }}>
@@ -1226,224 +1071,15 @@ function VisionMission() {
                   position: "relative",
                 }}
               >
-                <svg
-                  viewBox="0 0 520 220"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ width: "100%", height: "100%" }}
-                >
-                  <rect width="520" height="220" fill="#EDE8DE" />
-                  <g className="vm-cdash">
-                    <line
-                      x1="60"
-                      y1="60"
-                      x2="285"
-                      y2="150"
-                      stroke="rgba(13,61,78,0.12)"
-                      strokeWidth="1.5"
-                    />
-                    <line
-                      x1="75"
-                      y1="178"
-                      x2="285"
-                      y2="150"
-                      stroke="rgba(13,61,78,0.12)"
-                      strokeWidth="1.5"
-                    />
-                    <line
-                      x1="28"
-                      y1="118"
-                      x2="285"
-                      y2="150"
-                      stroke="rgba(13,61,78,0.08)"
-                      strokeWidth="1"
-                    />
-                  </g>
-                  <line
-                    className="vm-dash"
-                    x1="290"
-                    y1="150"
-                    x2="468"
-                    y2="150"
-                    stroke="#B8962E"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                  />
-                  <polyline
-                    points="455,140 468,150 455,160"
-                    stroke="#B8962E"
-                    strokeWidth="2.5"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  {/* Person 1 — lead */}
-                  <g className="vm-p1">
-                    <circle
-                      cx="240"
-                      cy="102"
-                      r="14"
-                      fill="#0D3D4E"
-                      opacity="0.75"
-                    />
-                    <ellipse
-                      cx="240"
-                      cy="135"
-                      rx="12"
-                      ry="18"
-                      fill="#0D3D4E"
-                      opacity="0.65"
-                    />
-                    <line
-                      x1="240"
-                      y1="118"
-                      x2="240"
-                      y2="133"
-                      stroke="#B8962E"
-                      strokeWidth="2.5"
-                      opacity="0.85"
-                    />
-                  </g>
-                  {/* Person 2 */}
-                  <g className="vm-p2">
-                    <circle
-                      cx="190"
-                      cy="116"
-                      r="11"
-                      fill="#0D3D4E"
-                      opacity="0.5"
-                    />
-                    <ellipse
-                      cx="190"
-                      cy="144"
-                      rx="9"
-                      ry="14"
-                      fill="#0D3D4E"
-                      opacity="0.45"
-                    />
-                  </g>
-                  {/* Person 3 */}
-                  <g className="vm-p3">
-                    <circle
-                      cx="272"
-                      cy="119"
-                      r="10"
-                      fill="#0D3D4E"
-                      opacity="0.45"
-                    />
-                    <ellipse
-                      cx="272"
-                      cy="147"
-                      rx="8"
-                      ry="13"
-                      fill="#0D3D4E"
-                      opacity="0.4"
-                    />
-                  </g>
-                  {/* Person 4 */}
-                  <g className="vm-p4">
-                    <circle
-                      cx="152"
-                      cy="132"
-                      r="9"
-                      fill="#0D3D4E"
-                      opacity="0.28"
-                    />
-                    <ellipse
-                      cx="152"
-                      cy="157"
-                      rx="7"
-                      ry="11"
-                      fill="#0D3D4E"
-                      opacity="0.25"
-                    />
-                  </g>
-                  <ellipse
-                    cx="230"
-                    cy="162"
-                    rx="65"
-                    ry="5"
-                    fill="rgba(13,61,78,0.05)"
-                  />
-                  <circle
-                    className="vm-cpulse"
-                    cx="290"
-                    cy="150"
-                    r="14"
-                    fill="rgba(184,150,46,0.12)"
-                    stroke="none"
-                  />
-                  <circle cx="290" cy="150" r="6" fill="rgba(184,150,46,0.3)" />
-                  <circle cx="290" cy="150" r="3" fill="#B8962E" />
-                  {/* Complexity docs */}
-                  <g className="vm-doc1" opacity="0.22">
-                    <rect
-                      x="28"
-                      y="46"
-                      width="34"
-                      height="22"
-                      rx="3"
-                      stroke="#0D3D4E"
-                      strokeWidth="1"
-                      fill="none"
-                    />
-                    <line
-                      x1="36"
-                      y1="54"
-                      x2="54"
-                      y2="54"
-                      stroke="#0D3D4E"
-                      strokeWidth="1"
-                    />
-                    <line
-                      x1="36"
-                      y1="59"
-                      x2="50"
-                      y2="59"
-                      stroke="#0D3D4E"
-                      strokeWidth="1"
-                    />
-                  </g>
-                  <g className="vm-doc2" opacity="0.18">
-                    <rect
-                      x="24"
-                      y="162"
-                      width="36"
-                      height="22"
-                      rx="3"
-                      stroke="#0D3D4E"
-                      strokeWidth="1"
-                      fill="none"
-                    />
-                    <line
-                      x1="32"
-                      y1="170"
-                      x2="52"
-                      y2="170"
-                      stroke="#0D3D4E"
-                      strokeWidth="1"
-                    />
-                    <line
-                      x1="32"
-                      y1="175"
-                      x2="46"
-                      y2="175"
-                      stroke="#0D3D4E"
-                      strokeWidth="1"
-                    />
-                  </g>
-                  <text
-                    x="490"
-                    y="215"
-                    fontFamily="Georgia,serif"
-                    fontSize="150"
-                    fontWeight="300"
-                    fill="rgba(13,61,78,0.045)"
-                    textAnchor="end"
-                  >
-                    M
-                  </text>
-                </svg>
+                <img
+                  src={mission}
+                  alt="Mission"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                  }}
+                />
               </div>
               {/* Text */}
               <div style={{ padding: "36px 40px 44px" }}>
@@ -1549,6 +1185,19 @@ function VisionMission() {
 
 export default function AboutPage({ setPage }) {
   const [openAcc, setOpenAcc] = useState(null);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("scrollTo") === "how-we-work") {
+      sessionStorage.removeItem("scrollTo");
+      // Delay to let the page render first
+      setTimeout(() => {
+        document
+          .getElementById("how-we-work")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 300);
+    }
+  }, []);
+
   const values = [
     {
       name: "Clarity Over Noise",
@@ -1620,71 +1269,42 @@ export default function AboutPage({ setPage }) {
             maxWidth: 1200,
             margin: "0 auto",
             padding: "0 64px 96px",
-            display: "grid",
-            gridTemplateColumns: "1.1fr 0.9fr",
-            gap: 80,
-            alignItems: "flex-end",
           }}
         >
-          <div>
-            <div className="ab-load-1">
-              <SectionLabel text="About PivotEdge Partners" light />
-            </div>
-            <h1
-              className="ab-load-2"
-              style={{
-                fontFamily: "'Cormorant Garamond',serif",
-                fontSize: "clamp(60px,7.5vw,100px)",
-                fontWeight: 300,
-                lineHeight: 0.98,
-                color: T.white,
-                margin: "16px 0 0",
-              }}
-            >
-              Advisors to
-              <br />
-              Consequential
-              <br />
-              Decisions.
-            </h1>
+          <div className="ab-load-1">
+            <SectionLabel text="About PivotEdge Partners" light />
           </div>
-          <div className="ab-load-3" style={{ paddingBottom: 6 }}>
-            <div
-              style={{
-                width: 48,
-                height: 1,
-                background: T.gold,
-                marginBottom: 28,
-              }}
-            />
-            <p
-              style={{
-                fontSize: 16,
-                fontWeight: 300,
-                lineHeight: 1.85,
-                color: "rgba(255,255,255,0.75)",
-                marginBottom: 20,
-              }}
-            >
-              Leadership decisions shape the trajectory of organisations. The
-              right appointment strengthens governance, sharpens execution, and
-              positions the enterprise for sustained growth.
-            </p>
-            <p
-              style={{
-                fontSize: 14,
-                fontWeight: 300,
-                lineHeight: 1.8,
-                color: "rgba(255,255,255,0.45)",
-              }}
-            >
-              The wrong one creates friction, delay, and strategic drift. We
-              exist to ensure that never happens.
-            </p>
-          </div>
+          <h1
+            className="ab-load-2"
+            style={{
+              fontFamily: "'Cormorant Garamond',serif",
+              fontSize: "clamp(60px,7.5vw,100px)",
+              fontWeight: 300,
+              lineHeight: 0.98,
+              color: T.white,
+              margin: "16px 0 24px",
+            }}
+          >
+            Advisors to
+            <br />
+            Consequential
+            <br />
+            Decisions.
+          </h1>
+          <p
+            className="ab-load-3"
+            style={{
+              fontSize: 14,
+              fontWeight: 300,
+              fontStyle: "italic",
+              color: "rgba(255,255,255,0.45)",
+              letterSpacing: "0.04em",
+            }}
+          >
+            Leadership decisions shape the trajectory of organisations.
+          </p>
         </div>
 
-        {/* scroll cue */}
         <div
           style={{
             position: "absolute",
@@ -1881,7 +1501,10 @@ export default function AboutPage({ setPage }) {
       <LeadershipPhilosophy />
 
       {/* ══════ 6. HOW WE WORK — image with floating block + accordions ══════ */}
-      <section style={{ background: T.cream, padding: "130px 64px" }}>
+      <section
+        id="how-we-work"
+        style={{ background: T.cream, padding: "130px 64px" }}
+      >
         <div
           style={{
             maxWidth: 1200,

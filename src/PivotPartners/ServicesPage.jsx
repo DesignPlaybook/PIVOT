@@ -1493,6 +1493,7 @@ export default function ServicesPage({ setPage }) {
       <style>{HERO_CSS}</style>
 
       {/* ══════ 1. HERO — About-style full-viewport ══════ */}
+      {/* ══════ 1. HERO ══════ */}
       <section
         style={{
           position: "relative",
@@ -1507,13 +1508,12 @@ export default function ServicesPage({ setPage }) {
           src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1800&q=85"
           alt="Services — leadership advisory"
         />
-        {/* Gradient overlays */}
         <div
           style={{
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(to top, rgba(13,61,78,0.82) 0%, rgba(13,61,78,0.45) 40%, rgba(13,61,78,0.12) 100%)",
+              "linear-gradient(to top, rgba(13,61,78,0.97) 0%, rgba(13,61,78,0.65) 40%, rgba(13,61,78,0.2) 100%)",
           }}
         />
         <div
@@ -1533,81 +1533,43 @@ export default function ServicesPage({ setPage }) {
             maxWidth: 1200,
             margin: "0 auto",
             padding: "0 64px 96px",
-            display: "grid",
-            gridTemplateColumns: "1.1fr 0.9fr",
-            gap: 80,
-            alignItems: "flex-end",
           }}
         >
-          <div>
-            <div className="sv-load-1">
-              <SectionLabel text="Advisory Services" light />
-            </div>
-            <h1
-              className="sv-load-2"
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(60px, 7.5vw, 100px)",
-                fontWeight: 300,
-                lineHeight: 0.98,
-                color: T.white,
-                margin: "16px 0 0",
-              }}
-            >
-              Architecting
-              <br />
-              the Modern
-              <br />
-              Boardroom.
-            </h1>
+          <div className="sv-load-1">
+            <SectionLabel text="Advisory Services" light />
           </div>
-          <div className="sv-load-3" style={{ paddingBottom: 6 }}>
-            <div
-              style={{
-                width: 48,
-                height: 1,
-                background: T.gold,
-                marginBottom: 28,
-              }}
-            />
-            <p
-              style={{
-                fontSize: 16,
-                fontWeight: 300,
-                lineHeight: 1.85,
-                color: "rgba(255,255,255,0.75)",
-                marginBottom: 20,
-              }}
-            >
-              We deliver retained executive search and leadership advisory with
-              governance-aware evaluation, market intelligence, and complete
-              discretion.
-            </p>
-            <p
-              style={{
-                fontSize: 14,
-                fontWeight: 300,
-                lineHeight: 1.8,
-                color: "rgba(255,255,255,0.45)",
-                marginBottom: 36,
-              }}
-            >
-              Our process is research-driven, structured, and aligned to
-              long-term organisational performance.
-            </p>
-            <button
-              className="btn btn-outline-light"
-              onClick={() => {
-                setPage("Contact");
-                window.scrollTo(0, 0);
-              }}
-            >
-              <span>Begin a Conversation</span>
-            </button>
-          </div>
+          <h1
+            className="sv-load-2"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "clamp(60px, 7.5vw, 100px)",
+              fontWeight: 300,
+              lineHeight: 0.98,
+              color: T.white,
+              margin: "16px 0 24px",
+            }}
+          >
+            Architecting
+            <br />
+            the Modern
+            <br />
+            Boardroom.
+          </h1>
+          <p
+            className="sv-load-3"
+            style={{
+              fontSize: 14,
+              fontWeight: 300,
+              fontStyle: "italic",
+              color: "rgba(255,255,255,0.45)",
+              letterSpacing: "0.04em",
+            }}
+          >
+            Research-led search and advisory, delivered with governance
+            awareness and complete discretion.
+          </p>
         </div>
 
-        {/* Scroll cue */}
         <div
           style={{
             position: "absolute",
@@ -1642,7 +1604,6 @@ export default function ServicesPage({ setPage }) {
           </span>
         </div>
       </section>
-
       {/* ══════ 2. PROCESS FRAMEWORK — timeline with animated draw-line ══════ */}
       <section
         style={{
