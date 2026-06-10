@@ -216,6 +216,102 @@ const CMD_CSS = `
     border-left: 1.5px solid white; border-bottom: 1.5px solid white;
     transform: rotate(-45deg) translateY(-1px);
   }
+
+  /* ── RESPONSIVE STYLES ── */
+
+  /* Tablet: 768px–1024px */
+  @media (max-width: 1024px) {
+    .contact-split {
+      grid-template-columns: 1fr !important;
+      min-height: unset !important;
+    }
+    .contact-left {
+      padding: 80px 48px 60px !important;
+      min-height: unset !important;
+    }
+    .contact-right {
+      padding: 72px 48px 72px !important;
+    }
+    .contact-deco-number {
+      font-size: 200px !important;
+    }
+    .closing-band-inner {
+      flex-direction: column !important;
+      gap: 32px !important;
+      align-items: flex-start !important;
+    }
+    .closing-band {
+      padding: 48px 48px !important;
+    }
+    .form-grid-2 {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 24px !important;
+    }
+  }
+
+  /* Mobile: ≤767px */
+  @media (max-width: 767px) {
+    .contact-split {
+      grid-template-columns: 1fr !important;
+      min-height: unset !important;
+    }
+    .contact-left {
+      padding: 72px 24px 48px !important;
+      min-height: unset !important;
+    }
+    .contact-left h1 {
+      font-size: 44px !important;
+    }
+    .contact-deco-number {
+      display: none !important;
+    }
+    .contact-right {
+      padding: 48px 24px 56px !important;
+    }
+    .contact-right h2 {
+      font-size: 32px !important;
+    }
+    .form-grid-2 {
+      grid-template-columns: 1fr !important;
+      gap: 20px !important;
+    }
+    .closing-band {
+      padding: 40px 24px !important;
+    }
+    .closing-band-inner {
+      flex-direction: column !important;
+      gap: 28px !important;
+      align-items: flex-start !important;
+    }
+    .closing-band-quote {
+      font-size: 18px !important;
+      max-width: 100% !important;
+    }
+    .cmd-modal {
+      padding: 40px 24px !important;
+    }
+    .submit-row {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 16px !important;
+    }
+  }
+
+  /* Small mobile: ≤380px */
+  @media (max-width: 380px) {
+    .contact-left {
+      padding: 64px 20px 40px !important;
+    }
+    .contact-left h1 {
+      font-size: 36px !important;
+    }
+    .contact-right {
+      padding: 40px 20px 48px !important;
+    }
+    .cmd-modal {
+      padding: 32px 20px !important;
+    }
+  }
 `;
 
 export default function ContactPage() {
@@ -299,6 +395,7 @@ export default function ContactPage() {
 
       {/* ══ FULL-HEIGHT SPLIT OPENING ══ */}
       <section
+        className="contact-split"
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
@@ -307,6 +404,7 @@ export default function ContactPage() {
       >
         {/* LEFT — dark teal, editorial heading */}
         <div
+          className="contact-left"
           style={{
             background: T.teal,
             display: "flex",
@@ -330,6 +428,7 @@ export default function ContactPage() {
           />
           {/* Large decorative number */}
           <div
+            className="contact-deco-number"
             style={{
               position: "absolute",
               bottom: -40,
@@ -481,6 +580,7 @@ export default function ContactPage() {
 
         {/* RIGHT — cream, form */}
         <div
+          className="contact-right"
           style={{
             background: T.cream,
             display: "flex",
@@ -629,6 +729,7 @@ export default function ContactPage() {
               >
                 {/* Name row */}
                 <div
+                  className="form-grid-2"
                   style={{
                     display: "grid",
                     gridTemplateColumns: "1fr 1fr",
@@ -666,6 +767,7 @@ export default function ContactPage() {
 
                 {/* Org + Role */}
                 <div
+                  className="form-grid-2"
                   style={{
                     display: "grid",
                     gridTemplateColumns: "1fr 1fr",
@@ -700,6 +802,7 @@ export default function ContactPage() {
 
                 {/* Email + Phone */}
                 <div
+                  className="form-grid-2"
                   style={{
                     display: "grid",
                     gridTemplateColumns: "1fr 1fr",
@@ -739,6 +842,7 @@ export default function ContactPage() {
 
                 {/* Country + Enquiry */}
                 <div
+                  className="form-grid-2"
                   style={{
                     display: "grid",
                     gridTemplateColumns: "1fr 1fr",
@@ -824,6 +928,7 @@ export default function ContactPage() {
 
                 {/* Submit */}
                 <div
+                  className="submit-row"
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -869,6 +974,7 @@ export default function ContactPage() {
 
       {/* ══ CLOSING CONVICTION BAND ══ */}
       <section
+        className="closing-band"
         style={{
           background: T.creamAlt,
           borderTop: "1px solid rgba(13,61,78,0.08)",
@@ -876,6 +982,7 @@ export default function ContactPage() {
         }}
       >
         <div
+          className="closing-band-inner"
           style={{
             maxWidth: 1200,
             margin: "0 auto",
@@ -886,6 +993,7 @@ export default function ContactPage() {
           }}
         >
           <p
+            className="closing-band-quote"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(18px, 2vw, 26px)",

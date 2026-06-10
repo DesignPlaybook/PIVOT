@@ -10,7 +10,6 @@ import OurApproach from "./OurApproach";
 
 const ABOUT_CSS = `
   .ab-hero-img { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%; }
-  /* Fade + Wipe use fully inline styles — no CSS class conflicts */
   @keyframes ab-load-up { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
   .ab-load-1 { animation:ab-load-up 1s cubic-bezier(0.16,1,0.3,1) 0.2s both; }
   .ab-load-2 { animation:ab-load-up 1s cubic-bezier(0.16,1,0.3,1) 0.4s both; }
@@ -25,6 +24,26 @@ const ABOUT_CSS = `
   .acc-plus { font-size:22px;color:#B8962E;line-height:1;flex-shrink:0;margin-left:20px;display:inline-block; }
   .val-card { transition:background 0.35s ease,transform 0.35s ease; }
   .val-card:hover { background:rgba(255,255,255,0.05)!important;transform:translateY(-3px); }
+
+  @media (max-width: 768px) {
+    .acc-btn { padding: 18px 0; }
+    .vm-grid { grid-template-columns: 1fr !important; }
+    .vm-spine { display: none !important; }
+    .who-grid { grid-template-columns: 1fr !important; }
+    .hww-section { padding: 72px 24px !important; }
+    .hww-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+    .hww-float { display: none !important; }
+    .cv-header-pad { padding: 0 24px 44px !important; }
+  }
+  @media (max-width: 900px) {
+    .lp-grid { grid-template-columns: 1fr 1fr !important; }
+    .cv-grid { grid-template-columns: 1fr 1fr !important; }
+  }
+  @media (max-width: 560px) {
+    .lp-grid { grid-template-columns: 1fr !important; }
+    .cv-grid { grid-template-columns: 1fr !important; }
+    .cv-grid > div { border-right: none !important; }
+  }
 `;
 
 function useIO(threshold = 0) {
@@ -467,7 +486,11 @@ function LeadershipPhilosophy() {
     >
       {/* Header — teal text on cream */}
       <div
-        style={{ maxWidth: 1200, margin: "0 auto", padding: "100px 64px 0" }}
+        style={{
+          maxWidth: 1200,
+          margin: "0 auto",
+          padding: "clamp(64px,8vw,100px) clamp(24px,5vw,64px) 0",
+        }}
       >
         <Fade>
           <SectionLabel text="Our Leadership Philosophy" />
@@ -476,6 +499,7 @@ function LeadershipPhilosophy() {
               display: "flex",
               alignItems: "flex-end",
               justifyContent: "space-between",
+              flexWrap: "wrap",
               marginTop: 16,
               gap: 40,
             }}
@@ -527,9 +551,14 @@ function LeadershipPhilosophy() {
 
       {/* Four illustrated tiers */}
       <div
-        style={{ maxWidth: 1200, margin: "0 auto", padding: "0 64px 100px" }}
+        style={{
+          maxWidth: 1200,
+          margin: "0 auto",
+          padding: "0 clamp(24px,5vw,64px) clamp(64px,8vw,100px)",
+        }}
       >
         <div
+          className="lp-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr 1fr 1fr",
@@ -610,10 +639,17 @@ function LeadershipPhilosophy() {
           ))}
         </div>
       </div>
-      <GlobalPresence />
+      <div id="about-global-presence">
+        <GlobalPresence />
+      </div>
 
       {/* Bottom quote — on a narrow teal band */}
-      <div style={{ background: T.teal, padding: "52px 64px" }}>
+      <div
+        style={{
+          background: T.teal,
+          padding: "clamp(32px,5vw,52px) clamp(24px,5vw,64px)",
+        }}
+      >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <Fade delay={400}>
             <p
@@ -693,7 +729,7 @@ function VisionMission() {
       id="about-vision-mission"
       style={{
         background: T.creamAlt,
-        padding: "120px 64px",
+        padding: "clamp(64px, 10vw, 120px) clamp(24px, 5vw, 64px)",
         overflow: "hidden",
       }}
     >
@@ -706,6 +742,8 @@ function VisionMission() {
               display: "flex",
               alignItems: "flex-end",
               justifyContent: "space-between",
+              flexWrap: "wrap",
+              gap: 24,
               marginBottom: 72,
               paddingBottom: 36,
               borderBottom: "1px solid rgba(13,61,78,0.08)",
@@ -765,6 +803,7 @@ function VisionMission() {
 
         {/* Staggered cards */}
         <div
+          className="vm-grid"
           style={{
             position: "relative",
             display: "grid",
@@ -775,6 +814,7 @@ function VisionMission() {
         >
           {/* Gold spine */}
           <div
+            className="vm-spine"
             style={{
               position: "absolute",
               left: "50%",
@@ -1167,7 +1207,7 @@ export default function AboutPage({ setPage }) {
             width: "100%",
             maxWidth: 1200,
             margin: "0 auto",
-            padding: "0 64px 96px",
+            padding: "0 clamp(24px, 5vw, 64px) 96px",
           }}
         >
           <div className="ab-load-1">
@@ -1308,6 +1348,7 @@ export default function AboutPage({ setPage }) {
       {/* ══════ 4. WHO WE ARE — wipe image + text ══════ */}
       <section
         id="about-who-we-are"
+        className="who-grid"
         style={{
           background: T.cream,
           display: "grid",
@@ -1323,7 +1364,7 @@ export default function AboutPage({ setPage }) {
         <Fade
           delay={200}
           style={{
-            padding: "96px 72px",
+            padding: "clamp(48px,7vw,96px) clamp(24px,5vw,72px)",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -1403,9 +1444,11 @@ export default function AboutPage({ setPage }) {
       {/* ══════ 6. HOW WE WORK — image with floating block + accordions ══════ */}
       <section
         id="how-we-work"
+        className="hww-section"
         style={{ background: T.cream, padding: "130px 64px" }}
       >
         <div
+          className="hww-grid"
           style={{
             maxWidth: 1200,
             margin: "0 auto",
@@ -1425,6 +1468,7 @@ export default function AboutPage({ setPage }) {
               />
               {/* floating teal accent — overlapping bottom-right */}
               <div
+                className="hww-float"
                 style={{
                   position: "absolute",
                   bottom: -32,
@@ -1574,6 +1618,7 @@ export default function AboutPage({ setPage }) {
           />
           {/* heading overlaid on image */}
           <div
+            className="cv-header-pad"
             style={{
               position: "absolute",
               bottom: 0,
@@ -1603,10 +1648,11 @@ export default function AboutPage({ setPage }) {
 
         {/* values grid */}
         <div
+          className="cv-grid"
           style={{
             maxWidth: 1200,
             margin: "0 auto",
-            padding: "0 64px 112px",
+            padding: "0 clamp(24px,5vw,64px) clamp(64px,8vw,112px)",
             display: "grid",
             gridTemplateColumns: "1fr 1fr 1fr",
             gap: 0,

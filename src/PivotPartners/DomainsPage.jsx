@@ -77,10 +77,9 @@ function Counter({ target, suffix = "" }) {
    SECTION ILLUSTRATIONS — clean SVG, teal + gold palette
 ══════════════════════════════════════════════════════ */
 
-/* Industry card illustration: abstract shapes per sector */
 const IndustryIllustration = ({ index }) => {
   const illustrations = [
-    /* 0 — Industrial: gear + bar chart */
+    /* 0 — Industrial */
     <svg
       key={0}
       viewBox="0 0 120 100"
@@ -137,7 +136,7 @@ const IndustryIllustration = ({ index }) => {
         opacity="0.2"
       />
     </svg>,
-    /* 1 — Real Estate: building skyline */
+    /* 1 — Real Estate */
     <svg
       key={1}
       viewBox="0 0 120 100"
@@ -209,7 +208,7 @@ const IndustryIllustration = ({ index }) => {
         opacity="0.4"
       />
     </svg>,
-    /* 2 — Consumer: shopping bag + trend arrow */
+    /* 2 — Consumer */
     <svg
       key={2}
       viewBox="0 0 120 100"
@@ -250,7 +249,7 @@ const IndustryIllustration = ({ index }) => {
         strokeLinecap="round"
       />
     </svg>,
-    /* 3 — Healthcare: cross + pulse line */
+    /* 3 — Healthcare */
     <svg
       key={3}
       viewBox="0 0 120 100"
@@ -316,7 +315,7 @@ const IndustryIllustration = ({ index }) => {
         opacity="0.7"
       />
     </svg>,
-    /* 4 — Banking: columns + coin stack */
+    /* 4 — Banking */
     <svg
       key={4}
       viewBox="0 0 120 100"
@@ -392,7 +391,7 @@ const IndustryIllustration = ({ index }) => {
         ₤
       </text>
     </svg>,
-    /* 5 — TMT: signal waves + nodes */
+    /* 5 — TMT */
     <svg
       key={5}
       viewBox="0 0 120 100"
@@ -465,7 +464,6 @@ const IndustryIllustration = ({ index }) => {
   return illustrations[index] || illustrations[0];
 };
 
-/* Function role illustrations */
 const FunctionIllustration = ({ name }) => {
   const map = {
     "Boards & Governance": (
@@ -792,48 +790,6 @@ const FunctionIllustration = ({ name }) => {
       </svg>
     ),
     "Artificial Intelligence": (
-      // <svg viewBox="0 0 80 80" fill="none">
-      //   <circle cx="40" cy="40" r="10" fill="#B8962E" opacity="0.25" />
-      //   <circle cx="40" cy="40" r="5" fill="#B8962E" opacity="0.7" />
-      //   {[0, 1, 2, 3, 4, 5].map((i) => {
-      //     const a = (i / 6) * Math.PI * 2;
-      //     const x1 = 40 + 14 * Math.cos(a),
-      //       y1 = 40 + 14 * Math.sin(a);
-      //     const x2 = 40 + 26 * Math.cos(a),
-      //       y2 = 40 + 26 * Math.sin(a);
-      //     return (
-      //       <g key={i}>
-      //         <line
-      //           x1={x1}
-      //           y1={y1}
-      //           x2={x2}
-      //           y2={y2}
-      //           stroke="#B8962E"
-      //           strokeWidth="1.5"
-      //           opacity="0.5"
-      //         />
-      //         <circle
-      //           cx={x2}
-      //           cy={y2}
-      //           r="4"
-      //           fill="none"
-      //           stroke="#0D3D4E"
-      //           strokeWidth="1.2"
-      //           opacity="0.5"
-      //         />
-      //       </g>
-      //     );
-      //   })}
-      //   <circle
-      //     cx="40"
-      //     cy="40"
-      //     r="34"
-      //     stroke="#B8962E"
-      //     strokeWidth="0.8"
-      //     opacity="0.1"
-      //     strokeDasharray="3 6"
-      //   />
-      // </svg>
       <img
         src={AI}
         alt="AI"
@@ -850,7 +806,7 @@ const FunctionIllustration = ({ name }) => {
 };
 
 /* ══════════════════════════════════════════════════════
-   HERO — photo background, About-style
+   CSS — desktop unchanged, mobile via media queries
 ══════════════════════════════════════════════════════ */
 const PAGE_CSS = `
   @keyframes dp-load { from{opacity:0;transform:translateY(36px)} to{opacity:1;transform:translateY(0)} }
@@ -873,6 +829,63 @@ const PAGE_CSS = `
     background:#F5F0E8;}
   .fn-card:hover{border-color:#B8962E;transform:translateY(-4px);background:#EDE8DE;}
   .fn-card:hover .fn-title{color:#B8962E;}
+
+  @media (max-width: 768px) {
+    /* Hero */
+    .dp-hero-content { padding: 0 20px 72px !important; }
+
+    /* Sector accordion header */
+    .acc-header-inner {
+      padding: 12px 20px !important;
+      height: auto !important;
+      min-height: 64px !important;
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+    }
+    .acc-header-left { gap: 14px !important; flex-wrap: wrap !important; }
+    .acc-header-fn { display: none !important; }
+
+    /* Accordion expanded panel */
+    .acc-panel-inner {
+      padding: 0 20px 32px !important;
+      grid-template-columns: 1fr !important;
+      gap: 24px !important;
+    }
+    .acc-panel-illus {
+      border-left: none !important;
+      border-top: 1px solid rgba(13,61,78,0.1) !important;
+      padding-left: 0 !important;
+      padding-top: 24px !important;
+    }
+
+    /* "Where We Operate" header */
+    .dp-where-pad { padding: 48px 20px 32px !important; }
+    .dp-where-row {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 12px !important;
+    }
+    .dp-where-desc { max-width: 100% !important; padding-bottom: 0 !important; }
+
+    /* Function grid section */
+    .dp-fn-section { padding: 60px 20px !important; }
+    .fn-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+    /* AI bottom band */
+    .ai-content-pad { padding: 48px 20px 64px !important; }
+    .ai-content-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+    .ai-mandates-grid { grid-template-columns: 1fr !important; }
+
+    /* Closing CTA */
+    .dp-cta-section { padding: 60px 20px !important; }
+    .dp-cta-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+    .dp-cta-right {
+      border-left: none !important;
+      border-top: 1px solid rgba(13,61,78,0.1) !important;
+      padding-left: 0 !important;
+      padding-top: 40px !important;
+    }
+  }
 `;
 
 /* ══════════════════════════════════════════════════════
@@ -891,8 +904,9 @@ function IndustryAccordion({ industries }) {
             style={{ background: isOpen ? "#EDE8DE" : "#F5F0E8" }}
             onClick={() => setOpen(open === i ? null : i)}
           >
-            {/* Header row — always visible */}
+            {/* Header row */}
             <div
+              className="acc-header-inner"
               style={{
                 maxWidth: 1200,
                 margin: "0 auto",
@@ -903,7 +917,10 @@ function IndustryAccordion({ industries }) {
                 justifyContent: "space-between",
               }}
             >
-              <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
+              <div
+                className="acc-header-left"
+                style={{ display: "flex", alignItems: "center", gap: 28 }}
+              >
                 <span
                   style={{
                     fontFamily: "'Cormorant Garamond',serif",
@@ -928,6 +945,7 @@ function IndustryAccordion({ industries }) {
                   {ind.name}
                 </span>
                 <span
+                  className="acc-header-fn"
                   style={{
                     fontFamily: "'Jost',sans-serif",
                     fontSize: 15,
@@ -973,12 +991,13 @@ function IndustryAccordion({ industries }) {
             {/* Expanded panel */}
             <div
               style={{
-                maxHeight: isOpen ? 420 : 0,
+                maxHeight: isOpen ? 520 : 0,
                 overflow: "hidden",
                 transition: "max-height 0.6s cubic-bezier(0.77,0,0.175,1)",
               }}
             >
               <div
+                className="acc-panel-inner"
                 style={{
                   maxWidth: 1200,
                   margin: "0 auto",
@@ -1033,6 +1052,7 @@ function IndustryAccordion({ industries }) {
                 </div>
                 {/* Illustration + quote */}
                 <div
+                  className="acc-panel-illus"
                   style={{
                     display: "flex",
                     flexDirection: "column",
@@ -1068,7 +1088,7 @@ function IndustryAccordion({ industries }) {
 }
 
 /* ══════════════════════════════════════════════════════
-   FUNCTION GRID — clean 4-column cards with illustrations
+   FUNCTION GRID
 ══════════════════════════════════════════════════════ */
 function FunctionGrid() {
   const functions = [
@@ -1083,6 +1103,7 @@ function FunctionGrid() {
   ];
   return (
     <div
+      className="fn-grid"
       style={{
         display: "grid",
         gridTemplateColumns: "1fr 1fr 1fr 1fr",
@@ -1141,10 +1162,8 @@ function FunctionGrid() {
 }
 
 /* ══════════════════════════════════════════════════════
-   AI SECTION — teal bg, full-width, animated topology SVG
+   AI SECTION
 ══════════════════════════════════════════════════════ */
-
-/* Animated pulse dot that travels along a path */
 function PulseDot({ x1, y1, x2, y2, delay = 0, vis }) {
   return (
     <circle
@@ -1163,7 +1182,6 @@ function PulseDot({ x1, y1, x2, y2, delay = 0, vis }) {
 function AISection({ setPage }) {
   const [ref, vis] = useIO(0.05);
 
-  /* Enterprise topology nodes */
   const centerX = 300,
     centerY = 200;
   const outerNodes = [
@@ -1204,7 +1222,6 @@ function AISection({ setPage }) {
     },
   ];
 
-  /* Convert angle+radius → cartesian */
   const polar = (angle, r) => ({
     x: centerX + r * Math.cos((angle * Math.PI) / 180),
     y: centerY + r * Math.sin((angle * Math.PI) / 180),
@@ -1215,7 +1232,6 @@ function AISection({ setPage }) {
     ...polar(n.angle, n.r),
   }));
 
-  /* Mid-ring nodes */
   const midNodes = [
     { id: "m1", angle: -54, r: 82 },
     { id: "m2", angle: 18, r: 82 },
@@ -1225,7 +1241,6 @@ function AISection({ setPage }) {
   ];
   const midPositions = midNodes.map((n) => ({ ...n, ...polar(n.angle, n.r) }));
 
-  /* Edges: center↔mid, mid↔outer */
   const edges = [
     ...midPositions.map((m) => ({
       x1: centerX,
@@ -1258,45 +1273,16 @@ function AISection({ setPage }) {
   ];
 
   const AI_CSS = `
-    @keyframes ai-pulse-ring {
-      0%  { r: 34; opacity: 0.5; }
-      100%{ r: 56; opacity: 0;   }
-    }
-    @keyframes ai-glow {
-      0%,100% { opacity: 0.5; }
-      50%     { opacity: 1;   }
-    }
-    @keyframes ai-orbit {
-      from { transform: rotate(0deg);   }
-      to   { transform: rotate(360deg); }
-    }
-    @keyframes ai-orbit-rev {
-      from { transform: rotate(0deg);   }
-      to   { transform: rotate(-360deg);}
-    }
-    .ai-pulse-ring {
-      animation: ai-pulse-ring 2.4s ease-out infinite;
-      transform-origin: ${centerX}px ${centerY}px;
-    }
-    .ai-pulse-ring-2 {
-      animation: ai-pulse-ring 2.4s ease-out infinite 0.8s;
-      transform-origin: ${centerX}px ${centerY}px;
-    }
-    .ai-pulse-ring-3 {
-      animation: ai-pulse-ring 2.4s ease-out infinite 1.6s;
-      transform-origin: ${centerX}px ${centerY}px;
-    }
-    .ai-core-glow {
-      animation: ai-glow 2s ease-in-out infinite;
-    }
-    .ai-orbit-ring {
-      transform-origin: ${centerX}px ${centerY}px;
-      animation: ai-orbit 18s linear infinite;
-    }
-    .ai-orbit-ring-rev {
-      transform-origin: ${centerX}px ${centerY}px;
-      animation: ai-orbit-rev 26s linear infinite;
-    }
+    @keyframes ai-pulse-ring { 0%{r:34;opacity:0.5} 100%{r:56;opacity:0} }
+    @keyframes ai-glow { 0%,100%{opacity:0.5} 50%{opacity:1} }
+    @keyframes ai-orbit { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+    @keyframes ai-orbit-rev { from{transform:rotate(0deg)} to{transform:rotate(-360deg)} }
+    .ai-pulse-ring { animation:ai-pulse-ring 2.4s ease-out infinite; transform-origin:${centerX}px ${centerY}px; }
+    .ai-pulse-ring-2 { animation:ai-pulse-ring 2.4s ease-out infinite 0.8s; transform-origin:${centerX}px ${centerY}px; }
+    .ai-pulse-ring-3 { animation:ai-pulse-ring 2.4s ease-out infinite 1.6s; transform-origin:${centerX}px ${centerY}px; }
+    .ai-core-glow { animation:ai-glow 2s ease-in-out infinite; }
+    .ai-orbit-ring { transform-origin:${centerX}px ${centerY}px; animation:ai-orbit 18s linear infinite; }
+    .ai-orbit-ring-rev { transform-origin:${centerX}px ${centerY}px; animation:ai-orbit-rev 26s linear infinite; }
   `;
 
   return (
@@ -1311,8 +1297,6 @@ function AISection({ setPage }) {
       }}
     >
       <style>{AI_CSS}</style>
-
-      {/* Dot grid texture */}
       <div
         style={{
           position: "absolute",
@@ -1324,7 +1308,7 @@ function AISection({ setPage }) {
         }}
       />
 
-      {/* ── TOP: FULL-WIDTH ILLUSTRATION BAND ── */}
+      {/* TOP: illustration band */}
       <div
         style={{
           width: "100%",
@@ -1336,7 +1320,6 @@ function AISection({ setPage }) {
           borderBottom: "1px solid rgba(184,150,46,0.12)",
         }}
       >
-        {/* Section label centered above diagram */}
         <div
           style={{
             position: "absolute",
@@ -1387,14 +1370,12 @@ function AISection({ setPage }) {
           </div>
         </div>
 
-        {/* SVG Topology Diagram */}
         <svg
           viewBox="0 0 600 510"
           style={{ width: "min(680px, 90vw)", overflow: "visible" }}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* Defs: pulse paths for animateMotion */}
           <defs>
             {edges.map((e) => (
               <path
@@ -1404,8 +1385,6 @@ function AISection({ setPage }) {
               />
             ))}
           </defs>
-
-          {/* Orbit rings (decorative, rotating) */}
           <circle
             className="ai-orbit-ring"
             cx={centerX}
@@ -1428,8 +1407,6 @@ function AISection({ setPage }) {
             opacity={vis ? 0.15 : 0}
             style={{ transition: "opacity 0.8s ease 0.3s" }}
           />
-
-          {/* Edges — draw on scroll */}
           {edges.map((e, i) => (
             <line
               key={e.key}
@@ -1447,16 +1424,12 @@ function AISection({ setPage }) {
               }}
             />
           ))}
-
-          {/* Animated pulse dots */}
           {vis &&
             edges
               .slice(0, 7)
               .map((e, i) => (
                 <PulseDot key={e.key} {...e} delay={i * 0.35} vis={vis} />
               ))}
-
-          {/* Pulse rings on center */}
           {vis && (
             <>
               <circle
@@ -1491,8 +1464,6 @@ function AISection({ setPage }) {
               />
             </>
           )}
-
-          {/* Mid-ring nodes */}
           {midPositions.map((m, i) => (
             <g
               key={m.id}
@@ -1513,8 +1484,6 @@ function AISection({ setPage }) {
               <circle cx={m.x} cy={m.y} r="3" fill="#B8962E" opacity="0.7" />
             </g>
           ))}
-
-          {/* Outer function nodes */}
           {outerPositions.map((n, i) => {
             const isTop = n.y < centerY - 60;
             const isBottom = n.y > centerY + 60;
@@ -1530,7 +1499,6 @@ function AISection({ setPage }) {
                     : `translate(${(n.x - centerX) * 0.15}px, ${(n.y - centerY) * 0.15}px)`,
                 }}
               >
-                {/* Outer glow ring */}
                 <circle
                   cx={n.x}
                   cy={n.y}
@@ -1539,7 +1507,6 @@ function AISection({ setPage }) {
                   stroke="rgba(184,150,46,0.2)"
                   strokeWidth="1"
                 />
-                {/* Node circle */}
                 <circle
                   cx={n.x}
                   cy={n.y}
@@ -1557,16 +1524,9 @@ function AISection({ setPage }) {
                   className="ai-core-glow"
                   style={{ animationDelay: `${i * 0.4}s` }}
                 />
-                {/* Label — placed away from center */}
                 <text
                   x={n.x + (isLeft ? -36 : n.x > centerX + 40 ? 36 : 0)}
-                  y={
-                    isTop
-                      ? n.y - 80
-                      : isBottom
-                        ? n.y + 72
-                        : n.y + (n.x < centerX ? 0 : 0)
-                  }
+                  y={isTop ? n.y - 80 : isBottom ? n.y + 72 : n.y}
                   textAnchor={
                     isLeft ? "end" : n.x > centerX + 40 ? "start" : "middle"
                   }
@@ -1607,22 +1567,18 @@ function AISection({ setPage }) {
               </g>
             );
           })}
-
-          {/* Center AI core */}
           <g
             style={{
               opacity: vis ? 1 : 0,
               transition: "opacity 0.7s ease 0.2s",
             }}
           >
-            {/* Outer ambient glow */}
             <circle
               cx={centerX}
               cy={centerY}
               r="52"
               fill="rgba(184,150,46,0.07)"
             />
-            {/* Mid glow ring */}
             <circle
               cx={centerX}
               cy={centerY}
@@ -1632,7 +1588,6 @@ function AISection({ setPage }) {
               strokeWidth="1"
               strokeDasharray="4 6"
             />
-            {/* Main core circle — larger + brighter border */}
             <circle
               cx={centerX}
               cy={centerY}
@@ -1641,7 +1596,6 @@ function AISection({ setPage }) {
               stroke="#B8962E"
               strokeWidth="2.5"
             />
-            {/* Inner highlight ring */}
             <circle
               cx={centerX}
               cy={centerY}
@@ -1681,8 +1635,6 @@ function AISection({ setPage }) {
               CORE
             </text>
           </g>
-
-          {/* Title below diagram */}
           <text
             x={centerX}
             y={470}
@@ -1702,8 +1654,9 @@ function AISection({ setPage }) {
         </svg>
       </div>
 
-      {/* ── BOTTOM: CONTENT BAND ── */}
+      {/* BOTTOM: content band */}
       <div
+        className="ai-content-pad"
         style={{
           maxWidth: 1200,
           margin: "0 auto",
@@ -1713,6 +1666,7 @@ function AISection({ setPage }) {
         }}
       >
         <div
+          className="ai-content-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
@@ -1720,7 +1674,7 @@ function AISection({ setPage }) {
             alignItems: "start",
           }}
         >
-          {/* Left — heading + body */}
+          {/* Left */}
           <div
             style={{
               opacity: vis ? 1 : 0,
@@ -1800,7 +1754,7 @@ function AISection({ setPage }) {
             </button>
           </div>
 
-          {/* Right — approach points + mandates */}
+          {/* Right */}
           <div
             style={{
               opacity: vis ? 1 : 0,
@@ -1849,7 +1803,6 @@ function AISection({ setPage }) {
                   alignItems: "flex-start",
                 }}
               >
-                {/* Number badge */}
                 <div
                   style={{
                     flexShrink: 0,
@@ -1918,6 +1871,7 @@ function AISection({ setPage }) {
                 Typical Mandates
               </div>
               <div
+                className="ai-mandates-grid"
                 style={{
                   display: "grid",
                   gridTemplateColumns: "1fr 1fr",
@@ -2088,6 +2042,7 @@ export default function DomainsPage({ setPage }) {
         />
 
         <div
+          className="dp-hero-content"
           style={{
             position: "relative",
             zIndex: 2,
@@ -2169,6 +2124,7 @@ export default function DomainsPage({ setPage }) {
       {/* ── 2. SECTOR ACCORDION ── */}
       <section id="domains-where-we-operate">
         <div
+          className="dp-where-pad"
           style={{
             maxWidth: 1200,
             margin: "0 auto",
@@ -2178,6 +2134,7 @@ export default function DomainsPage({ setPage }) {
           <Fade>
             <SectionLabel text="Six Sectors" />
             <div
+              className="dp-where-row"
               style={{
                 display: "flex",
                 alignItems: "flex-end",
@@ -2197,6 +2154,7 @@ export default function DomainsPage({ setPage }) {
                 Where We Operate
               </h2>
               <p
+                className="dp-where-desc"
                 style={{
                   fontSize: 15,
                   fontWeight: 300,
@@ -2218,6 +2176,7 @@ export default function DomainsPage({ setPage }) {
       {/* ── 3. FUNCTION GRID ── */}
       <section
         id="domains-functional-expertise"
+        className="dp-fn-section"
         style={{ background: "#EDE8DE", padding: "100px 64px" }}
       >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -2256,10 +2215,14 @@ export default function DomainsPage({ setPage }) {
       <AISection setPage={setPage} />
 
       {/* ── 5. CLOSING CTA ── */}
-      <section style={{ background: "#F5F0E8", padding: "100px 64px" }}>
+      <section
+        className="dp-cta-section"
+        style={{ background: "#F5F0E8", padding: "100px 64px" }}
+      >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <Fade>
             <div
+              className="dp-cta-grid"
               style={{
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr",
@@ -2307,6 +2270,7 @@ export default function DomainsPage({ setPage }) {
                 </div>
               </div>
               <div
+                className="dp-cta-right"
                 style={{
                   borderLeft: "1px solid rgba(13,61,78,0.1)",
                   paddingLeft: 80,

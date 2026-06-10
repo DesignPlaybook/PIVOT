@@ -11,13 +11,15 @@ const OFFICES = [
     role: "Headquarters",
     region: "South Asia & Global Operations",
     tz: "IST — UTC +5:30",
-    lat: 19.076,
-    lng: 72.877,
-    address: "Bandra Kurla Complex\nMumbai 400 051\nIndia",
+    lat: 19.1136,
+    lng: 72.8697,
+    address:
+      "5th Floor, Technopolis\nKnowledge Park\nMahakali Caves Road\nAndheri East\nMumbai 400 093, India",
     email: "mumbai@pivotedgegroup.com",
     phone: "+91 22 6678 9000",
-    mapsUrl: "https://maps.google.com/?q=Bandra+Kurla+Complex+Mumbai+India",
-    desc: "Our global headquarters, anchoring our South Asia practice and international coordination. The Mumbai office leads CEO and Board mandates across the subcontinent.",
+    mapsUrl:
+      "https://maps.google.com/?q=Technopolis+Knowledge+Park+Andheri+East+Mumbai",
+    // desc: "Our global headquarters, anchoring our South Asia practice and international coordination. The Mumbai office leads CEO and Board mandates across the subcontinent.",
     pulseDelay: "0s",
     pulse2Delay: "0.8s",
   },
@@ -28,13 +30,13 @@ const OFFICES = [
     role: "Regional Hub",
     region: "Middle East & Africa",
     tz: "GST — UTC +4:00",
-    lat: 25.204,
-    lng: 55.27,
-    address: "Dubai International\nFinancial Centre\nDubai, UAE",
+    lat: 25.1181,
+    lng: 55.378,
+    address: "2201, Tower 6\nDubai Silicon Oasis\nDubai, UAE",
     email: "dubai@pivotedgegroup.com",
     phone: "+971 4 388 7000",
-    mapsUrl: "https://maps.google.com/?q=Dubai+International+Financial+Centre",
-    desc: "Our Middle East hub serves sovereign wealth, regional conglomerates, and multinational leaders across the GCC and wider Africa region.",
+    mapsUrl: "https://maps.google.com/?q=Tower+6+Dubai+Silicon+Oasis+Dubai",
+    // desc: "Our Middle East hub serves sovereign wealth, regional conglomerates, and multinational leaders across the GCC and wider Africa region.",
     pulseDelay: "0.4s",
     pulse2Delay: "1.2s",
   },
@@ -45,26 +47,21 @@ const OFFICES = [
     role: "Representative Office",
     region: "Asia-Pacific",
     tz: "AEDT — UTC +11:00",
-    lat: -33.868,
-    lng: 151.209,
-    address: "1 Martin Place\nSydney NSW 2000\nAustralia",
+    lat: -33.8712,
+    lng: 151.2069,
+    address:
+      "Suite 48, Level 4\nDymocks Building\n428 George Street\nSydney NSW 2000\nAustralia",
     email: "sydney@pivotedgegroup.com",
     phone: "+61 2 9000 7500",
-    mapsUrl: "https://maps.google.com/?q=1+Martin+Place+Sydney+NSW+Australia",
-    desc: "Our Asia-Pacific representative office supports clients across Australia, New Zealand, and South-East Asia with executive search and governance advisory.",
+    mapsUrl:
+      "https://maps.google.com/?q=428+George+Street+Sydney+NSW+Australia",
+    // desc: "Our Asia-Pacific representative office supports clients across Australia, New Zealand, and South-East Asia with executive search and governance advisory.",
     pulseDelay: "0.8s",
     pulse2Delay: "1.6s",
   },
 ];
 
-// Project lat/lng → SVG viewBox 0 0 800 400
-function projectPoint(lat, lng) {
-  return {
-    x: (lng + 180) * (800 / 360),
-    y: (90 - lat) * (400 / 180),
-  };
-}
-
+// Curved arc path in the dotted-map viewBox (0 0 198 100)
 function curvedPath(a, b, curvature = 0.35) {
   const midX = (a.x + b.x) / 2;
   const midY =
@@ -77,10 +74,12 @@ export default function GlobalPresence() {
   const [panelVisible, setPanelVisible] = useState(true);
   const svgRef = useRef(null);
 
+  // Build map instance once
   const dottedMap = useMemo(
     () => new DottedMap({ height: 100, grid: "diagonal" }),
     [],
   );
+
   const svgMap = useMemo(
     () =>
       dottedMap.getSVG({
@@ -92,18 +91,22 @@ export default function GlobalPresence() {
     [dottedMap],
   );
 
-  // Project all office coordinates
+  // Use getPin() — the library's own projection onto its 198×100 viewBox
   const projected = useMemo(
-    () => OFFICES.map((o) => ({ ...o, pt: projectPoint(o.lat, o.lng) })),
-    [],
+    () =>
+      OFFICES.map((o) => ({
+        ...o,
+        pt: dottedMap.getPin({ lat: o.lat, lng: o.lng }),
+      })),
+    [dottedMap],
   );
 
-  // Arc paths between offices
+  // Arc paths between offices (Mumbai→Dubai, Dubai→Sydney)
   const arcs = useMemo(() => {
     const pts = projected;
     return [
-      { path: curvedPath(pts[0].pt, pts[1].pt), id: "mum-dub" }, // Mumbai–Dubai
-      { path: curvedPath(pts[1].pt, pts[2].pt, 0.28), id: "dub-syd" }, // Dubai–Sydney
+      { path: curvedPath(pts[0].pt, pts[1].pt, 0.4), id: "mum-dub" },
+      { path: curvedPath(pts[1].pt, pts[2].pt, 0.32), id: "dub-syd" },
     ];
   }, [projected]);
 
@@ -113,20 +116,16 @@ export default function GlobalPresence() {
       to   { stroke-dashoffset: 0; }
     }
     @keyframes gp2-pulse-out {
-      0%   { r: 5;  opacity: 0.7; }
-      100% { r: 22; opacity: 0;   }
+      0%   { r: 0.8; opacity: 0.7; }
+      100% { r: 4;   opacity: 0;   }
     }
     @keyframes gp2-pin-glow {
-      0%,100% { filter: drop-shadow(0 0 3px rgba(184,150,46,0.4)); }
-      50%     { filter: drop-shadow(0 0 9px rgba(184,150,46,0.9)); }
+      0%,100% { filter: drop-shadow(0 0 0.5px rgba(184,150,46,0.4)); }
+      50%     { filter: drop-shadow(0 0 1.5px rgba(184,150,46,0.9)); }
     }
     @keyframes gp2-panel-in {
       from { opacity: 0; transform: translateY(12px); }
       to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes gp2-dot-pulse {
-      0%,100% { box-shadow: 0 0 0 0 rgba(184,150,46,0.4); }
-      50%     { box-shadow: 0 0 0 6px rgba(184,150,46,0); }
     }
     .gp2-arc {
       stroke-dasharray: 500;
@@ -141,10 +140,82 @@ export default function GlobalPresence() {
     .gp2-pulse { animation: gp2-pulse-out 2.4s ease-out infinite; }
     .gp2-pin-active { animation: gp2-pin-glow 2s ease-in-out infinite; }
     .gp2-panel { animation: gp2-panel-in 0.45s cubic-bezier(0.16,1,0.3,1) both; }
-    .gp2-tab { transition: all 0.3s ease; cursor: pointer; border: none; background: none; text-align: left; width: 100%; }
+    .gp2-tab {
+      transition: all 0.3s ease; cursor: pointer;
+      border: none; background: none; text-align: left; width: 100%;
+    }
     .gp2-tab:hover .gp2-tab-city { color: #B8962E; }
     .gp2-pin-hit { cursor: pointer; }
     .gp2-pin-hit:hover { opacity: 1; }
+
+    /* ── RESPONSIVE ── */
+
+    /* Tablet ≤1024px */
+    @media (max-width: 1024px) {
+      .gp2-header { padding: 56px 40px 0 !important; }
+      .gp2-body {
+        padding: 40px 40px 64px !important;
+        grid-template-columns: 200px 1fr !important;
+      }
+      .gp2-bottom-strip button { padding: 20px 24px !important; }
+      .gp2-floatcard { max-width: 200px !important; min-width: 180px !important; }
+    }
+
+    /* Mobile ≤767px */
+    @media (max-width: 767px) {
+      .gp2-header { padding: 48px 24px 0 !important; }
+      .gp2-header-inner { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
+      .gp2-stat { text-align: left !important; }
+      .gp2-body {
+        padding: 24px 24px 48px !important;
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
+      }
+      .gp2-sidebar {
+        border-right: 1px solid rgba(184,150,46,0.12) !important;
+        border-bottom: none !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+      }
+      .gp2-sidebar::-webkit-scrollbar { display: none; }
+      .gp2-sidebar-header { display: none !important; }
+      .gp2-sidebar-detail { display: none !important; }
+      .gp2-tab {
+        flex-shrink: 0 !important;
+        border-left: none !important;
+        border-bottom: 2px solid transparent !important;
+        padding: 14px 20px !important;
+        min-width: 120px !important;
+      }
+      .gp2-tab-active-mobile {
+        border-bottom-color: #B8962E !important;
+        background: rgba(184,150,46,0.06) !important;
+      }
+      .gp2-map-container { border-top: none !important; }
+      .gp2-floatcard {
+        position: static !important;
+        margin: 12px !important;
+        max-width: 100% !important;
+        min-width: unset !important;
+      }
+      .gp2-hint { display: none !important; }
+      .gp2-bottom-strip { flex-direction: column !important; }
+      .gp2-bottom-strip button {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(13,61,78,0.1) !important;
+        padding: 20px 24px !important;
+        width: 100% !important;
+      }
+    }
+
+    /* Small mobile ≤480px */
+    @media (max-width: 480px) {
+      .gp2-header { padding: 40px 20px 0 !important; }
+      .gp2-body { padding: 20px 20px 40px !important; }
+      .gp2-bottom-strip button { padding: 16px 20px !important; }
+    }
   `;
 
   const handleSelect = (office) => {
@@ -181,6 +252,7 @@ export default function GlobalPresence() {
 
       {/* ── HEADER ── */}
       <div
+        className="gp2-header"
         style={{
           maxWidth: 1200,
           margin: "0 auto",
@@ -190,6 +262,7 @@ export default function GlobalPresence() {
         }}
       >
         <div
+          className="gp2-header-inner"
           style={{
             display: "flex",
             alignItems: "flex-end",
@@ -222,8 +295,10 @@ export default function GlobalPresence() {
               Three strategic offices. One standard of rigour.
             </p>
           </div>
-          {/* Stat */}
-          <div style={{ textAlign: "right", flexShrink: 0, paddingBottom: 4 }}>
+          <div
+            className="gp2-stat"
+            style={{ textAlign: "right", flexShrink: 0, paddingBottom: 4 }}
+          >
             <div
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
@@ -254,6 +329,7 @@ export default function GlobalPresence() {
 
       {/* ── MAIN BODY: sidebar + map ── */}
       <div
+        className="gp2-body"
         style={{
           maxWidth: 1200,
           margin: "0 auto",
@@ -268,6 +344,7 @@ export default function GlobalPresence() {
       >
         {/* ── LEFT SIDEBAR ── */}
         <div
+          className="gp2-sidebar"
           style={{
             background: "rgba(5,25,33,0.65)",
             border: "1px solid rgba(184,150,46,0.12)",
@@ -277,6 +354,7 @@ export default function GlobalPresence() {
           }}
         >
           <div
+            className="gp2-sidebar-header"
             style={{
               padding: "18px 22px 14px",
               borderBottom: "1px solid rgba(184,150,46,0.1)",
@@ -300,7 +378,7 @@ export default function GlobalPresence() {
             return (
               <button
                 key={office.id}
-                className="gp2-tab"
+                className={`gp2-tab${isActive ? " gp2-tab-active-mobile" : ""}`}
                 onClick={() => handleSelect(office)}
                 style={{
                   padding: "18px 22px",
@@ -365,7 +443,7 @@ export default function GlobalPresence() {
           {/* Active office detail panel */}
           <div
             key={active.id}
-            className="gp2-panel"
+            className="gp2-panel gp2-sidebar-detail"
             style={{
               padding: "24px 22px",
               marginTop: "auto",
@@ -491,6 +569,7 @@ export default function GlobalPresence() {
 
         {/* ── MAP ── */}
         <div
+          className="gp2-map-container"
           style={{
             border: "1px solid rgba(184,150,46,0.12)",
             position: "relative",
@@ -528,7 +607,7 @@ export default function GlobalPresence() {
             />
           ))}
 
-          {/* Map container with mask */}
+          {/* Map + SVG overlay wrapper */}
           <div
             style={{
               position: "relative",
@@ -553,10 +632,13 @@ export default function GlobalPresence() {
               draggable={false}
             />
 
-            {/* SVG overlay: arcs + pins */}
+            {/*
+              SVG overlay uses the SAME viewBox as the dotted-map SVG: 0 0 198 100
+              getPin() returns x,y in that coordinate space — pins will land exactly right.
+            */}
             <svg
               ref={svgRef}
-              viewBox="0 0 800 400"
+              viewBox="0 0 198 100"
               style={{
                 position: "absolute",
                 inset: 0,
@@ -587,13 +669,6 @@ export default function GlobalPresence() {
                   <stop offset="0%" stopColor="#B8962E" stopOpacity="0.4" />
                   <stop offset="100%" stopColor="#B8962E" stopOpacity="0.8" />
                 </linearGradient>
-                <filter id="gp2-glow">
-                  <feGaussianBlur stdDeviation="2" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
               </defs>
 
               {/* Arc: Mumbai → Dubai */}
@@ -602,8 +677,8 @@ export default function GlobalPresence() {
                 d={arcs[0].path}
                 fill="none"
                 stroke="url(#gp2-arcgrad1)"
-                strokeWidth="1.2"
-                strokeDasharray="5 4"
+                strokeWidth="0.3"
+                strokeDasharray="1.2 1"
                 opacity="0.8"
               />
               {/* Arc: Dubai → Sydney */}
@@ -612,15 +687,19 @@ export default function GlobalPresence() {
                 d={arcs[1].path}
                 fill="none"
                 stroke="url(#gp2-arcgrad2)"
-                strokeWidth="1.2"
-                strokeDasharray="5 4"
+                strokeWidth="0.3"
+                strokeDasharray="1.2 1"
                 opacity="0.8"
               />
 
-              {/* Pins */}
+              {/* Pins — all coordinates in 198×100 space */}
               {projected.map((office) => {
                 const isActive = active.id === office.id;
                 const { pt } = office;
+                // Label offset: push label left for Sydney to avoid edge clipping
+                const labelXOffset = office.id === "sydney" ? -14 : -6;
+                const labelWidth = office.city.length * 1.6 + 4;
+
                 return (
                   <g
                     key={office.id}
@@ -631,20 +710,20 @@ export default function GlobalPresence() {
                     <circle
                       cx={pt.x}
                       cy={pt.y}
-                      r="5"
+                      r="0.8"
                       fill="none"
                       stroke="rgba(184,150,46,0.6)"
-                      strokeWidth="1"
+                      strokeWidth="0.25"
                       className="gp2-pulse"
                       style={{ animationDelay: office.pulseDelay }}
                     />
                     <circle
                       cx={pt.x}
                       cy={pt.y}
-                      r="5"
+                      r="0.8"
                       fill="none"
                       stroke="rgba(184,150,46,0.3)"
-                      strokeWidth="0.8"
+                      strokeWidth="0.2"
                       className="gp2-pulse"
                       style={{ animationDelay: office.pulse2Delay }}
                     />
@@ -653,47 +732,46 @@ export default function GlobalPresence() {
                     <circle
                       cx={pt.x}
                       cy={pt.y}
-                      r="7"
+                      r="1.8"
                       fill={isActive ? T.gold : "#0D3D4E"}
                       stroke={T.gold}
-                      strokeWidth={isActive ? 0 : 1.8}
+                      strokeWidth={isActive ? 0 : 0.45}
                       className={isActive ? "gp2-pin-active" : ""}
                       style={{ transition: "fill 0.3s ease" }}
                     />
                     <circle
                       cx={pt.x}
                       cy={pt.y}
-                      r="3"
+                      r="0.7"
                       fill={isActive ? "#F5F0E8" : T.gold}
                       style={{ transition: "fill 0.3s ease" }}
                     />
 
-                    {/* Hit area (invisible, larger) */}
-                    <circle cx={pt.x} cy={pt.y} r="16" fill="transparent" />
+                    {/* Hit area */}
+                    <circle cx={pt.x} cy={pt.y} r="4" fill="transparent" />
 
                     {/* City label chip */}
                     <rect
-                      x={pt.x - 30}
-                      y={pt.y - 26}
-                      width={office.city.length * 6.5 + 8}
-                      height="16"
-                      rx="2"
+                      x={pt.x + labelXOffset}
+                      y={pt.y - 6.5}
+                      width={labelWidth}
+                      height="4"
+                      rx="0.5"
                       fill="rgba(7,31,40,0.9)"
                       stroke={isActive ? T.gold : "rgba(184,150,46,0.4)"}
-                      strokeWidth={isActive ? 1 : 0.7}
+                      strokeWidth={isActive ? 0.25 : 0.18}
                       style={{ transition: "stroke 0.3s ease" }}
                     />
                     <text
-                      x={pt.x - 30 + (office.city.length * 6.5 + 8) / 2}
-                      y={pt.y - 14}
+                      x={pt.x + labelXOffset + labelWidth / 2}
+                      y={pt.y - 3.8}
                       textAnchor="middle"
                       fontFamily="'Jost', sans-serif"
-                      fontSize="8"
+                      fontSize="2"
                       fill={isActive ? T.gold : "rgba(245,240,232,0.75)"}
-                      letterSpacing="1.5"
+                      letterSpacing="0.4"
                       style={{
                         transition: "fill 0.3s ease",
-                        textTransform: "uppercase",
                         userSelect: "none",
                       }}
                     >
@@ -705,10 +783,10 @@ export default function GlobalPresence() {
             </svg>
           </div>
 
-          {/* Floating info card — active office description */}
+          {/* Floating info card */}
           <div
             key={`info-${active.id}`}
-            className="gp2-panel"
+            className="gp2-panel gp2-floatcard"
             style={{
               position: "absolute",
               bottom: 20,
@@ -760,15 +838,6 @@ export default function GlobalPresence() {
             >
               {active.region}
             </div>
-            <div
-              style={{
-                width: 24,
-                height: 1,
-                background: T.gold,
-                opacity: 0.5,
-                marginBottom: 12,
-              }}
-            />
             <p
               style={{
                 fontSize: 11,
@@ -825,6 +894,7 @@ export default function GlobalPresence() {
 
           {/* Hint */}
           <div
+            className="gp2-hint"
             style={{
               position: "absolute",
               bottom: 24,
@@ -854,6 +924,7 @@ export default function GlobalPresence() {
 
       {/* ── BOTTOM STRIP: 3 office cards ── */}
       <div
+        className="gp2-bottom-strip"
         style={{
           borderTop: "1px solid rgba(184,150,46,0.12)",
           background: T.creamAlt,

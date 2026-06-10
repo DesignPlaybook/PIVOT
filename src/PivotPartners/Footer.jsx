@@ -73,27 +73,35 @@ const FOOTER_CSS = `
     margin: 56px 0 28px;
   }
 
-  @media (max-width: 992px) {
-    .ft-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-    }
+ @media (max-width: 992px) {
+  .ft-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 48px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .ft-root {
+    padding: 48px 24px 24px;
+    overflow: hidden;
   }
 
-  @media (max-width: 768px) {
-    .ft-root {
-      padding: 48px 24px 24px;
-    }
+  .ft-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
 
-    .ft-grid {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
+  .ft-bottom {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 16px !important;
+  }
 
-    .ft-bottom {
-      flex-direction: column;
-      align-items: flex-start !important;
-    }
+  .ft-bottom > div {
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+}
   }
 `;
 
@@ -126,6 +134,8 @@ export default function Footer({ setPage }) {
           style={{
             maxWidth: 1400,
             margin: "0 auto",
+            width: "100%",
+            boxSizing: "border-box",
           }}
         >
           <div
@@ -135,6 +145,8 @@ export default function Footer({ setPage }) {
               gridTemplateColumns: "260px 220px 220px 1fr",
               gap: 80,
               alignItems: "start",
+              width: "100%",
+              boxSizing: "border-box",
             }}
           >
             {/* Logo */}

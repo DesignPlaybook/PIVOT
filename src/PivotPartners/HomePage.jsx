@@ -868,8 +868,8 @@ function LeadershipIllustration({ vis }) {
     // </svg>
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="800.001"
-      height="614.712"
+      width="100%"
+      height="auto"
       viewBox="0 0 800.001 614.712"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       role="img"
@@ -1780,7 +1780,10 @@ function ClosingIllustration({ vis }) {
     //     </text>
     //   </g>
     // </svg>
-    <img src={leadership} />
+    <img
+      src={leadership}
+      style={{ width: "100%", height: "auto", display: "block" }}
+    />
   );
 }
 
@@ -1801,7 +1804,6 @@ const SECTION_CSS = `
   .wl-pillar:hover .wl-pillar-icon  { width: 48px; }
   .wl-pillar:hover .wl-pillar-title { color: #F5F0E8; }
   .wl-pillar:hover .wl-pillar-body  { color: rgba(245,240,232,0.65); }
- 
   .wl-pillar-num {
     font-family: 'Cormorant Garamond', serif;
     font-size: 80px;
@@ -1834,7 +1836,6 @@ const SECTION_CSS = `
     line-height: 1.75; color: ${T.textMid};
     transition: color 0.3s;
   }
- 
   .wl-intro-link {
     display: inline-flex; align-items: center; gap: 10px;
     font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 400;
@@ -1846,7 +1847,6 @@ const SECTION_CSS = `
     transition: width 0.3s ease;
   }
   .wl-intro-link:hover .wl-intro-link-arrow { width: 44px; }
- 
   .wl-quote-btn {
     margin-top: 36px;
     font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 400;
@@ -1862,6 +1862,37 @@ const SECTION_CSS = `
     background: rgba(245,240,232,0.08);
     border-color: rgba(245,240,232,0.55);
     color: #F5F0E8;
+  }
+
+  @media (max-width: 768px) {
+    .hp-perspective-section { padding: 72px 24px 48px !important; }
+    .hp-howwework-section   { padding: 72px 24px !important; }
+    .hp-howwework-grid      { grid-template-columns: 1fr !important; gap: 48px !important; }
+    .hp-stats-inner         { padding: 0 24px !important; }
+    .hp-stats-flex          { gap: 0 !important; }
+    .hp-whatwedo-section    { padding: 72px 24px !important; }
+    .hp-whatwedo-header     { flex-direction: column !important; align-items: flex-start !important; gap: 24px !important; }
+    .hp-whatwedo-grid       { grid-template-columns: 1fr 1fr !important; }
+    .hp-quote-section       { padding: 64px 24px !important; }
+    .hp-operate-section     { padding: 72px 24px !important; }
+    .hp-operate-header      { flex-direction: column !important; align-items: flex-start !important; gap: 24px !important; }
+    .hp-closing-section     { padding: 72px 24px !important; }
+    .hp-closing-3col        { grid-template-columns: 1fr !important; }
+    .hp-closing-left        { border-right: none !important; padding-right: 0 !important; border-bottom: 1px solid rgba(13,61,78,0.1) !important; padding-bottom: 32px !important; }
+    .hp-closing-centre      { padding: 32px 0 !important; }
+    .hp-closing-right       { border-left: none !important; padding-left: 0 !important; border-top: 1px solid rgba(13,61,78,0.1) !important; padding-top: 32px !important; }
+    .hp-closing-illus       { padding: 48px 24px 36px !important; }
+  }
+  @media (max-width: 560px) {
+  .hp-whatwedo-grid { grid-template-columns: 1fr !important; }
+  .hp-operate-grid  { grid-template-columns: 1fr !important; }
+  .hp-operate-grid > div { border-right: none !important; padding: 28px 16px !important; }
+}
+@media (max-width: 768px) {
+  .hp-operate-grid > div { padding: 32px 20px !important; }
+}
+  @media (max-width: 900px) {
+    .hp-operate-grid { grid-template-columns: 1fr 1fr !important; }
   }
 `;
 
@@ -1882,7 +1913,14 @@ export default function HomePage({ setPage }) {
 
       {/* ══ 2. WHY LEADERSHIP MATTERS — Full-width editorial illustration ══ */}
       <section
-        style={{ padding: "120px 64px 80px", maxWidth: 1200, margin: "0 auto" }}
+        className="hp-perspective-section"
+        style={{
+          padding: "120px 64px 80px",
+          maxWidth: 1200,
+          margin: "0 auto",
+          width: "100%",
+          boxSizing: "border-box",
+        }}
       >
         <div
           className="reveal"
@@ -1945,6 +1983,7 @@ export default function HomePage({ setPage }) {
             padding: "60px 40px 48px",
             position: "relative",
             overflow: "hidden",
+            maxWidth: "100%",
           }}
         >
           {/* Corner label */}
@@ -2163,11 +2202,15 @@ export default function HomePage({ setPage }) {
           zIndex: 1,
         }}
       >
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 64px" }}>
+        <div
+          className="hp-stats-inner"
+          style={{ maxWidth: 1200, margin: "0 auto", padding: "0 64px" }}
+        >
           <div style={{ marginBottom: 24 }}>
             <SectionLabel text="By the Numbers" light />
           </div>
           <div
+            className="hp-stats-flex"
             style={{
               display: "flex",
               justifyContent: "space-between",
@@ -2196,7 +2239,10 @@ export default function HomePage({ setPage }) {
 
       {/* ══ 4. WHAT WE DO — 4 Tiles ══ */}
       {/* ══ 4. WHAT WE DO — 4 Tiles ══ */}
-      <section style={{ background: T.creamAlt, padding: "120px 64px" }}>
+      <section
+        className="hp-whatwedo-section"
+        style={{ background: T.creamAlt, padding: "120px 64px" }}
+      >
         <style>{`
     @keyframes lens-scan {
       0%,100%{transform:translate(0,0)} 33%{transform:translate(6px,-4px)} 66%{transform:translate(-4px,6px)}
@@ -2236,7 +2282,7 @@ export default function HomePage({ setPage }) {
 
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div
-            className="reveal"
+            className="reveal hp-whatwedo-header"
             style={{
               display: "flex",
               justifyContent: "space-between",
@@ -2270,6 +2316,7 @@ export default function HomePage({ setPage }) {
           </div>
 
           <div
+            className="hp-whatwedo-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr 1fr 1fr",
@@ -2942,9 +2989,17 @@ export default function HomePage({ setPage }) {
 
       {/* ══ 5. HOW WE WORK — Process Compass Illustration ══ */}
       <section
-        style={{ padding: "120px 64px", maxWidth: 1200, margin: "0 auto" }}
+        className="hp-howwework-section"
+        style={{
+          padding: "120px 64px",
+          maxWidth: 1200,
+          margin: "0 auto",
+          width: "100%",
+          boxSizing: "border-box",
+        }}
       >
         <div
+          className="hp-howwework-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
@@ -3019,10 +3074,15 @@ export default function HomePage({ setPage }) {
               background: T.creamAlt,
               border: `1px solid rgba(13,61,78,0.07)`,
               padding: "40px 32px",
+              overflow: "hidden",
+              minWidth: 0,
             }}
           >
             {/* <ProcessCompassIllustration vis={illusVis2} /> */}
-            <img src={Research} />
+            <img
+              src={Research}
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
           </div>
         </div>
       </section>
@@ -3085,7 +3145,7 @@ export default function HomePage({ setPage }) {
         </div>
       </section> */}
       <section
-        className="reveal"
+        className="reveal hp-quote-section"
         style={{
           background: T.teal,
           padding: "80px 64px",
@@ -3231,10 +3291,17 @@ export default function HomePage({ setPage }) {
 
       {/* ══ 8. WHERE WE OPERATE ══ */}
       <section
-        style={{ padding: "120px 64px", maxWidth: 1200, margin: "0 auto" }}
+        className="hp-operate-section"
+        style={{
+          padding: "120px 64px",
+          maxWidth: 1200,
+          margin: "0 auto",
+          width: "100%",
+          boxSizing: "border-box",
+        }}
       >
         <div
-          className="reveal"
+          className="reveal hp-operate-header"
           style={{
             display: "flex",
             justifyContent: "space-between",
@@ -3266,6 +3333,7 @@ export default function HomePage({ setPage }) {
           </button>
         </div>
         <div
+          className="hp-operate-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr 1fr",
@@ -3330,10 +3398,14 @@ export default function HomePage({ setPage }) {
 
       {/* ══ 9. CLOSING POSITIONING — full content from content file ══ */}
       <section
+        className="hp-closing-section"
         style={{
           background: T.creamAlt,
           padding: "120px 64px",
           borderTop: `1px solid rgba(13,61,78,0.08)`,
+          width: "100%",
+          boxSizing: "border-box",
+          overflow: "hidden",
         }}
       >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -3360,6 +3432,7 @@ export default function HomePage({ setPage }) {
 
           {/* Three-column content arrangement (not left-right split) */}
           <div
+            className="hp-closing-3col"
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 2fr 1fr",
@@ -3371,6 +3444,7 @@ export default function HomePage({ setPage }) {
             {/* Left pillar — decorative vertical stat */}
             <Fade delay={100}>
               <div
+                className="hp-closing-left"
                 style={{
                   padding: "0 48px 0 0",
                   borderRight: `1px solid rgba(13,61,78,0.1)`,
@@ -3417,7 +3491,7 @@ export default function HomePage({ setPage }) {
 
             {/* Centre — main positioning text + illustration */}
             <Fade delay={200}>
-              <div style={{ padding: "0 64px" }}>
+              <div className="hp-closing-centre" style={{ padding: "0 64px" }}>
                 <p
                   style={{
                     fontSize: 17,
@@ -3473,6 +3547,7 @@ export default function HomePage({ setPage }) {
             {/* Right pillar — decorative vertical stat */}
             <Fade delay={300}>
               <div
+                className="hp-closing-right"
                 style={{
                   padding: "0 0 0 48px",
                   borderLeft: `1px solid rgba(13,61,78,0.1)`,
@@ -3521,12 +3596,14 @@ export default function HomePage({ setPage }) {
           {/* ── LARGE CLOSING ILLUSTRATION ── */}
           <div
             ref={illusRef3}
+            className="hp-closing-illus"
             style={{
               position: "relative",
               background: T.white,
               border: `1px solid rgba(13,61,78,0.07)`,
               padding: "56px 48px 48px",
               overflow: "hidden",
+              maxWidth: "100%",
             }}
           >
             {/* Top label */}

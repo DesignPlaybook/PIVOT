@@ -58,6 +58,10 @@ const NAV_CSS = `
     from { opacity: 0; transform: translateY(-6px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+  @keyframes mob-in {
+    from { opacity: 0; transform: translateX(100%); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
 
   .pep-nav-link {
     font-family: 'Jost', sans-serif;
@@ -91,7 +95,6 @@ const NAV_CSS = `
   .pep-nav-link:hover { color: var(--gold); }
   .pep-nav-link:hover::after { width: 100%; }
 
-  /* chevron — tiny, refined */
   .pep-chev {
     width: 6px;
     height: 6px;
@@ -109,30 +112,18 @@ const NAV_CSS = `
     opacity: 0.7;
   }
 
-  /* Dropdown container — positioned under each nav item */
   .pep-dd {
-  position: fixed;
-
-  background: rgba(245,240,232,.97);
-
-  backdrop-filter: blur(16px);
-
-  border-radius: 18px;
-
-  border: 1px solid rgba(184,150,46,.15);
-
-  min-width: 260px;
-
-  overflow: hidden;
-
-  z-index: 1000;
-
-  box-shadow:
-    0 20px 50px rgba(13,61,78,.12),
-    0 2px 10px rgba(13,61,78,.05);
-
-  animation: dd-in .25s ease;
-}
+    position: fixed;
+    background: rgba(245,240,232,.97);
+    backdrop-filter: blur(16px);
+    border-radius: 18px;
+    border: 1px solid rgba(184,150,46,.15);
+    min-width: 260px;
+    overflow: hidden;
+    z-index: 1000;
+    box-shadow: 0 20px 50px rgba(13,61,78,.12), 0 2px 10px rgba(13,61,78,.05);
+    animation: dd-in .25s ease;
+  }
 
   .pep-dd-item {
     display: flex;
@@ -174,7 +165,6 @@ const NAV_CSS = `
     line-height: 1.3;
   }
 
-  /* gold pip — appears on hover, right side */
   .pep-dd-pip {
     margin-left: auto;
     width: 4px;
@@ -216,14 +206,141 @@ const NAV_CSS = `
   .pep-nav-cta:hover::before { transform: translateX(0); }
   .pep-nav-cta span { position: relative; z-index: 1; }
 
+  /* Hamburger button */
+  .pep-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .pep-hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--teal);
+    transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+    transform-origin: center;
+  }
+  .pep-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .pep-hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+  .pep-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* Mobile drawer */
+  .pep-mob-drawer {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(320px, 85vw);
+    background: #F5F0E8;
+    z-index: 200;
+    overflow-y: auto;
+    box-shadow: -8px 0 40px rgba(13,61,78,0.15);
+    animation: mob-in 0.35s cubic-bezier(0.16,1,0.3,1);
+    padding: 88px 0 40px;
+  }
+  .pep-mob-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(13,61,78,0.4);
+    z-index: 199;
+  }
+  .pep-mob-section { border-bottom: 1px solid rgba(13,61,78,0.08); padding: 8px 0; }
+  .pep-mob-page-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--teal);
+    text-align: left;
+  }
+  .pep-mob-page-btn:hover { color: var(--gold); }
+  .pep-mob-chev {
+    width: 6px; height: 6px;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.25s ease;
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+  .pep-mob-chev.open { transform: rotate(-135deg); }
+  .pep-mob-sub {
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .pep-mob-sub-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 10px 28px 10px 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    text-align: left;
+    opacity: 0.75;
+  }
+  .pep-mob-sub-item:hover { color: var(--gold); opacity: 1; }
+  .pep-mob-cta {
+    margin: 24px 28px 0;
+    display: block;
+    width: calc(100% - 56px);
+    padding: 14px;
+    background: var(--teal);
+    color: #F5F0E8;
+    border: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+  }
+
   @media (max-width: 768px) {
-    .pep-dd { display: none; }
+    .pep-dd         { display: none !important; }
+    .pep-hamburger  { display: flex; }
+    .pep-nav-links-desktop { display: none !important; }
+    .pep-nav-cta-desktop   { display: none !important; }
+  }
+  @media (min-width: 769px) {
+    .pep-mob-drawer  { display: none !important; }
+    .pep-mob-overlay { display: none !important; }
   }
 `;
 
 export default function Nav({ page, setPage }) {
   const scrolled = useScrollNav();
   const [openMenu, setOpenMenu] = useState(null);
+  const [mobOpen, setMobOpen] = useState(false);
+  const [mobExpanded, setMobExpanded] = useState(null);
   const navRef = useRef(null);
   const closeTimer = useRef(null);
   // store { top, left } for each dropdown anchor
@@ -257,7 +374,6 @@ export default function Nav({ page, setPage }) {
   useEffect(() => {
     const handler = (e) => {
       if (!navRef.current?.contains(e.target)) {
-        // check if click is inside a dropdown
         const dropdowns = document.querySelectorAll(".pep-dd");
         for (const dd of dropdowns) {
           if (dd.contains(e.target)) return;
@@ -330,7 +446,7 @@ export default function Nav({ page, setPage }) {
 
         {/* Links */}
         <div
-          className="nav-links"
+          className="nav-links pep-nav-links-desktop"
           style={{ display: "flex", alignItems: "center", gap: 36 }}
         >
           {NAV_ITEMS.map((item) => (
@@ -362,12 +478,97 @@ export default function Nav({ page, setPage }) {
 
         {/* CTA */}
         <button
-          className="pep-nav-cta"
+          className="pep-nav-cta pep-nav-cta-desktop"
           onClick={() => handlePageClick("Contact")}
         >
           <span>Contact Us</span>
         </button>
+        {/* Hamburger — mobile only */}
+        <button
+          className={`pep-hamburger${mobOpen ? " open" : ""}`}
+          onClick={() => {
+            setMobOpen((o) => !o);
+            setMobExpanded(null);
+          }}
+          aria-label="Menu"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </nav>
+
+      {/* Mobile overlay */}
+      {mobOpen && (
+        <div
+          className="pep-mob-overlay"
+          style={{ display: "block" }}
+          onClick={() => setMobOpen(false)}
+        />
+      )}
+
+      {/* Mobile drawer */}
+      {mobOpen && (
+        <div className="pep-mob-drawer" style={{ display: "block" }}>
+          {NAV_ITEMS.map((item) => (
+            <div key={item.label} className="pep-mob-section">
+              <button
+                className="pep-mob-page-btn"
+                onClick={() => {
+                  if (item.items?.length) {
+                    setMobExpanded(
+                      mobExpanded === item.label ? null : item.label,
+                    );
+                  } else {
+                    setMobOpen(false);
+                    handlePageClick(item.page);
+                  }
+                }}
+              >
+                {item.label}
+                {item.items?.length ? (
+                  <span
+                    className={`pep-mob-chev${mobExpanded === item.label ? " open" : ""}`}
+                  />
+                ) : null}
+              </button>
+              {item.items?.length ? (
+                <div
+                  className="pep-mob-sub"
+                  style={{
+                    maxHeight:
+                      mobExpanded === item.label
+                        ? item.items.length * 48 + "px"
+                        : "0px",
+                  }}
+                >
+                  {item.items.map((sub) => (
+                    <button
+                      key={sub.id}
+                      className="pep-mob-sub-item"
+                      onClick={() => {
+                        setMobOpen(false);
+                        handleSectionClick(item.page, sub.id);
+                      }}
+                    >
+                      {sub.label}
+                    </button>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+          ))}
+          <button
+            className="pep-mob-cta"
+            onClick={() => {
+              setMobOpen(false);
+              handlePageClick("Contact");
+            }}
+          >
+            Contact Us
+          </button>
+        </div>
+      )}
 
       {/* Dropdown — rendered outside nav so it sits on top of everything */}
       {openMenu && menuData && menuData.items && anchor && (
@@ -375,11 +576,7 @@ export default function Nav({ page, setPage }) {
           className="pep-dd"
           style={{ top: anchor.top, left: anchor.left }}
           onMouseEnter={cancelClose}
-          onMouseLeave={() => {
-            if (item.items?.length) {
-              scheduleClose();
-            }
-          }}
+          onMouseLeave={scheduleClose}
         >
           {menuData.items.map((item, i) => (
             <button

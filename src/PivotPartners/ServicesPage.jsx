@@ -307,6 +307,7 @@ function ServicePanel({ num, name, desc, img, reverse = false, id }) {
       ref={ref}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      className="sv-service-panel"
       style={{
         position: "relative",
         height: 420,
@@ -358,6 +359,7 @@ function ServicePanel({ num, name, desc, img, reverse = false, id }) {
 
       {/* Content */}
       <div
+        className="sv-panel-pad"
         style={{
           position: "relative",
           zIndex: 2,
@@ -461,6 +463,7 @@ function DiversityMosaic({ setPage }) {
     >
       <div
         ref={ref}
+        className="sv-mosaic"
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr 1fr",
@@ -471,6 +474,7 @@ function DiversityMosaic({ setPage }) {
       >
         {/* Photo 1 — tall left */}
         <div
+          className="sv-mosaic-tall"
           style={{
             gridRow: "1 / 3",
             overflow: "hidden",
@@ -1508,6 +1512,25 @@ export default function ServicesPage({ setPage }) {
   return (
     <div>
       <style>{HERO_CSS}</style>
+      <style>{`
+  @media (max-width: 768px) {
+    .sv-hero-pad   { padding: 0 24px 80px !important; }
+    .sv-core-pad   { padding: 64px 24px 40px !important; }
+    .sv-core-hdr   { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
+    .sv-diff-sec   { padding: 72px 24px !important; }
+    .sv-diff-grid  { grid-template-columns: 1fr !important; gap: 48px !important; }
+    .sv-mand-sec   { padding: 72px 24px !important; }
+    .sv-mand-grid  { grid-template-columns: 1fr !important; gap: 56px !important; }
+    .sv-stat-strip { grid-template-columns: 1fr !important; gap: 24px !important; border-top: none !important; }
+    .sv-stat-strip > div { border-right: none !important; border-bottom: 1px solid rgba(13,61,78,0.1) !important; padding-bottom: 20px !important; }
+    .sv-mosaic     { grid-template-columns: 1fr !important; grid-template-rows: 220px 220px 220px auto auto !important; }
+    .sv-mosaic-tall { grid-row: auto !important; }
+    .sv-panel-pad  { padding: 0 24px !important; }
+  }
+  @media (max-width: 768px) {
+    .sv-service-panel { height: auto !important; min-height: 360px !important; }
+  }
+`}</style>
 
       {/* ══════ 1. HERO — About-style full-viewport ══════ */}
       {/* ══════ 1. HERO ══════ */}
@@ -1543,6 +1566,7 @@ export default function ServicesPage({ setPage }) {
         />
 
         <div
+          className="sv-hero-pad"
           style={{
             position: "relative",
             zIndex: 2,
@@ -1625,6 +1649,7 @@ export default function ServicesPage({ setPage }) {
       {/* ══════ 3. CORE 4 SERVICES — immersive full-bleed panels ══════ */}
       <section style={{ background: T.cream }}>
         <Fade
+          className="sv-core-pad"
           style={{
             padding: "80px 64px 56px",
             maxWidth: 1200,
@@ -1633,6 +1658,7 @@ export default function ServicesPage({ setPage }) {
         >
           <SectionLabel text="Core Advisory" />
           <div
+            className="sv-core-hdr"
             style={{
               display: "flex",
               alignItems: "flex-end",
@@ -1679,6 +1705,7 @@ export default function ServicesPage({ setPage }) {
 
       {/* ══════ 4. WHAT DIFFERENTIATES — radial SVG diagram ══════ */}
       <section
+        className="sv-diff-sec"
         style={{
           background: T.creamAlt,
           padding: "120px 64px",
@@ -1715,6 +1742,7 @@ export default function ServicesPage({ setPage }) {
           </Fade>
 
           <div
+            className="sv-diff-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
@@ -1953,9 +1981,17 @@ export default function ServicesPage({ setPage }) {
       {/* ══════ 6. MANDATES + OUTCOMES — side by side on cream ══════ */}
       <section
         id="services-our-mandates"
-        style={{ padding: "100px 64px", maxWidth: 1200, margin: "0 auto" }}
+        className="sv-mand-sec"
+        style={{
+          padding: "100px 64px",
+          maxWidth: 1200,
+          margin: "0 auto",
+          width: "100%",
+          boxSizing: "border-box",
+        }}
       >
         <div
+          className="sv-mand-grid"
           style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}
         >
           <Fade>
@@ -2101,6 +2137,7 @@ export default function ServicesPage({ setPage }) {
 
             {/* Mini stat strip */}
             <div
+              className="sv-stat-strip"
               style={{
                 marginTop: 48,
                 display: "grid",
