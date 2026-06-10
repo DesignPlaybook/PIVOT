@@ -907,7 +907,7 @@ function IndustryAccordion({ industries }) {
                 <span
                   style={{
                     fontFamily: "'Cormorant Garamond',serif",
-                    fontSize: 16,
+                    fontSize: 26,
                     color: "#B8962E",
                     opacity: isOpen ? 1 : 0.45,
                     minWidth: 28,
@@ -930,7 +930,7 @@ function IndustryAccordion({ industries }) {
                 <span
                   style={{
                     fontFamily: "'Jost',sans-serif",
-                    fontSize: 10,
+                    fontSize: 15,
                     letterSpacing: "0.16em",
                     textTransform: "uppercase",
                     color: "#7A8694",
@@ -1165,7 +1165,7 @@ function AISection({ setPage }) {
 
   /* Enterprise topology nodes */
   const centerX = 300,
-    centerY = 230;
+    centerY = 200;
   const outerNodes = [
     {
       id: "strategy",
@@ -1259,8 +1259,8 @@ function AISection({ setPage }) {
 
   const AI_CSS = `
     @keyframes ai-pulse-ring {
-      0%  { r: 28; opacity: 0.5; }
-      100%{ r: 50; opacity: 0;   }
+      0%  { r: 34; opacity: 0.5; }
+      100%{ r: 56; opacity: 0;   }
     }
     @keyframes ai-glow {
       0%,100% { opacity: 0.5; }
@@ -1301,6 +1301,7 @@ function AISection({ setPage }) {
 
   return (
     <section
+      id="domains-emerging-domain"
       ref={ref}
       style={{
         background: "#0D3D4E",
@@ -1327,7 +1328,7 @@ function AISection({ setPage }) {
       <div
         style={{
           width: "100%",
-          padding: "80px 0 60px",
+          padding: "130px 0 20px",
           display: "flex",
           justifyContent: "center",
           position: "relative",
@@ -1339,7 +1340,7 @@ function AISection({ setPage }) {
         <div
           style={{
             position: "absolute",
-            top: 56,
+            top: 36,
             left: "50%",
             transform: "translateX(-50%)",
             textAlign: "center",
@@ -1388,7 +1389,7 @@ function AISection({ setPage }) {
 
         {/* SVG Topology Diagram */}
         <svg
-          viewBox="0 0 600 460"
+          viewBox="0 0 600 510"
           style={{ width: "min(680px, 90vw)", overflow: "visible" }}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -1462,7 +1463,7 @@ function AISection({ setPage }) {
                 className="ai-pulse-ring"
                 cx={centerX}
                 cy={centerY}
-                r="28"
+                r="34"
                 fill="none"
                 stroke="#B8962E"
                 strokeWidth="1"
@@ -1472,7 +1473,7 @@ function AISection({ setPage }) {
                 className="ai-pulse-ring-2"
                 cx={centerX}
                 cy={centerY}
-                r="28"
+                r="34"
                 fill="none"
                 stroke="#B8962E"
                 strokeWidth="1"
@@ -1482,7 +1483,7 @@ function AISection({ setPage }) {
                 className="ai-pulse-ring-3"
                 cx={centerX}
                 cy={centerY}
-                r="28"
+                r="34"
                 fill="none"
                 stroke="#B8962E"
                 strokeWidth="1"
@@ -1558,12 +1559,12 @@ function AISection({ setPage }) {
                 />
                 {/* Label — placed away from center */}
                 <text
-                  x={n.x + (isLeft ? -32 : n.x > centerX + 40 ? 32 : 0)}
+                  x={n.x + (isLeft ? -36 : n.x > centerX + 40 ? 36 : 0)}
                   y={
                     isTop
-                      ? n.y - 32
+                      ? n.y - 80
                       : isBottom
-                        ? n.y + 38
+                        ? n.y + 72
                         : n.y + (n.x < centerX ? 0 : 0)
                   }
                   textAnchor={
@@ -1572,8 +1573,8 @@ function AISection({ setPage }) {
                   dominantBaseline="middle"
                   style={{
                     fontFamily: "'Cormorant Garamond',serif",
-                    fontSize: 13,
-                    fill: "rgba(245,240,232,0.85)",
+                    fontSize: 14,
+                    fill: "rgba(245,240,232,0.95)",
                     fontWeight: 400,
                   }}
                 >
@@ -1582,11 +1583,11 @@ function AISection({ setPage }) {
                 {n.sub.split("\n").map((line, li) => (
                   <text
                     key={li}
-                    x={n.x + (isLeft ? -32 : n.x > centerX + 40 ? 32 : 0)}
+                    x={n.x + (isLeft ? -36 : n.x > centerX + 40 ? 36 : 0)}
                     y={
-                      (isTop ? n.y - 32 : isBottom ? n.y + 38 : n.y) +
-                      16 +
-                      li * 12
+                      (isTop ? n.y - 80 : isBottom ? n.y + 72 : n.y) +
+                      18 +
+                      li * 13
                     }
                     textAnchor={
                       isLeft ? "end" : n.x > centerX + 40 ? "start" : "middle"
@@ -1595,7 +1596,7 @@ function AISection({ setPage }) {
                     style={{
                       fontFamily: "'Jost',sans-serif",
                       fontSize: 8,
-                      fill: "rgba(184,150,46,0.6)",
+                      fill: "rgba(184,150,46,0.75)",
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
                     }}
@@ -1614,45 +1615,66 @@ function AISection({ setPage }) {
               transition: "opacity 0.7s ease 0.2s",
             }}
           >
+            {/* Outer ambient glow */}
             <circle
               cx={centerX}
               cy={centerY}
-              r="36"
-              fill="rgba(184,150,46,0.08)"
+              r="52"
+              fill="rgba(184,150,46,0.07)"
             />
+            {/* Mid glow ring */}
+            <circle
+              cx={centerX}
+              cy={centerY}
+              r="42"
+              fill="rgba(184,150,46,0.12)"
+              stroke="rgba(184,150,46,0.3)"
+              strokeWidth="1"
+              strokeDasharray="4 6"
+            />
+            {/* Main core circle — larger + brighter border */}
+            <circle
+              cx={centerX}
+              cy={centerY}
+              r="34"
+              fill="#071F28"
+              stroke="#B8962E"
+              strokeWidth="2.5"
+            />
+            {/* Inner highlight ring */}
             <circle
               cx={centerX}
               cy={centerY}
               r="28"
-              fill="#0A2E3A"
-              stroke="#B8962E"
-              strokeWidth="1.5"
+              fill="none"
+              stroke="rgba(184,150,46,0.25)"
+              strokeWidth="1"
             />
             <text
               x={centerX}
-              y={centerY - 7}
+              y={centerY - 8}
               textAnchor="middle"
               dominantBaseline="middle"
               style={{
                 fontFamily: "'Cormorant Garamond',serif",
-                fontSize: 11,
+                fontSize: 18,
                 fill: "#B8962E",
-                fontWeight: 400,
-                letterSpacing: "0.06em",
+                fontWeight: 600,
+                letterSpacing: "0.08em",
               }}
             >
               AI
             </text>
             <text
               x={centerX}
-              y={centerY + 8}
+              y={centerY + 10}
               textAnchor="middle"
               dominantBaseline="middle"
               style={{
                 fontFamily: "'Jost',sans-serif",
-                fontSize: 7,
-                fill: "rgba(184,150,46,0.6)",
-                letterSpacing: "0.18em",
+                fontSize: 8,
+                fill: "rgba(184,150,46,0.8)",
+                letterSpacing: "0.22em",
                 textTransform: "uppercase",
               }}
             >
@@ -1663,7 +1685,7 @@ function AISection({ setPage }) {
           {/* Title below diagram */}
           <text
             x={centerX}
-            y={415}
+            y={470}
             textAnchor="middle"
             style={{
               fontFamily: "'Jost',sans-serif",
@@ -1789,7 +1811,7 @@ function AISection({ setPage }) {
             <div
               style={{
                 fontFamily: "'Jost',sans-serif",
-                fontSize: 9,
+                fontSize: 14,
                 letterSpacing: "0.24em",
                 textTransform: "uppercase",
                 color: "#B8962E",
@@ -1797,7 +1819,7 @@ function AISection({ setPage }) {
                 opacity: 0.8,
               }}
             >
-              Our Approach
+              Our Approach to AI
             </div>
             {[
               {
@@ -1821,17 +1843,20 @@ function AISection({ setPage }) {
                 key={i}
                 style={{
                   display: "flex",
-                  gap: 16,
-                  padding: "16px 0",
-                  borderBottom: "1px solid rgba(245,240,232,0.07)",
+                  gap: 20,
+                  padding: "22px 0",
+                  borderBottom: "1px solid rgba(245,240,232,0.12)",
+                  alignItems: "flex-start",
                 }}
               >
+                {/* Number badge */}
                 <div
                   style={{
                     flexShrink: 0,
-                    width: 22,
-                    height: 22,
-                    border: "1px solid rgba(184,150,46,0.4)",
+                    width: 36,
+                    height: 36,
+                    background: "rgba(184,150,46,0.15)",
+                    border: "1px solid rgba(184,150,46,0.6)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -1841,31 +1866,35 @@ function AISection({ setPage }) {
                   <span
                     style={{
                       fontFamily: "'Cormorant Garamond',serif",
-                      fontSize: 11,
+                      fontSize: 16,
+                      fontWeight: 600,
                       color: "#B8962E",
+                      lineHeight: 1,
                     }}
                   >
                     {i + 1}
                   </span>
                 </div>
-                <div>
+                <div style={{ flex: 1 }}>
                   <div
                     style={{
                       fontFamily: "'Cormorant Garamond',serif",
-                      fontSize: 16,
+                      fontSize: 20,
                       fontWeight: 400,
-                      color: "rgba(245,240,232,0.88)",
-                      marginBottom: 4,
+                      color: "#FFFFFF",
+                      marginBottom: 6,
+                      lineHeight: 1.2,
                     }}
                   >
                     {item.n}
                   </div>
                   <p
                     style={{
-                      fontSize: 12,
+                      fontFamily: "'Jost',sans-serif",
+                      fontSize: 13,
                       fontWeight: 300,
-                      lineHeight: 1.7,
-                      color: "rgba(245,240,232,0.45)",
+                      lineHeight: 1.75,
+                      color: "rgba(245,240,232,0.65)",
                       margin: 0,
                     }}
                   >
@@ -1878,7 +1907,7 @@ function AISection({ setPage }) {
               <div
                 style={{
                   fontFamily: "'Jost',sans-serif",
-                  fontSize: 9,
+                  fontSize: 14,
                   letterSpacing: "0.22em",
                   textTransform: "uppercase",
                   color: "#B8962E",
@@ -1888,7 +1917,13 @@ function AISection({ setPage }) {
               >
                 Typical Mandates
               </div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: 6,
+                }}
+              >
                 {[
                   "Chief AI Officers",
                   "Chief Digital Officers",
@@ -1897,21 +1932,33 @@ function AISection({ setPage }) {
                   "Intelligent Automation",
                   "Responsible AI & Governance",
                 ].map((m, i) => (
-                  <span
+                  <div
                     key={i}
                     style={{
                       fontFamily: "'Jost',sans-serif",
                       fontSize: 9,
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
-                      padding: "5px 11px",
-                      background: "rgba(184,150,46,0.07)",
-                      border: "1px solid rgba(184,150,46,0.2)",
-                      color: "rgba(245,240,232,0.55)",
+                      padding: "10px 14px",
+                      background: "rgba(245,240,232,0.1)",
+                      border: "1px solid rgba(184,150,46,0.45)",
+                      color: "rgba(245,240,232,0.9)",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8,
                     }}
                   >
+                    <span
+                      style={{
+                        width: 4,
+                        height: 4,
+                        borderRadius: "50%",
+                        background: "#B8962E",
+                        flexShrink: 0,
+                      }}
+                    />
                     {m}
-                  </span>
+                  </div>
                 ))}
               </div>
             </div>
@@ -1983,6 +2030,18 @@ export default function DomainsPage({ setPage }) {
         "Visionary leaders who convert digital disruption into sustainable advantage.",
     },
   ];
+
+  useEffect(() => {
+    const target = sessionStorage.getItem("scrollTo");
+    if (target) {
+      sessionStorage.removeItem("scrollTo");
+      setTimeout(() => {
+        document
+          .getElementById(target)
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 350);
+    }
+  }, []);
 
   return (
     <div>
@@ -2108,7 +2167,7 @@ export default function DomainsPage({ setPage }) {
       </section>
 
       {/* ── 2. SECTOR ACCORDION ── */}
-      <section>
+      <section id="domains-where-we-operate">
         <div
           style={{
             maxWidth: 1200,
@@ -2139,7 +2198,7 @@ export default function DomainsPage({ setPage }) {
               </h2>
               <p
                 style={{
-                  fontSize: 13,
+                  fontSize: 15,
                   fontWeight: 300,
                   lineHeight: 1.8,
                   color: "#4A5568",
@@ -2157,7 +2216,10 @@ export default function DomainsPage({ setPage }) {
       </section>
 
       {/* ── 3. FUNCTION GRID ── */}
-      <section style={{ background: "#EDE8DE", padding: "100px 64px" }}>
+      <section
+        id="domains-functional-expertise"
+        style={{ background: "#EDE8DE", padding: "100px 64px" }}
+      >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <Fade style={{ textAlign: "center", marginBottom: 64 }}>
             <SectionLabel text="Functional Expertise" />

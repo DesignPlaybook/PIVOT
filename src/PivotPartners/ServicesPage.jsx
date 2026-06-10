@@ -298,11 +298,12 @@ function RadialDiagram() {
 }
 
 /* ─── Immersive service panel (full-bleed photo + overlay content) ─── */
-function ServicePanel({ num, name, desc, img, reverse = false }) {
+function ServicePanel({ num, name, desc, img, reverse = false, id }) {
   const [ref, vis] = useIO(0.05);
   const [hovered, setHovered] = useState(false);
   return (
     <div
+      id={id}
       ref={ref}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -480,7 +481,7 @@ function DiversityMosaic({ setPage }) {
           }}
         >
           <img
-            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80"
+            src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80"
             alt="Diverse leadership"
             style={{
               width: "100%",
@@ -589,7 +590,7 @@ function DiversityMosaic({ setPage }) {
           }}
         >
           <img
-            src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=800&q=80"
+            src="https://images.unsplash.com/photo-1670272502246-768d249768ca?w=800&q=80"
             alt="Inclusive leadership"
             style={{
               width: "100%",
@@ -1432,24 +1433,28 @@ export default function ServicesPage({ setPage }) {
     {
       num: "01",
       name: "Executive Search",
+      id: "services-executive-search",
       img: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=1400&q=80",
       desc: "Retained executive search for senior leadership and board-level roles. Each mandate begins with deep understanding of organisational strategy, culture, governance context, and performance objectives. Research-led evaluation of experience, judgement, cultural alignment, and long-term impact. We are not intermediaries — we are advisors entrusted with decisions that influence the direction of the enterprise.",
     },
     {
       num: "02",
       name: "Succession Planning",
+      id: "services-succession-planning",
       img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=80",
       desc: "Leadership continuity is a strategic imperative. We partner with Boards and executive teams to design succession strategies that strengthen bench strength, reduce risk, and preserve institutional knowledge. Our approach identifies critical roles, evaluates internal readiness, assesses vulnerabilities, and builds structured leadership pipelines aligned to long-term organisational priorities.",
     },
     {
       num: "03",
       name: "Career Transition",
+      id: "services-career-transition",
       img: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1400&q=80",
       desc: "Organisational evolution often requires difficult leadership decisions. We support organisations in managing transitions with integrity and professionalism. Our career transition services provide structured guidance, leadership coaching, capability alignment, and strategic repositioning support — helping individuals move forward with clarity while protecting organisational reputation.",
     },
     {
       num: "04",
       name: "Interim Management",
+      id: "services-interim-management",
       img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1400&q=80",
       desc: "When leadership gaps arise or specialised expertise is required, interim management provides rapid access to experienced executives. We identify seasoned leaders who can step into complex environments, stabilise operations, drive transformation, or deliver specific outcomes within defined timeframes. Interim leadership offers flexibility without compromising on capability.",
     },
@@ -1487,6 +1492,18 @@ export default function ServicesPage({ setPage }) {
       sub: "Advisory guidance through offer, onboarding, and early-stage integration.",
     },
   ];
+
+  useEffect(() => {
+    const target = sessionStorage.getItem("scrollTo");
+    if (target) {
+      sessionStorage.removeItem("scrollTo");
+      setTimeout(() => {
+        document
+          .getElementById(target)
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 350);
+    }
+  }, []);
 
   return (
     <div>
@@ -1602,134 +1619,6 @@ export default function ServicesPage({ setPage }) {
           >
             Scroll
           </span>
-        </div>
-      </section>
-      {/* ══════ 2. PROCESS FRAMEWORK — timeline with animated draw-line ══════ */}
-      <section
-        style={{
-          background: T.cream,
-          padding: "100px 64px",
-          overflow: "hidden",
-          borderBottom: `1px solid rgba(13,61,78,0.08)`,
-        }}
-      >
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <Fade>
-            <SectionLabel text="Our Approach" />
-            <div
-              style={{
-                display: "flex",
-                alignItems: "flex-end",
-                justifyContent: "space-between",
-                marginBottom: 72,
-                gap: 40,
-              }}
-            >
-              <h2
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: "clamp(36px,4vw,52px)",
-                  fontWeight: 300,
-                  color: T.teal,
-                  lineHeight: 1.1,
-                }}
-              >
-                The Precision
-                <br />
-                Matching Framework
-              </h2>
-              <p
-                style={{
-                  fontSize: 14,
-                  fontWeight: 300,
-                  lineHeight: 1.8,
-                  color: T.textMid,
-                  maxWidth: 300,
-                  paddingBottom: 6,
-                }}
-              >
-                Six structured stages that underpin every engagement — from
-                first brief to successful integration.
-              </p>
-            </div>
-          </Fade>
-
-          {/* Steps grid */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(6, 1fr)",
-              gap: 0,
-              position: "relative",
-            }}
-          >
-            <DrawLine delay={200} />
-            {processSteps.map((s, i) => (
-              <Fade key={i} delay={i * 100}>
-                <div
-                  className="svc-step"
-                  style={{
-                    padding: "48px 20px 0",
-                    position: "relative",
-                    cursor: "default",
-                  }}
-                >
-                  {/* Node dot */}
-                  <div
-                    style={{
-                      width: 9,
-                      height: 9,
-                      background: T.gold,
-                      borderRadius: "50%",
-                      marginBottom: 24,
-                      position: "relative",
-                      zIndex: 1,
-                      border: "2px solid #F5F0E8",
-                      boxShadow: `0 0 0 4px rgba(184,150,46,0.15)`,
-                    }}
-                  />
-                  <div
-                    className="svc-step-num"
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: 44,
-                      fontWeight: 300,
-                      color: T.teal,
-                      opacity: 0.18,
-                      lineHeight: 1,
-                      marginBottom: 12,
-                      transition: "opacity 0.3s ease, color 0.3s ease",
-                    }}
-                  >
-                    {s.n}
-                  </div>
-                  <div
-                    className="svc-step-label"
-                    style={{
-                      fontSize: 12,
-                      fontWeight: 400,
-                      color: T.teal,
-                      lineHeight: 1.5,
-                      marginBottom: 10,
-                      transition: "color 0.3s ease",
-                    }}
-                  >
-                    {s.label}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: 11,
-                      fontWeight: 300,
-                      color: T.textMuted,
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    {s.sub}
-                  </div>
-                </div>
-              </Fade>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -1922,7 +1811,7 @@ export default function ServicesPage({ setPage }) {
       </section>
 
       {/* ══════ 5. FUNCTIONAL EXPERTISE — hover list on light background ══════ */}
-      <section
+      {/* <section
         style={{
           background: T.creamAlt,
           padding: "120px 64px",
@@ -1930,7 +1819,6 @@ export default function ServicesPage({ setPage }) {
           overflow: "hidden",
         }}
       >
-        {/* Large decorative background text */}
         <div
           style={{
             position: "absolute",
@@ -2060,10 +1948,11 @@ export default function ServicesPage({ setPage }) {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ══════ 6. MANDATES + OUTCOMES — side by side on cream ══════ */}
       <section
+        id="services-our-mandates"
         style={{ padding: "100px 64px", maxWidth: 1200, margin: "0 auto" }}
       >
         <div

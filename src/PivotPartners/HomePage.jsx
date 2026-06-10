@@ -55,6 +55,23 @@ function Fade({ children, delay = 0, style = {} }) {
    as architectural columns rising from a foundation
 ══════════════════════════════════════════════════════════════ */
 const LEADERSHIP_ILLUS_CSS = `
+@keyframes lm-fade-slide { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+@keyframes lm-float-a { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+@keyframes lm-float-b { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+@keyframes lm-float-c { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+@keyframes lm-line-in  { from{width:0;opacity:0} to{width:100%;opacity:1} }
+@keyframes lm-pulsegold{ 0%,100%{opacity:0.5} 50%{opacity:1} }
+
+.lm-tag-1 { animation: lm-fade-slide 0.7s cubic-bezier(0.16,1,0.3,1) 0.3s both, lm-float-a 5s ease-in-out 1s infinite; }
+.lm-tag-2 { animation: lm-fade-slide 0.7s cubic-bezier(0.16,1,0.3,1) 0.5s both, lm-float-c 6s ease-in-out 1.2s infinite; }
+.lm-tag-3 { animation: lm-fade-slide 0.7s cubic-bezier(0.16,1,0.3,1) 0.7s both, lm-float-b 4.5s ease-in-out 1.4s infinite; }
+.lm-quote-in { animation: lm-fade-slide 0.9s cubic-bezier(0.16,1,0.3,1) 0.2s both; }
+.lm-stat-in { animation: lm-fade-slide 0.8s cubic-bezier(0.16,1,0.3,1) 0.6s both; }
+.lm-rule-in { animation: lm-line-in 1s cubic-bezier(0.77,0,0.175,1) 0.4s both; }
+.lm-diamond { animation: lm-pulsegold 2.5s ease-in-out infinite; }
+
+
+
   @keyframes lm-float1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
   @keyframes lm-float2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
   @keyframes lm-pulse  { 0%,100%{opacity:0.3} 50%{opacity:0.7} }
@@ -1945,7 +1962,7 @@ export default function HomePage({ setPage }) {
             <span
               style={{
                 fontFamily: "'Jost',sans-serif",
-                fontSize: 9,
+                fontSize: 12,
                 letterSpacing: "0.24em",
                 textTransform: "uppercase",
                 color: T.gold,
@@ -1958,21 +1975,175 @@ export default function HomePage({ setPage }) {
             <span
               style={{
                 fontFamily: "'Cormorant Garamond',serif",
-                fontSize: 11,
-                color: "rgba(13,61,78,0.25)",
+                fontSize: 14,
+                color: "rgba(0, 0, 0, 0.74)",
                 letterSpacing: "0.08em",
               }}
             >
               Board · CEO · Functional · AI & Digital
             </span>
           </div>
-          <LeadershipIllustration vis={illusVis1} />
+          <div style={{ position: "relative" }}>
+            <LeadershipIllustration vis={illusVis1} />
+
+            {/* ── Overlay: Pull quote bottom-left ── */}
+            <div
+              className="lm-quote-in"
+              style={{
+                position: "absolute",
+                bottom: 48,
+                left: 40,
+                maxWidth: 280,
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: 12,
+                  marginBottom: 14,
+                }}
+              >
+                <div
+                  style={{
+                    width: 2,
+                    height: 64,
+                    background: T.gold,
+                    flexShrink: 0,
+                    opacity: 0.7,
+                  }}
+                />
+                <p
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontSize: 16,
+                    fontStyle: "italic",
+                    fontWeight: 300,
+                    color: T.teal,
+                    lineHeight: 1.55,
+                    opacity: 0.75,
+                    margin: 0,
+                  }}
+                >
+                  "Leadership is the single most influential factor in
+                  organisational performance."
+                </p>
+              </div>
+              <div
+                className="lm-rule-in"
+                style={{
+                  height: 1,
+                  background: `linear-gradient(to right, ${T.gold}, transparent)`,
+                  opacity: 0.5,
+                }}
+              />
+              <p
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: 9,
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  color: T.gold,
+                  opacity: 0.7,
+                  marginTop: 10,
+                }}
+              >
+                PivotEdge Partners
+              </p>
+            </div>
+
+            {/* ── Overlay: Floating tags bottom-center ── */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: 52,
+                left: "50%",
+                transform: "translateX(-50%)",
+                display: "flex",
+                gap: 8,
+                flexWrap: "nowrap",
+              }}
+            >
+              {["Strategy", "Governance", "Execution"].map((tag, i) => (
+                <div
+                  key={tag}
+                  className={`lm-tag-${i + 1}`}
+                  style={{
+                    fontFamily: "'Jost', sans-serif",
+                    fontSize: 9,
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                    padding: "6px 14px",
+                    border: `1px solid rgba(13,61,78,${i === 1 ? 0.35 : 0.18})`,
+                    background:
+                      i === 1
+                        ? "rgba(184,150,46,0.08)"
+                        : "rgba(245,240,232,0.6)",
+                    color: i === 1 ? T.gold : `rgba(13,61,78,0.55)`,
+                    backdropFilter: "blur(4px)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {tag}
+                </div>
+              ))}
+            </div>
+
+            {/* ── Overlay: Stat — bottom right ── */}
+            <div
+              className="lm-stat-in"
+              style={{
+                position: "absolute",
+                bottom: 44,
+                right: 44,
+                textAlign: "right",
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: 48,
+                  fontWeight: 600,
+                  color: T.gold,
+                  lineHeight: 1,
+                  opacity: 0.45,
+                }}
+              >
+                92<span style={{ fontSize: 22, fontWeight: 300 }}>%</span>
+              </div>
+              <div
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: 9,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  color: T.textMuted,
+                  marginTop: 4,
+                }}
+              >
+                Retention Rate
+              </div>
+              <div
+                className="lm-diamond"
+                style={{
+                  width: 6,
+                  height: 6,
+                  background: T.gold,
+                  transform: "rotate(45deg)",
+                  marginLeft: "auto",
+                  marginTop: 10,
+                  opacity: 0.6,
+                }}
+              />
+            </div>
+          </div>
         </div>
 
         <div style={{ textAlign: "center", marginTop: 40 }}>
           <button
             className="btn btn-outline"
             onClick={() => {
+              sessionStorage.setItem("scrollTo", "about-leadership-philosophy");
               setPage("About Us");
               window.scrollTo(0, 0);
             }}
@@ -2009,7 +2180,7 @@ export default function HomePage({ setPage }) {
               { v: "500", s: "+", l: "Leadership Mandates" },
               { v: "92", s: "%", l: "Retention Rate" },
               { v: "300", s: "+", l: "C-Suite Placements" },
-              { v: "30", s: "+", l: "Countries" },
+              { v: "3", s: "+", l: "Countries" },
             ].map((s, i, arr) => (
               <StatCounter
                 key={i}
@@ -2239,7 +2410,7 @@ export default function HomePage({ setPage }) {
               },
               {
                 title: "Boards & Governance",
-                desc: "Advisory support for Board composition, Director appointments, and governance succession.",
+                desc: "Board composition, director appointments & governance advisoryn.",
                 illus: (
                   <svg
                     width="160"
@@ -2832,6 +3003,7 @@ export default function HomePage({ setPage }) {
             <button
               className="btn btn-outline"
               onClick={() => {
+                sessionStorage.setItem("scrollTo", "our-approach");
                 setPage("Services");
                 window.scrollTo(0, 0);
               }}
@@ -2999,6 +3171,10 @@ export default function HomePage({ setPage }) {
             <button
               className="wl-quote-btn"
               onClick={() => {
+                sessionStorage.setItem(
+                  "scrollTo",
+                  "about-leadership-philosophy",
+                );
                 setPage("About Us");
                 window.scrollTo(0, 0);
               }}
@@ -3368,7 +3544,7 @@ export default function HomePage({ setPage }) {
               <span
                 style={{
                   fontFamily: "'Jost',sans-serif",
-                  fontSize: 9,
+                  fontSize: 10,
                   letterSpacing: "0.24em",
                   textTransform: "uppercase",
                   color: T.gold,
@@ -3381,7 +3557,7 @@ export default function HomePage({ setPage }) {
               <span
                 style={{
                   fontFamily: "'Jost',sans-serif",
-                  fontSize: 9,
+                  fontSize: 10,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
                   color: T.textMuted,

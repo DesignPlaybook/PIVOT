@@ -4,64 +4,96 @@ import logo from "../assets/PEPLogo.png";
 const FOOTER_CSS = `
   .ft-root {
     background: var(--cream);
-    border-top: 1px solid rgba(13,61,78,0.1);
-    padding: 64px 64px 32px;
+    border-top: 1px solid rgba(13,61,78,0.12);
+    padding: 80px 64px 36px;
     font-family: 'Jost', sans-serif;
+  }
+
+  .ft-col-label {
+    display: block;
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+
+    color: var(--gold);
+    border-bottom: 1px solid rgba(184,150,46,0.25);
   }
 
   .ft-link {
-    font-family: 'Jost', sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    color: rgba(13,61,78,0.55);
     display: block;
-    margin-bottom: 10px;
-    cursor: pointer;
+    width: 100%;
+
     background: none;
     border: none;
     padding: 0;
-    text-align: left;
-    transition: color 0.25s ease;
-    letter-spacing: 0.01em;
-    width: 100%;
-  }
-  .ft-link:hover { color: var(--gold); }
-
-  .ft-col-label {
-    font-family: 'Jost', sans-serif;
-    font-size: 9px;
-    letter-spacing: 0.26em;
-    text-transform: uppercase;
-    color: var(--gold);
-    display: block;
     margin-bottom: 16px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(184,150,46,0.2);
-    opacity: 0.8;
+
+    text-align: left;
+    cursor: pointer;
+
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(13,61,78,0.82);
+
+    transition: color .25s ease;
+  }
+
+  .ft-link:hover {
+    color: var(--gold);
   }
 
   .ft-legal-link {
-    font-family: 'Jost', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(13,61,78,0.3);
-    cursor: pointer;
-    transition: color 0.25s ease;
     background: none;
     border: none;
-    padding: 0;
+    cursor: pointer;
+
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    color: rgba(13,61,78,0.7);
+
+    transition: color .25s ease;
   }
-  .ft-legal-link:hover { color: var(--gold); }
+
+  .ft-legal-link:hover {
+    color: var(--gold);
+  }
 
   .ft-divider {
     height: 1px;
-    background: rgba(13,61,78,0.08);
-    margin: 40px 0 24px;
+    background: rgba(13,61,78,0.12);
+    margin: 56px 0 28px;
+  }
+
+  @media (max-width: 992px) {
+    .ft-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
   }
 
   @media (max-width: 768px) {
-    .ft-root { padding: 36px 24px 20px; }
+    .ft-root {
+      padding: 48px 24px 24px;
+    }
+
+    .ft-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .ft-bottom {
+      flex-direction: column;
+      align-items: flex-start !important;
+    }
   }
 `;
 
@@ -88,39 +120,43 @@ export default function Footer({ setPage }) {
   return (
     <>
       <style>{FOOTER_CSS}</style>
+
       <footer className="ft-root">
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          {/* ── MAIN ROW ── */}
+        <div
+          style={{
+            maxWidth: 1400,
+            margin: "0 auto",
+          }}
+        >
           <div
+            className="ft-grid"
             style={{
               display: "grid",
-              gridTemplateColumns: "220px 1fr 1fr 1fr",
-              gap: 64,
+              gridTemplateColumns: "260px 220px 220px 1fr",
+              gap: 80,
               alignItems: "start",
             }}
           >
-            {/* Logo + tagline */}
+            {/* Logo */}
             <div>
               <img
                 src={logo}
                 alt="PivotEdge Partners"
-                style={{
-                  height: 44,
-                  width: "auto",
-                  objectFit: "contain",
-                  display: "block",
-                  cursor: "pointer",
-                }}
                 onClick={() => handleNav("Home")}
+                style={{
+                  width: 133,
+                  cursor: "pointer",
+                  display: "block",
+                }}
               />
+
               <p
                 style={{
-                  fontSize: 11,
-                  fontWeight: 300,
-                  lineHeight: 1.75,
-                  color: "rgba(13,61,78,0.4)",
-                  marginTop: 16,
-                  maxWidth: 180,
+                  marginTop: 22,
+                  fontSize: 15,
+                  lineHeight: 1.9,
+                  color: "rgba(13,61,78,0.68)",
+                  maxWidth: 220,
                 }}
               >
                 Specialist executive search and leadership advisory.
@@ -130,6 +166,7 @@ export default function Footer({ setPage }) {
             {/* Navigation */}
             <div>
               <span className="ft-col-label">Navigation</span>
+
               {navLinks.map((link) => (
                 <button
                   key={link.label}
@@ -144,6 +181,7 @@ export default function Footer({ setPage }) {
             {/* Legal */}
             <div>
               <span className="ft-col-label">Legal</span>
+
               {legalLinks.map((link) => (
                 <button
                   key={link.label}
@@ -158,43 +196,44 @@ export default function Footer({ setPage }) {
             {/* Conviction */}
             <div>
               <span className="ft-col-label">Our Conviction</span>
+
               <p
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 17,
-                  fontStyle: "italic",
+                  fontSize: 30,
                   fontWeight: 300,
+                  fontStyle: "italic",
+                  lineHeight: 1.55,
                   color: T.teal,
-                  lineHeight: 1.65,
-                  opacity: 0.6,
+                  maxWidth: 420,
                 }}
               >
-                "When leadership aligns with ambition, advantage begins."
+                “When leadership aligns with ambition, advantage begins.”
               </p>
+
               <div
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: 10,
-                  marginTop: 16,
+                  gap: 12,
+                  marginTop: 28,
                 }}
               >
                 <div
                   style={{
-                    width: 24,
+                    width: 36,
                     height: 1,
                     background: T.gold,
-                    opacity: 0.5,
                   }}
                 />
+
                 <span
                   style={{
-                    fontFamily: "'Jost', sans-serif",
-                    fontSize: 9,
-                    letterSpacing: "0.2em",
+                    fontSize: 11,
+                    fontWeight: 500,
+                    letterSpacing: "0.18em",
                     textTransform: "uppercase",
                     color: T.gold,
-                    opacity: 0.7,
                   }}
                 >
                   PivotEdge Partners
@@ -203,48 +242,54 @@ export default function Footer({ setPage }) {
             </div>
           </div>
 
-          {/* ── DIVIDER ── */}
           <div className="ft-divider" />
 
-          {/* ── BOTTOM BAR ── */}
           <div
+            className="ft-bottom"
             style={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              flexWrap: "wrap",
-              gap: 12,
+              gap: 20,
             }}
           >
             <p
               style={{
-                fontFamily: "'Jost', sans-serif",
-                fontSize: 11,
-                color: "rgba(13,61,78,0.28)",
-                fontWeight: 300,
-                letterSpacing: "0.02em",
+                fontSize: 14,
+                color: "rgba(13,61,78,0.62)",
+                margin: 0,
               }}
             >
               © 2025 PivotEdge Partners. All Rights Reserved.
             </p>
 
-            <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 18,
+              }}
+            >
               {legalLinks.map((l, i) => (
                 <span
                   key={l.label}
-                  style={{ display: "flex", alignItems: "center", gap: 6 }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 18,
+                  }}
                 >
                   {i > 0 && (
                     <span
                       style={{
-                        width: 3,
-                        height: 3,
+                        width: 4,
+                        height: 4,
                         borderRadius: "50%",
-                        background: "rgba(184,150,46,0.35)",
-                        display: "inline-block",
+                        background: T.gold,
                       }}
                     />
                   )}
+
                   <button
                     className="ft-legal-link"
                     onClick={() => handleNav(l.page)}

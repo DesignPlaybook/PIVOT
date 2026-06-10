@@ -5,6 +5,8 @@ import vision from "./vision.svg";
 import mission from "./mission.svg";
 import leader from "./leader.svg";
 import Research from "./Research.svg";
+import GlobalPresence from "./GlobalPresence";
+import OurApproach from "./OurApproach";
 
 const ABOUT_CSS = `
   .ab-hero-img { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%; }
@@ -317,123 +319,16 @@ const CEOIcon = () => (
 );
 
 const FunctionalIcon = () => (
-  // <svg
-  //   width="160"
-  //   height="160"
-  //   viewBox="0 0 160 160"
-  //   fill="none"
-  //   xmlns="http://www.w3.org/2000/svg"
-  // >
-  //   {/* Strategy arrow pointing right — large */}
-  //   <rect
-  //     x="18"
-  //     y="68"
-  //     width="88"
-  //     height="24"
-  //     rx="4"
-  //     fill="#0D3D4E"
-  //     opacity="0.1"
-  //     stroke="#0D3D4E"
-  //     strokeWidth="1.5"
-  //   />
-  //   <polygon
-  //     points="106,56 130,80 106,104"
-  //     fill="#0D3D4E"
-  //     opacity="0.15"
-  //     stroke="#0D3D4E"
-  //     strokeWidth="1.5"
-  //     strokeLinejoin="round"
-  //   />
-  //   {/* "Strategy" label inside arrow */}
-  //   {/* Three execution blocks below */}
-  //   <rect
-  //     x="18"
-  //     y="118"
-  //     width="34"
-  //     height="26"
-  //     rx="3"
-  //     fill="#B8962E"
-  //     opacity="0.2"
-  //     stroke="#B8962E"
-  //     strokeWidth="1.5"
-  //   />
-  //   <rect
-  //     x="63"
-  //     y="118"
-  //     width="34"
-  //     height="26"
-  //     rx="3"
-  //     fill="#B8962E"
-  //     opacity="0.35"
-  //     stroke="#B8962E"
-  //     strokeWidth="1.5"
-  //   />
-  //   <rect
-  //     x="108"
-  //     y="118"
-  //     width="34"
-  //     height="26"
-  //     rx="3"
-  //     fill="#B8962E"
-  //     opacity="0.55"
-  //     stroke="#B8962E"
-  //     strokeWidth="1.5"
-  //   />
-  //   {/* Connector lines from arrow to blocks */}
-  //   <line
-  //     x1="35"
-  //     y1="92"
-  //     x2="35"
-  //     y2="118"
-  //     stroke="#0D3D4E"
-  //     strokeWidth="1.2"
-  //     opacity="0.3"
-  //   />
-  //   <line
-  //     x1="80"
-  //     y1="92"
-  //     x2="80"
-  //     y2="118"
-  //     stroke="#0D3D4E"
-  //     strokeWidth="1.2"
-  //     opacity="0.3"
-  //   />
-  //   <line
-  //     x1="125"
-  //     y1="104"
-  //     x2="125"
-  //     y2="118"
-  //     stroke="#0D3D4E"
-  //     strokeWidth="1.2"
-  //     opacity="0.3"
-  //   />
-  //   {/* Top source block */}
-  //   <rect
-  //     x="55"
-  //     y="28"
-  //     width="50"
-  //     height="28"
-  //     rx="4"
-  //     fill="#0D3D4E"
-  //     opacity="0.12"
-  //     stroke="#0D3D4E"
-  //     strokeWidth="1.8"
-  //   />
-  //   <line
-  //     x1="80"
-  //     y1="56"
-  //     x2="80"
-  //     y2="68"
-  //     stroke="#0D3D4E"
-  //     strokeWidth="1.5"
-  //     opacity="0.4"
-  //   />
-  //   {/* Gold accent dots */}
-  //   <circle cx="35" cy="131" r="4" fill="#B8962E" opacity="0.7" />
-  //   <circle cx="80" cy="131" r="4" fill="#B8962E" />
-  //   <circle cx="125" cy="131" r="4" fill="#B8962E" opacity="0.5" />
-  // </svg>
-  <img src={leader} />
+  <img
+    src={leader}
+    alt="Functional Leaders"
+    style={{
+      width: "200px",
+      height: "160px",
+      objectFit: "contain",
+      display: "block",
+    }}
+  />
 );
 
 const AIIcon = () => (
@@ -567,6 +462,7 @@ function LeadershipPhilosophy() {
 
   return (
     <section
+      id="about-leadership-philosophy"
       style={{ background: T.cream, overflow: "hidden", position: "relative" }}
     >
       {/* Header — teal text on cream */}
@@ -714,6 +610,7 @@ function LeadershipPhilosophy() {
           ))}
         </div>
       </div>
+      <GlobalPresence />
 
       {/* Bottom quote — on a narrow teal band */}
       <div style={{ background: T.teal, padding: "52px 64px" }}>
@@ -793,6 +690,7 @@ function VisionMission() {
 
   return (
     <section
+      id="about-vision-mission"
       style={{
         background: T.creamAlt,
         padding: "120px 64px",
@@ -1066,7 +964,7 @@ function VisionMission() {
               {/* Leaders illustration */}
               <div
                 style={{
-                  height: 220,
+                  height: 280,
                   overflow: "hidden",
                   position: "relative",
                 }}
@@ -1140,7 +1038,8 @@ function VisionMission() {
                 >
                   To strengthen leadership decisions by delivering deep
                   evaluation, strategic clarity, and discreet guidance that
-                  converts complexity into confident, forward-moving action.
+                  converts complexity into confident, forward-moving action — at
+                  every level, across every engagement.
                 </p>
                 <div
                   style={{
@@ -1187,14 +1086,14 @@ export default function AboutPage({ setPage }) {
   const [openAcc, setOpenAcc] = useState(null);
 
   useEffect(() => {
-    if (sessionStorage.getItem("scrollTo") === "how-we-work") {
+    const target = sessionStorage.getItem("scrollTo");
+    if (target) {
       sessionStorage.removeItem("scrollTo");
-      // Delay to let the page render first
       setTimeout(() => {
         document
-          .getElementById("how-we-work")
+          .getElementById(target)
           ?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 300);
+      }, 350);
     }
   }, []);
 
@@ -1241,7 +1140,7 @@ export default function AboutPage({ setPage }) {
       >
         <img
           className="ab-hero-img"
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&q=85"
+          src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1800&q=85"
           alt="Advisory boardroom"
         />
         <div
@@ -1408,6 +1307,7 @@ export default function AboutPage({ setPage }) {
 
       {/* ══════ 4. WHO WE ARE — wipe image + text ══════ */}
       <section
+        id="about-who-we-are"
         style={{
           background: T.cream,
           display: "grid",
@@ -1653,7 +1553,10 @@ export default function AboutPage({ setPage }) {
       </section>
 
       {/* ══════ 7. CORE VALUES — teal with image header ══════ */}
-      <section style={{ background: T.teal, overflow: "hidden" }}>
+      <section
+        id="about-core-values"
+        style={{ background: T.teal, overflow: "hidden" }}
+      >
         {/* full-bleed image fading into teal */}
         <div style={{ position: "relative", height: 360, overflow: "hidden" }}>
           <Wipe
@@ -1777,6 +1680,9 @@ export default function AboutPage({ setPage }) {
           ))}
         </div>
       </section>
+
+      {/* ======= OUR Approach ===== */}
+      <OurApproach />
     </div>
   );
 }

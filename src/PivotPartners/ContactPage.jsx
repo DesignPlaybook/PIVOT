@@ -134,11 +134,11 @@ function LocationCard({ city, country, region, timezone, index }) {
 const CMD_CSS = `
   .cmd-label {
     font-family: 'Jost', sans-serif;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(13,61,78,0.5);
-    font-weight: 400;
+    color: #b8962e;
+    font-weight: 700;
     display: block;
     margin-bottom: 8px;
   }
@@ -146,11 +146,11 @@ const CMD_CSS = `
   .cmd-input {
     font-family: 'Jost', sans-serif;
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 400;
     color: #0D3D4E;
     background: transparent;
     border: none;
-    border-bottom: 1px solid rgba(13,61,78,0.18);
+    border-bottom: 1px solid #0d3d4e59;
     padding: 10px 0;
     outline: none;
     width: 100%;
@@ -466,15 +466,14 @@ export default function ContactPage() {
               <p
                 style={{
                   fontFamily: "'Jost', sans-serif",
-                  fontSize: 12,
+                  fontSize: 15,
                   fontWeight: 300,
                   lineHeight: 1.8,
                   color: "rgba(245,240,232,0.3)",
                   maxWidth: 320,
                 }}
               >
-                All enquiries are handled with complete discretion. A senior
-                partner will respond within 24 hours.
+                All enquiries are handled with complete discretion.
               </p>
             </div>
           </div>
@@ -859,9 +858,7 @@ export default function ContactPage() {
                         fontSize: 10,
                         color: "rgba(13,61,78,0.3)",
                       }}
-                    >
-                      Response within 24 hours
-                    </p>
+                    ></p>
                   </div>
                 </div>
               </div>

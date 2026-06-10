@@ -42,7 +42,7 @@ export function SectionLabel({ text, light }) {
 }
 
 // ─── Stat Counter ─────────────────────────────────────────────────
-export function StatCounter({ value, suffix = "", label }) {
+export function StatCounter({ value, suffix = "", label, last = false }) {
   const ref = useRef(null);
   const [count, setCount] = useState(0);
   const animated = useRef(false);
@@ -75,7 +75,7 @@ export function StatCounter({ value, suffix = "", label }) {
       style={{
         textAlign: "center",
         padding: "0 32px",
-        borderRight: "1px solid rgba(245,240,232,0.15)",
+        borderRight: last ? "none" : "1px solid rgba(245,240,232,0.15)",
       }}
     >
       <div className="stat-number">

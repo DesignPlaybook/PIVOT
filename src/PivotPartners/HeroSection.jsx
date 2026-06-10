@@ -5,7 +5,12 @@ import { SectionLabel } from "./utils";
 /* ─── Unsplash images — high-end executive / architecture / boardroom ─── */
 const SLIDES = [
   {
-    url: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80",
+    url: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=2000&q=80",
+    label: "Executive Search",
+    caption: "Identifying leaders who shape strategy",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&w=2000&q=80",
     label: "Executive Search",
     caption: "Identifying leaders who shape strategy",
   },
@@ -98,15 +103,17 @@ const HERO_CSS = `
   }
  
   .pe-content {
-    position: absolute; inset: 0;
-    display: flex;
-    align-items: center;
-    z-index: 5;
-    padding: 0 72px;
-    max-width: 1200px;
-    margin: 0 auto;
-    left: 0; right: 0;
-  }
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  z-index: 5;
+  padding: 80px 72px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
  
   .pe-text { max-width: 600px; }
  
@@ -316,14 +323,179 @@ const HERO_CSS = `
     color: rgba(245,240,232,0.35);
   }
  
-  @media (max-width: 768px) {
-    .pe-content { padding: 0 24px; }
-    .pe-arrow { display: none; }
-    .pe-caption { display: none; }
-    .pe-slide-tab { padding: 14px 12px 16px; }
-    .pe-tab-label { font-size: 9px; }
-    .pe-counter { bottom: 88px; right: 24px; }
+  /* =========================
+   LARGE TABLETS
+========================= */
+@media (max-width: 1024px) {
+  .pe-content {
+    padding: 0 48px;
   }
+
+  .pe-text {
+    max-width: 540px;
+  }
+
+  .pe-h1 {
+    font-size: clamp(52px, 8vw, 80px);
+  }
+
+  .pe-body {
+    max-width: 500px;
+  }
+
+  .pe-caption {
+    right: 32px;
+    top: 32px;
+  }
+}
+
+/* =========================
+   TABLETS
+========================= */
+@media (max-width: 768px) {
+
+  .pe-hero {
+    min-height: 700px;
+    height: auto;
+  }
+
+  .pe-content {
+    padding: 120px 24px 140px;
+    align-items: center;
+  }
+
+  .pe-text {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .pe-arrow,
+  .pe-caption,
+  .pe-edge-bar {
+    display: none;
+  }
+
+  .pe-h1 {
+    font-size: clamp(42px, 9vw, 64px);
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+
+  .pe-body {
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 100%;
+    margin-bottom: 36px;
+  }
+
+  .pe-cta-group {
+    gap: 12px;
+  }
+
+  .pe-tagline {
+    margin-top: 40px;
+  }
+
+  .pe-counter {
+    right: 24px;
+    bottom: 24px;
+  }
+
+  .pe-slide-tab {
+    padding: 14px 10px;
+  }
+
+  .pe-tab-label {
+    font-size: 8px;
+    letter-spacing: 0.12em;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 576px) {
+
+  .pe-hero {
+    min-height: 100svh;
+  }
+
+  .pe-content {
+    padding: 110px 20px 60px;
+  }
+
+  .pe-eyebrow {
+    margin-bottom: 18px;
+    gap: 10px;
+  }
+
+  .pe-eyebrow-line {
+    width: 30px;
+  }
+
+  .pe-eyebrow-text {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+  }
+
+  .pe-h1 {
+    font-size: clamp(34px, 11vw, 48px);
+    line-height: 1.08;
+    margin-bottom: 18px;
+  }
+
+  .pe-body {
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+
+  .pe-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .pe-cta-group .btn {
+    width: 100%;
+  }
+
+  .pe-tagline {
+    margin-top: 28px;
+    gap: 10px;
+  }
+
+  .pe-tagline-line {
+    width: 28px;
+  }
+
+  .pe-tagline-text {
+    font-size: 8px;
+    letter-spacing: 0.18em;
+  }
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+@media (max-width: 400px) {
+
+  .pe-content {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .pe-h1 {
+    font-size: 32px;
+  }
+
+  .pe-body {
+    font-size: 13px;
+  }
+
+  .pe-eyebrow-text {
+    font-size: 8px;
+  }
+}
 `;
 
 let cssInjected = false;
@@ -391,7 +563,7 @@ export default function HeroSection({ setPage }) {
       </div>
 
       {/* Main content — left-aligned text */}
-      <div className="pe-content" style={{ paddingTop: 80 }}>
+      <div className="pe-content">
         <div className="pe-text">
           {/* Section label / eyebrow */}
           <div className="pe-eyebrow">
@@ -411,7 +583,7 @@ export default function HeroSection({ setPage }) {
           </h1>
 
           {/* Gold rule */}
-          <div className="pe-rule" />
+          {/* <div className="pe-rule" /> */}
 
           {/* Body */}
           <p className="pe-body">
@@ -453,7 +625,7 @@ export default function HeroSection({ setPage }) {
       </div>
 
       {/* Slide counter */}
-      <div className="pe-counter">
+      {/* <div className="pe-counter">
         <span className="pe-counter-current">
           {String(current + 1).padStart(2, "0")}
         </span>
@@ -461,10 +633,10 @@ export default function HeroSection({ setPage }) {
         <span className="pe-counter-total">
           {String(SLIDES.length).padStart(2, "0")}
         </span>
-      </div>
+      </div> */}
 
       {/* Prev / Next arrows */}
-      <button
+      {/* <button
         className="pe-arrow prev"
         onClick={prev}
         aria-label="Previous slide"
@@ -473,7 +645,7 @@ export default function HeroSection({ setPage }) {
       </button>
       <button className="pe-arrow next" onClick={next} aria-label="Next slide">
         →
-      </button>
+      </button> */}
 
       {/* Bottom tab bar */}
       {/* <div className="pe-controls">

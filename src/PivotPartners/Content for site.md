@@ -126,3 +126,62 @@ About Us owns all philosophy, values, vision, mission, and how we work
 Services owns the five service lines with full methodology
 Domains owns all functional and industry detail
 Insights and Contact are left as fresh pages to build out
+
+💼 Careers Page
+Careers & Leadership Opportunities
+Exceptional Careers Begin with Meaningful Conversations
+At PivotEdge Partners, we work with organisations seeking transformational leaders and with accomplished professionals exploring their next chapter.
+
+Whether you are interested in joining our team or would like to be considered for future leadership opportunities, we welcome the opportunity to connect.
+
+For Leadership Professionals
+Your Next Opportunity May Not Yet Be Advertised
+Many of the leadership assignments we undertake are conducted on a confidential basis. As a result, some of the most compelling opportunities never appear on public job boards.
+
+We maintain ongoing relationships with senior executives, functional leaders, and industry specialists across sectors and geographies. By sharing your profile with us, you become part of a trusted network that we may engage with when relevant opportunities arise.
+
+Typical leadership mandates include:
+
+Board Directors
+Chief Executive Officers
+Chief Financial Officers
+Chief Human Resources Officers
+Chief Marketing Officers
+Business Unit Heads
+Functional Heads
+AI and Digital Transformation Leaders
+All profiles are handled with the highest degree of confidentiality and professional discretion.
+
+Submit Your Profile
+[Upload Resume Button]
+
+For Professionals Seeking Career Advancement
+Leadership journeys are rarely linear. Whether you are actively exploring opportunities or simply open to the right conversation, we believe in building long term relationships with exceptional talent.
+
+Our consultants take the time to understand your experience, aspirations, and leadership strengths, enabling us to align future opportunities with your professional goals.
+
+Join the PivotEdge Team
+We are always interested in connecting with individuals who share our passion for leadership, business, and advisory excellence.
+
+Opportunities may arise across:
+
+Executive Search
+Leadership Advisory
+Research and Market Intelligence
+Business Development
+Client Engagement
+Operations
+If you believe your experience aligns with our vision, we would be pleased to hear from you.
+
+Explore Opportunities
+[Current Openings]
+
+Our Commitment to Confidentiality
+Trust is fundamental to our profession.
+
+All information shared with PivotEdge Partners is treated with strict confidentiality and managed in accordance with professional standards and applicable privacy requirements. We do not share candidate information with clients without prior discussion and consent.
+
+Let's Start a Conversation
+Whether you are building a leadership team, considering your next career move, or exploring opportunities within PivotEdge Partners, we welcome the opportunity to connect.
+
+careers@pivotedgegroup.com (this email can be aligned to swapna.amin@pivotedgegroup.com and shweta@pivotedgegroup.com)

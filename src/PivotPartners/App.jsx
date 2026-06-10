@@ -13,6 +13,7 @@ import PrivacyPolicyPage from "./PrivacyPolicyPage";
 import TermsPage from "./TermsPage";
 import DisclaimerPage from "./DisclaimerPage";
 import ArticlePage from "./ArticlePage";
+import CareersPage from "./CareersPage";
 
 export default function App() {
   const [page, setPage] = useState("Home");
@@ -24,6 +25,7 @@ export default function App() {
     Domains: <DomainsPage setPage={setPage} />,
     Insights: <InsightsPage setPage={setPage} />,
     Contact: <ContactPage />,
+    CareersPage: <CareersPage />,
     Privacy: <PrivacyPolicyPage />,
     Terms: <TermsPage />,
     Disclaimer: <DisclaimerPage />,
