@@ -1594,7 +1594,7 @@ export default function ServicesPage({ setPage }) {
             <br />
             the Modern
             <br />
-            Boardroom.
+            Boardroom
           </h1>
           <p
             className="sv-load-3"
