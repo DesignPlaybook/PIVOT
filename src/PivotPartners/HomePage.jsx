@@ -1871,13 +1871,23 @@ const SECTION_CSS = `
     .hp-stats-inner         { padding: 0 24px !important; }
     .hp-stats-flex          { gap: 0 !important; }
     .hp-whatwedo-section    { padding: 72px 24px !important; }
-    .hp-whatwedo-header     { flex-direction: column !important; align-items: flex-start !important; gap: 24px !important; }
-    .hp-whatwedo-grid       { grid-template-columns: 1fr 1fr !important; }
-    .hp-quote-section       { padding: 64px 24px !important; }
-    .hp-operate-section     { padding: 72px 24px !important; }
-    .hp-operate-header      { flex-direction: column !important; align-items: flex-start !important; gap: 24px !important; }
-    .hp-closing-section     { padding: 72px 24px !important; }
-    .hp-closing-3col        { grid-template-columns: 1fr !important; }
+  .hp-whatwedo-header     { 
+    flex-direction: column !important; 
+    align-items: center !important; 
+    text-align: center !important;
+    gap: 24px !important; 
+  }
+  .hp-whatwedo-grid       { grid-template-columns: 1fr 1fr !important; }
+}.hp-quote-section       { padding: 64px 24px !important; }
+     .hp-operate-section     { padding: 72px 24px !important; }
+  .hp-operate-header      { 
+    flex-direction: column !important; 
+    align-items: center !important; 
+    text-align: center !important;
+    gap: 24px !important; 
+  }
+  .hp-closing-section     { padding: 72px 24px !important; }
+}.hp-closing-3col        { grid-template-columns: 1fr !important; }
     .hp-closing-left        { border-right: none !important; padding-right: 0 !important; border-bottom: 1px solid rgba(13,61,78,0.1) !important; padding-bottom: 32px !important; }
     .hp-closing-centre      { padding: 32px 0 !important; }
     .hp-closing-right       { border-left: none !important; padding-left: 0 !important; border-top: 1px solid rgba(13,61,78,0.1) !important; padding-top: 32px !important; }
@@ -1913,287 +1923,320 @@ export default function HomePage({ setPage }) {
 
       {/* ══ 2. WHY LEADERSHIP MATTERS — Full-width editorial illustration ══ */}
       <section
-        className="hp-perspective-section"
+  className="hp-perspective-section"
+  style={{
+    padding: "120px 64px 80px",
+    maxWidth: 1200,
+    margin: "0 auto",
+    width: "100%",
+    boxSizing: "border-box",
+  }}
+>
+  <style>{`
+    @media (max-width: 768px) {
+      .hp-perspective-section {
+        padding: 80px 20px 60px !important;
+      }
+      .lm-overlay {
+        position: static !important;
+        transform: none !important;
+        max-width: 100% !important;
+        text-align: left !important;
+        margin: 20px 0 0 !important;
+      }
+      .lm-overlay-tags {
+        flex-wrap: wrap !important;
+        justify-content: flex-start !important;
+      }
+      .lm-overlay-stat {
+        text-align: left !important;
+      }
+      .lm-overlay-stat > div:last-child {
+        margin-left: 0 !important;
+      }
+      .lm-corner-label,
+      .lm-corner-tags {
+        position: static !important;
+        display: block !important;
+        margin-bottom: 12px;
+      }
+      .lm-corner-tags span {
+        font-size: 11px !important;
+      }
+    }
+  `}</style>
+
+  <div className="reveal" style={{ textAlign: "center", marginBottom: 24 }}>
+    <SectionLabel text="Our Perspective" />
+    <h2
+      style={{
+        fontFamily: "'Cormorant Garamond', serif",
+        fontSize: "clamp(40px, 5vw, 62px)",
+        fontWeight: 300,
+        lineHeight: 1.1,
+        color: T.teal,
+        marginBottom: 24,
+      }}
+    >
+      Why Leadership
+      <br />
+      Matters Most
+    </h2>
+    <div className="gold-rule" style={{ margin: "0 auto 32px" }} />
+    <p
+      style={{
+        fontSize: 16,
+        fontWeight: 300,
+        lineHeight: 1.8,
+        color: T.textMid,
+        maxWidth: 620,
+        margin: "0 auto 16px",
+      }}
+    >
+      Leadership is the single most influential factor in organisational
+      performance. Strategy, culture, governance quality, and execution
+      discipline are all shaped at the top.
+    </p>
+    <p
+      style={{
+        fontSize: 16,
+        fontWeight: 300,
+        lineHeight: 1.8,
+        color: T.textMid,
+        maxWidth: 580,
+        margin: "0 auto 48px",
+      }}
+    >
+      In complex and rapidly evolving markets, organisations require
+      leaders who combine strategic judgement with operational clarity.
+      Appointments at functional head level and above carry
+      enterprise-wide consequences. We approach these decisions with the
+      rigour they demand.
+    </p>
+  </div>
+
+  {/* ── LARGE EDITORIAL ILLUSTRATION — Leadership Architecture ── */}
+  <div
+    ref={illusRef1}
+    style={{
+      background: T.creamAlt,
+      border: `1px solid rgba(13,61,78,0.07)`,
+      padding: "60px 40px 48px",
+      position: "relative",
+      overflow: "hidden",
+      maxWidth: "100%",
+    }}
+  >
+    {/* Corner label */}
+    <div
+      className="lm-corner-label"
+      style={{
+        position: "absolute",
+        top: 28,
+        left: 40,
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+      }}
+    >
+      <div style={{ width: 20, height: 1, background: T.gold }} />
+      <span
         style={{
-          padding: "120px 64px 80px",
-          maxWidth: 1200,
-          margin: "0 auto",
-          width: "100%",
-          boxSizing: "border-box",
+          fontFamily: "'Jost',sans-serif",
+          fontSize: 12,
+          letterSpacing: "0.24em",
+          textTransform: "uppercase",
+          color: T.gold,
+        }}
+      >
+        Leadership Architecture
+      </span>
+    </div>
+    <div className="lm-corner-tags" style={{ position: "absolute", top: 28, right: 40 }}>
+      <span
+        style={{
+          fontFamily: "'Cormorant Garamond',serif",
+          fontSize: 14,
+          color: "rgba(0, 0, 0, 0.74)",
+          letterSpacing: "0.08em",
+        }}
+      >
+        Board · CEO · Functional · AI & Digital
+      </span>
+    </div>
+    <div style={{ position: "relative" }}>
+      <LeadershipIllustration vis={illusVis1} />
+
+      {/* ── Overlay: Pull quote bottom-left ── */}
+      <div
+        className="lm-quote-in lm-overlay lm-overlay-quote"
+        style={{
+          position: "absolute",
+          bottom: 48,
+          left: 40,
+          maxWidth: 280,
         }}
       >
         <div
-          className="reveal"
-          style={{ textAlign: "center", marginBottom: 24 }}
-        >
-          <SectionLabel text="Our Perspective" />
-          <h2
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(40px, 5vw, 62px)",
-              fontWeight: 300,
-              lineHeight: 1.1,
-              color: T.teal,
-              marginBottom: 24,
-            }}
-          >
-            Why Leadership
-            <br />
-            Matters Most.
-          </h2>
-          <div className="gold-rule" style={{ margin: "0 auto 32px" }} />
-          <p
-            style={{
-              fontSize: 16,
-              fontWeight: 300,
-              lineHeight: 1.8,
-              color: T.textMid,
-              maxWidth: 620,
-              margin: "0 auto 16px",
-            }}
-          >
-            Leadership is the single most influential factor in organisational
-            performance. Strategy, culture, governance quality, and execution
-            discipline are all shaped at the top.
-          </p>
-          <p
-            style={{
-              fontSize: 16,
-              fontWeight: 300,
-              lineHeight: 1.8,
-              color: T.textMid,
-              maxWidth: 580,
-              margin: "0 auto 48px",
-            }}
-          >
-            In complex and rapidly evolving markets, organisations require
-            leaders who combine strategic judgement with operational clarity.
-            Appointments at functional head level and above carry
-            enterprise-wide consequences. We approach these decisions with the
-            rigour they demand.
-          </p>
-        </div>
-
-        {/* ── LARGE EDITORIAL ILLUSTRATION — Leadership Architecture ── */}
-        <div
-          ref={illusRef1}
           style={{
-            background: T.creamAlt,
-            border: `1px solid rgba(13,61,78,0.07)`,
-            padding: "60px 40px 48px",
-            position: "relative",
-            overflow: "hidden",
-            maxWidth: "100%",
+            display: "flex",
+            alignItems: "flex-start",
+            gap: 12,
+            marginBottom: 14,
           }}
         >
-          {/* Corner label */}
           <div
             style={{
-              position: "absolute",
-              top: 28,
-              left: 40,
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
+              width: 2,
+              height: 64,
+              background: T.gold,
+              flexShrink: 0,
+              opacity: 0.7,
+            }}
+          />
+          <p
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: 16,
+              fontStyle: "italic",
+              fontWeight: 300,
+              color: T.teal,
+              lineHeight: 1.55,
+              opacity: 0.75,
+              margin: 0,
             }}
           >
-            <div style={{ width: 20, height: 1, background: T.gold }} />
-            <span
-              style={{
-                fontFamily: "'Jost',sans-serif",
-                fontSize: 12,
-                letterSpacing: "0.24em",
-                textTransform: "uppercase",
-                color: T.gold,
-              }}
-            >
-              Leadership Architecture
-            </span>
-          </div>
-          <div style={{ position: "absolute", top: 28, right: 40 }}>
-            <span
-              style={{
-                fontFamily: "'Cormorant Garamond',serif",
-                fontSize: 14,
-                color: "rgba(0, 0, 0, 0.74)",
-                letterSpacing: "0.08em",
-              }}
-            >
-              Board · CEO · Functional · AI & Digital
-            </span>
-          </div>
-          <div style={{ position: "relative" }}>
-            <LeadershipIllustration vis={illusVis1} />
-
-            {/* ── Overlay: Pull quote bottom-left ── */}
-            <div
-              className="lm-quote-in"
-              style={{
-                position: "absolute",
-                bottom: 48,
-                left: 40,
-                maxWidth: 280,
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  gap: 12,
-                  marginBottom: 14,
-                }}
-              >
-                <div
-                  style={{
-                    width: 2,
-                    height: 64,
-                    background: T.gold,
-                    flexShrink: 0,
-                    opacity: 0.7,
-                  }}
-                />
-                <p
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 16,
-                    fontStyle: "italic",
-                    fontWeight: 300,
-                    color: T.teal,
-                    lineHeight: 1.55,
-                    opacity: 0.75,
-                    margin: 0,
-                  }}
-                >
-                  "Leadership is the single most influential factor in
-                  organisational performance."
-                </p>
-              </div>
-              <div
-                className="lm-rule-in"
-                style={{
-                  height: 1,
-                  background: `linear-gradient(to right, ${T.gold}, transparent)`,
-                  opacity: 0.5,
-                }}
-              />
-              <p
-                style={{
-                  fontFamily: "'Jost', sans-serif",
-                  fontSize: 9,
-                  letterSpacing: "0.22em",
-                  textTransform: "uppercase",
-                  color: T.gold,
-                  opacity: 0.7,
-                  marginTop: 10,
-                }}
-              >
-                PivotEdge Partners
-              </p>
-            </div>
-
-            {/* ── Overlay: Floating tags bottom-center ── */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: 52,
-                left: "50%",
-                transform: "translateX(-50%)",
-                display: "flex",
-                gap: 8,
-                flexWrap: "nowrap",
-              }}
-            >
-              {["Strategy", "Governance", "Execution"].map((tag, i) => (
-                <div
-                  key={tag}
-                  className={`lm-tag-${i + 1}`}
-                  style={{
-                    fontFamily: "'Jost', sans-serif",
-                    fontSize: 9,
-                    letterSpacing: "0.2em",
-                    textTransform: "uppercase",
-                    padding: "6px 14px",
-                    border: `1px solid rgba(13,61,78,${i === 1 ? 0.35 : 0.18})`,
-                    background:
-                      i === 1
-                        ? "rgba(184,150,46,0.08)"
-                        : "rgba(245,240,232,0.6)",
-                    color: i === 1 ? T.gold : `rgba(13,61,78,0.55)`,
-                    backdropFilter: "blur(4px)",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {tag}
-                </div>
-              ))}
-            </div>
-
-            {/* ── Overlay: Stat — bottom right ── */}
-            <div
-              className="lm-stat-in"
-              style={{
-                position: "absolute",
-                bottom: 44,
-                right: 44,
-                textAlign: "right",
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 48,
-                  fontWeight: 600,
-                  color: T.gold,
-                  lineHeight: 1,
-                  opacity: 0.45,
-                }}
-              >
-                92<span style={{ fontSize: 22, fontWeight: 300 }}>%</span>
-              </div>
-              <div
-                style={{
-                  fontFamily: "'Jost', sans-serif",
-                  fontSize: 9,
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  color: T.textMuted,
-                  marginTop: 4,
-                }}
-              >
-                Retention Rate
-              </div>
-              <div
-                className="lm-diamond"
-                style={{
-                  width: 6,
-                  height: 6,
-                  background: T.gold,
-                  transform: "rotate(45deg)",
-                  marginLeft: "auto",
-                  marginTop: 10,
-                  opacity: 0.6,
-                }}
-              />
-            </div>
-          </div>
+            "Leadership is the single most influential factor in
+            organisational performance."
+          </p>
         </div>
+        <div
+          className="lm-rule-in"
+          style={{
+            height: 1,
+            background: `linear-gradient(to right, ${T.gold}, transparent)`,
+            opacity: 0.5,
+          }}
+        />
+        <p
+          style={{
+            fontFamily: "'Jost', sans-serif",
+            fontSize: 9,
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            color: T.gold,
+            opacity: 0.7,
+            marginTop: 10,
+          }}
+        >
+          PivotEdge Partners
+        </p>
+      </div>
 
-        <div style={{ textAlign: "center", marginTop: 40 }}>
-          <button
-            className="btn btn-outline"
-            onClick={() => {
-              sessionStorage.setItem("scrollTo", "about-leadership-philosophy");
-              setPage("About Us");
-              window.scrollTo(0, 0);
+      {/* ── Overlay: Floating tags bottom-center ── */}
+      <div
+        className="lm-overlay lm-overlay-tags"
+        style={{
+          position: "absolute",
+          bottom: 52,
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          gap: 8,
+          flexWrap: "nowrap",
+        }}
+      >
+        {["Strategy", "Governance", "Execution"].map((tag, i) => (
+          <div
+            key={tag}
+            className={`lm-tag-${i + 1}`}
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontSize: 9,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              padding: "6px 14px",
+              border: `1px solid rgba(13,61,78,${i === 1 ? 0.35 : 0.18})`,
+              background:
+                i === 1
+                  ? "rgba(184,150,46,0.08)"
+                  : "rgba(245,240,232,0.6)",
+              color: i === 1 ? T.gold : `rgba(13,61,78,0.55)`,
+              backdropFilter: "blur(4px)",
+              whiteSpace: "nowrap",
             }}
           >
-            <span>Our Philosophy</span>
-          </button>
+            {tag}
+          </div>
+        ))}
+      </div>
+
+      {/* ── Overlay: Stat — bottom right ── */}
+      <div
+        className="lm-stat-in lm-overlay lm-overlay-stat"
+        style={{
+          position: "absolute",
+          bottom: 44,
+          right: 44,
+          textAlign: "right",
+        }}
+      >
+        <div
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: 48,
+            fontWeight: 600,
+            color: T.gold,
+            lineHeight: 1,
+            opacity: 0.45,
+          }}
+        >
+          92<span style={{ fontSize: 22, fontWeight: 300 }}>%</span>
         </div>
-      </section>
+        <div
+          style={{
+            fontFamily: "'Jost', sans-serif",
+            fontSize: 9,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: T.textMuted,
+            marginTop: 4,
+          }}
+        >
+          Retention Rate
+        </div>
+        <div
+          className="lm-diamond"
+          style={{
+            width: 6,
+            height: 6,
+            background: T.gold,
+            transform: "rotate(45deg)",
+            marginLeft: "auto",
+            marginTop: 10,
+            opacity: 0.6,
+          }}
+        />
+      </div>
+    </div>
+  </div>
+
+  <div style={{ textAlign: "center", marginTop: 40 }}>
+    <button
+      className="btn btn-outline"
+      onClick={() => {
+        sessionStorage.setItem("scrollTo", "about-leadership-philosophy");
+        setPage("About Us");
+        window.scrollTo(0, 0);
+      }}
+    >
+      <span>Our Philosophy</span>
+    </button>
+  </div>
+</section>
 
       {/* ══ 3. STATS BAND ══ */}
-      <section
+      {/* <section
         style={{
           background: T.teal,
           padding: "64px 0",
@@ -2235,7 +2278,7 @@ export default function HomePage({ setPage }) {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ══ 4. WHAT WE DO — 4 Tiles ══ */}
       {/* ══ 4. WHAT WE DO — 4 Tiles ══ */}
@@ -3020,11 +3063,11 @@ export default function HomePage({ setPage }) {
                 marginBottom: 32,
               }}
             >
-              Research-Led.
+              Research-Led
               <br />
-              Structured.
+              Structured
               <br />
-              Discreet.
+              Discreet
             </h2>
             <div className="gold-rule" />
             <p
@@ -3270,8 +3313,8 @@ export default function HomePage({ setPage }) {
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   fontSize: 22,
-                  fontWeight: 300,
-                  color: T.teal,
+                  fontWeight: 900,
+                  color: T.gold,
                   opacity: 0.5,
                   marginRight: 64,
                   flexShrink: 0,
@@ -3398,295 +3441,334 @@ export default function HomePage({ setPage }) {
 
       {/* ══ 9. CLOSING POSITIONING — full content from content file ══ */}
       <section
-        className="hp-closing-section"
+  className="hp-closing-section"
+  style={{
+    background: T.creamAlt,
+    padding: "120px 64px",
+    borderTop: `1px solid rgba(13,61,78,0.08)`,
+    width: "100%",
+    boxSizing: "border-box",
+    overflow: "hidden",
+  }}
+>
+  <style>{`
+    @media (max-width: 768px) {
+      .hp-closing-section {
+        padding: 80px 20px !important;
+      }
+      .hp-closing-3col {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+      }
+      .hp-closing-left {
+        padding: 0 0 32px 0 !important;
+        border-right: none !important;
+        border-bottom: 1px solid rgba(13,61,78,0.1) !important;
+      }
+      .hp-closing-centre {
+        padding: 0 !important;
+      }
+      .hp-closing-right {
+        padding: 32px 0 0 0 !important;
+        border-left: none !important;
+        border-top: 1px solid rgba(13,61,78,0.1) !important;
+      }
+      .hp-closing-illus {
+        padding: 80px 20px 32px !important;
+      }
+      .hp-closing-illus-label,
+      .hp-closing-illus-flow {
+        position: static !important;
+        display: block !important;
+        margin-bottom: 12px;
+        text-align: left !important;
+      }
+      .hp-closing-illus-flow span {
+        font-size: 9px !important;
+      }
+    }
+  `}</style>
+
+  <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+    {/* Section header centred */}
+    <Fade style={{ textAlign: "center", marginBottom: 80 }}>
+      <SectionLabel text="Our Conviction" />
+      <h2
         style={{
-          background: T.creamAlt,
-          padding: "120px 64px",
-          borderTop: `1px solid rgba(13,61,78,0.08)`,
-          width: "100%",
-          boxSizing: "border-box",
-          overflow: "hidden",
+          fontFamily: "'Cormorant Garamond', serif",
+          fontSize: "clamp(36px, 4.5vw, 56px)",
+          fontWeight: 300,
+          color: T.teal,
+          lineHeight: 1.1,    
+          maxWidth: 680,
+          margin: "0 auto 28px",
         }}
       >
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          {/* Section header centred */}
-          <Fade style={{ textAlign: "center", marginBottom: 80 }}>
-            <SectionLabel text="Our Conviction" />
-            <h2
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(36px, 4.5vw, 56px)",
-                fontWeight: 300,
-                color: T.teal,
-                lineHeight: 1.1,
-                maxWidth: 680,
-                margin: "0 auto 28px",
-              }}
-            >
-              Where Leadership Aligns,
-              <br />
-              Advantage Begins.
-            </h2>
-            <div className="gold-rule" style={{ margin: "0 auto" }} />
-          </Fade>
+        Where Leadership Aligns,
+        <br />
+        Advantage Begins.
+      </h2>
+      <div className="gold-rule" style={{ margin: "0 auto" }} />
+    </Fade>
 
-          {/* Three-column content arrangement (not left-right split) */}
+    {/* Three-column content arrangement (not left-right split) */}
+    <div
+      className="hp-closing-3col"
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 2fr 1fr",
+        gap: 0,
+        alignItems: "start",
+        marginBottom: 80,
+      }}
+    >
+      {/* Left pillar — decorative vertical stat */}
+      <Fade delay={100}>
+        <div
+          className="hp-closing-left"
+          style={{
+            padding: "0 48px 0 0",
+            borderRight: `1px solid rgba(13,61,78,0.1)`,
+          }}
+        >
           <div
-            className="hp-closing-3col"
             style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 2fr 1fr",
-              gap: 0,
-              alignItems: "start",
-              marginBottom: 80,
+              fontFamily: "'Cormorant Garamond',serif",
+              fontSize: 72,
+              fontWeight: 600,
+              color: T.gold,
+              lineHeight: 1,
+              opacity: 0.35,
             }}
           >
-            {/* Left pillar — decorative vertical stat */}
-            <Fade delay={100}>
-              <div
-                className="hp-closing-left"
-                style={{
-                  padding: "0 48px 0 0",
-                  borderRight: `1px solid rgba(13,61,78,0.1)`,
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: "'Cormorant Garamond',serif",
-                    fontSize: 72,
-                    fontWeight: 600,
-                    color: T.gold,
-                    lineHeight: 1,
-                    opacity: 0.35,
-                  }}
-                >
-                  I
-                </div>
-                <div
-                  style={{
-                    fontFamily: "'Jost',sans-serif",
-                    fontSize: 9,
-                    letterSpacing: "0.24em",
-                    textTransform: "uppercase",
-                    color: T.textMuted,
-                    marginTop: 12,
-                    marginBottom: 32,
-                  }}
-                >
-                  Executive Search
-                </div>
-                <p
-                  style={{
-                    fontSize: 13,
-                    fontWeight: 300,
-                    lineHeight: 1.85,
-                    color: T.textMid,
-                  }}
-                >
-                  A strategic responsibility — not a transactional activity.
-                  Every mandate carries enterprise-wide consequences.
-                </p>
-              </div>
-            </Fade>
-
-            {/* Centre — main positioning text + illustration */}
-            <Fade delay={200}>
-              <div className="hp-closing-centre" style={{ padding: "0 64px" }}>
-                <p
-                  style={{
-                    fontSize: 17,
-                    fontWeight: 300,
-                    lineHeight: 1.9,
-                    color: T.textMid,
-                    marginBottom: 28,
-                    fontStyle: "italic",
-                    fontFamily: "'Cormorant Garamond',serif",
-                  }}
-                >
-                  "We believe executive search is a strategic responsibility."
-                </p>
-                <p
-                  style={{
-                    fontSize: 15,
-                    fontWeight: 300,
-                    lineHeight: 1.85,
-                    color: T.textMid,
-                    marginBottom: 24,
-                  }}
-                >
-                  When leadership capability aligns precisely with
-                  organisational ambition, performance becomes sustainable and
-                  governance becomes stronger.
-                </p>
-                <p
-                  style={{
-                    fontSize: 15,
-                    fontWeight: 300,
-                    lineHeight: 1.85,
-                    color: T.textMid,
-                    marginBottom: 40,
-                  }}
-                >
-                  That is where the advantage begins — not at the appointment,
-                  but at the alignment. At PivotEdge Partners, we exist to
-                  ensure that alignment is achieved with rigour, discretion, and
-                  long-term purpose.
-                </p>
-                <button
-                  className="btn btn-teal"
-                  onClick={() => {
-                    setPage("Contact");
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  <span>Begin a Conversation</span>
-                </button>
-              </div>
-            </Fade>
-
-            {/* Right pillar — decorative vertical stat */}
-            <Fade delay={300}>
-              <div
-                className="hp-closing-right"
-                style={{
-                  padding: "0 0 0 48px",
-                  borderLeft: `1px solid rgba(13,61,78,0.1)`,
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: "'Cormorant Garamond',serif",
-                    fontSize: 72,
-                    fontWeight: 600,
-                    color: T.gold,
-                    lineHeight: 1,
-                    opacity: 0.35,
-                  }}
-                >
-                  II
-                </div>
-                <div
-                  style={{
-                    fontFamily: "'Jost',sans-serif",
-                    fontSize: 9,
-                    letterSpacing: "0.24em",
-                    textTransform: "uppercase",
-                    color: T.textMuted,
-                    marginTop: 12,
-                    marginBottom: 32,
-                  }}
-                >
-                  Leadership Advisory
-                </div>
-                <p
-                  style={{
-                    fontSize: 13,
-                    fontWeight: 300,
-                    lineHeight: 1.85,
-                    color: T.textMid,
-                  }}
-                >
-                  Governance, performance, and strategic clarity — delivered
-                  through long-term partnership grounded in trust and judgement.
-                </p>
-              </div>
-            </Fade>
+            I
           </div>
-
-          {/* ── LARGE CLOSING ILLUSTRATION ── */}
           <div
-            ref={illusRef3}
-            className="hp-closing-illus"
             style={{
-              position: "relative",
-              background: T.white,
-              border: `1px solid rgba(13,61,78,0.07)`,
-              padding: "56px 48px 48px",
-              overflow: "hidden",
-              maxWidth: "100%",
+              fontFamily: "'Jost',sans-serif",
+              fontSize: 9,
+              letterSpacing: "0.24em",
+              textTransform: "uppercase",
+              color: T.textMuted,
+              marginTop: 12,
+              marginBottom: 32,
             }}
           >
-            {/* Top label */}
-            <div
-              style={{
-                position: "absolute",
-                top: 28,
-                left: 48,
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-              }}
-            >
-              <div style={{ width: 20, height: 1, background: T.gold }} />
-              <span
-                style={{
-                  fontFamily: "'Jost',sans-serif",
-                  fontSize: 10,
-                  letterSpacing: "0.24em",
-                  textTransform: "uppercase",
-                  color: T.gold,
-                }}
-              >
-                The Architecture of Advantage
-              </span>
-            </div>
-            <div style={{ position: "absolute", top: 28, right: 48 }}>
-              <span
-                style={{
-                  fontFamily: "'Jost',sans-serif",
-                  fontSize: 10,
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  color: T.textMuted,
-                }}
-              >
-                Alignment → Performance → Advantage
-              </span>
-            </div>
-            <ClosingIllustration vis={illusVis3} />
-
-            {/* Bottom tagline overlay */}
-            <div style={{ textAlign: "center", marginTop: 8 }}>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 16,
-                }}
-              >
-                <div
-                  style={{
-                    width: 48,
-                    height: 1,
-                    background: T.gold,
-                    opacity: 0.5,
-                  }}
-                />
-                <span
-                  style={{
-                    fontFamily: "'Jost', sans-serif",
-                    fontSize: 10,
-                    letterSpacing: "0.22em",
-                    color: T.gold,
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Advantage Starts Here
-                </span>
-                <div
-                  style={{
-                    width: 48,
-                    height: 1,
-                    background: T.gold,
-                    opacity: 0.5,
-                  }}
-                />
-              </div>
-            </div>
+            Executive Search
           </div>
+          <p
+            style={{
+              fontSize: 13,
+              fontWeight: 300,
+              lineHeight: 1.85,
+              color: T.textMid,
+            }}
+          >
+            A strategic responsibility — not a transactional activity.
+            Every mandate carries enterprise-wide consequences.
+          </p>
         </div>
-      </section>
+      </Fade>
+
+      {/* Centre — main positioning text + illustration */}
+      <Fade delay={200}>
+        <div className="hp-closing-centre" style={{ padding: "0 64px" }}>
+          <p
+            style={{
+              fontSize: 17,
+              fontWeight: 300,
+              lineHeight: 1.9,
+              color: T.textMid,
+              marginBottom: 28,
+              fontStyle: "italic",
+              fontFamily: "'Cormorant Garamond',serif",
+            }}
+          >
+            "We believe executive search is a strategic responsibility."
+          </p>
+          <p
+            style={{
+              fontSize: 15,
+              fontWeight: 300,
+              lineHeight: 1.85,
+              color: T.textMid,
+              marginBottom: 24,
+            }}
+          >
+            When leadership capability aligns precisely with
+            organisational ambition, performance becomes sustainable and
+            governance becomes stronger.
+          </p>
+          <p
+            style={{
+              fontSize: 15,
+              fontWeight: 300,
+              lineHeight: 1.85,
+              color: T.textMid,
+              marginBottom: 40,
+            }}
+          >
+            That is where the advantage begins — not at the appointment,
+            but at the alignment. At PivotEdge Partners, we exist to
+            ensure that alignment is achieved with rigour, discretion, and
+            long-term purpose.
+          </p>
+          <button
+            className="btn btn-teal"
+            onClick={() => {
+              setPage("Contact");
+              window.scrollTo(0, 0);
+            }}
+          >
+            <span>Begin a Conversation</span>
+          </button>
+        </div>
+      </Fade>
+
+      {/* Right pillar — decorative vertical stat */}
+      <Fade delay={300}>
+        <div
+          className="hp-closing-right"
+          style={{
+            padding: "0 0 0 48px",
+            borderLeft: `1px solid rgba(13,61,78,0.1)`,
+          }}
+        >
+          <div
+            style={{
+              fontFamily: "'Cormorant Garamond',serif",
+              fontSize: 72,
+              fontWeight: 600,
+              color: T.gold,
+              lineHeight: 1,
+              opacity: 0.35,
+            }}
+          >
+            II
+          </div>
+          <div
+            style={{
+              fontFamily: "'Jost',sans-serif",
+              fontSize: 9,
+              letterSpacing: "0.24em",
+              textTransform: "uppercase",
+              color: T.textMuted,
+              marginTop: 12,
+              marginBottom: 32,
+            }}
+          >
+            Leadership Advisory
+          </div>
+          <p
+            style={{
+              fontSize: 13,
+              fontWeight: 300,
+              lineHeight: 1.85,
+              color: T.textMid,
+            }}
+          >
+            Governance, performance, and strategic clarity — delivered
+            through long-term partnership grounded in trust and judgement.
+          </p>
+        </div>
+      </Fade>
+    </div>
+
+    {/* ── LARGE CLOSING ILLUSTRATION ── */}
+    <div
+      ref={illusRef3}
+      className="hp-closing-illus"
+      style={{
+        position: "relative",
+        background: T.white,
+        border: `1px solid rgba(13,61,78,0.07)`,
+        padding: "56px 48px 48px",
+        overflow: "hidden",
+        maxWidth: "100%",
+      }}
+    >
+      {/* Top label */}
+      <div
+        className="hp-closing-illus-label"
+        style={{
+          position: "absolute",
+          top: 28,
+          left: 48,
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+        }}
+      >
+        <div style={{ width: 20, height: 1, background: T.gold }} />
+        <span
+          style={{
+            fontFamily: "'Jost',sans-serif",
+            fontSize: 10,
+            letterSpacing: "0.24em",
+            textTransform: "uppercase",
+            color: T.gold,
+          }}
+        >
+          The Architecture of Advantage
+        </span>
+      </div>
+      <div className="hp-closing-illus-flow" style={{ position: "absolute", top: 28, right: 48 }}>
+        <span
+          style={{
+            fontFamily: "'Jost',sans-serif",
+            fontSize: 10,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: T.textMuted,
+          }}
+        >
+          Alignment → Performance → Advantage
+        </span>
+      </div>
+      <ClosingIllustration vis={illusVis3} />
+
+      {/* Bottom tagline overlay */}
+      <div style={{ textAlign: "center", marginTop: 8 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 16,
+          }}
+        >
+          <div
+            style={{
+              width: 48,
+              height: 1,
+              background: T.gold,
+              opacity: 0.5,
+            }}
+          />
+          <span
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontSize: 10,
+              letterSpacing: "0.22em",
+              color: T.gold,
+              textTransform: "uppercase",
+            }}
+          >
+            Advantage Starts Here
+          </span>
+          <div
+            style={{
+              width: 48,
+              height: 1,
+              background: T.gold,
+              opacity: 0.5,
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
     </div>
   );
 }

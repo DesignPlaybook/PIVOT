@@ -151,7 +151,7 @@ export default function InsightsPage({ setPage }) {
           >
             Strategic
             <br />
-            Insights.
+            Insights
           </h1>
           <p
             className="in-load-3"
@@ -205,85 +205,261 @@ export default function InsightsPage({ setPage }) {
 
       {/* Featured */}
       {featured && (
-        <section style={{ background: T.creamAlt, padding: "80px 64px" }}>
-          <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+       <section className="featured-analysis-section" style={{ background: T.creamAlt, padding: "80px 64px" }}>
+  <style>{`
+    @media (max-width: 768px) {
+      .featured-analysis-section {
+        padding: 56px 24px !important;
+      }
+      .featured-analysis-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+      }
+      .featured-analysis-image {
+        height: 260px !important;
+      }
+    }
+  `}</style>
+
+  <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+    <div
+      className="reveal featured-analysis-grid"
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 64,
+        alignItems: "center",
+      }}
+    >
+      <div>
+        <SectionLabel text="Featured Analysis" />
+        <h2
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "clamp(32px, 4vw, 48px)",
+            fontWeight: 300,
+            color: T.teal,
+            marginBottom: 20,
+            lineHeight: 1.2,
+          }}
+        >
+          {featured.title}
+        </h2>
+        <div className="gold-rule" />
+        <p
+          style={{
+            fontSize: 15,
+            fontWeight: 300,
+            lineHeight: 1.8,
+            color: T.textMid,
+            marginBottom: 32,
+          }}
+        >
+          {featured.excerpt}
+        </p>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 24,
+            marginBottom: 32,
+          }}
+        >
+          <span
+            style={{
+              fontSize: 10,
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              color: T.textMuted,
+              fontFamily: "'Jost', sans-serif",
+            }}
+          >
+            {featured.date}
+          </span>
+          <span
+            style={{
+              fontSize: 10,
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              color: T.gold,
+              fontFamily: "'Jost', sans-serif",
+            }}
+          >
+            {featured.read}
+          </span>
+        </div>
+        <button className="btn btn-teal" onClick={openArticle}>
+          <span>Read Full Report</span>
+        </button>
+      </div>
+      <div
+        className="featured-analysis-image"
+        style={{ height: 400, overflow: "hidden", cursor: "pointer" }}
+        onClick={openArticle}
+      >
+        <img
+          src={featured.img}
+          alt={featured.title}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+            transition: "transform 0.6s ease",
+          }}
+          onMouseEnter={(e) =>
+            (e.target.style.transform = "scale(1.05)")
+          }
+          onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
+        />
+      </div>
+    </div>
+  </div>
+</section>
+      )}
+
+      {/* Filter + Grid */}
+     <section
+  className="insights-list-section"
+  style={{ padding: "80px 64px", maxWidth: 1200, margin: "0 auto" }}
+>
+  <style>{`
+    @media (max-width: 768px) {
+      .insights-list-section {
+        padding: 60px 20px !important;
+      }
+      .insights-filter-row {
+        gap: 8px !important;
+        margin-bottom: 40px !important;
+        padding-bottom: 20px !important;
+      }
+      .insights-filter-row button {
+        font-size: 10px !important;
+        padding: 7px 14px !important;
+      }
+      .insights-grid {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+      }
+    }
+  `}</style>
+
+  <div
+    className="insights-filter-row"
+    style={{
+      display: "flex",
+      gap: 8,
+      marginBottom: 56,
+      flexWrap: "wrap",
+      borderBottom: `1px solid rgba(13,61,78,0.1)`,
+      paddingBottom: 24,
+    }}
+  >
+    {filters.map((f) => (
+      <button
+        key={f}
+        onClick={() => setActiveFilter(f)}
+        style={{
+          fontFamily: "'Jost', sans-serif",
+          fontSize: 11,
+          letterSpacing: "0.12em",
+          textTransform: "uppercase",
+          padding: "8px 20px",
+          background: activeFilter === f ? T.teal : "transparent",
+          color: activeFilter === f ? T.white : T.textMid,
+          border: `1px solid ${activeFilter === f ? T.teal : "rgba(13,61,78,0.2)"}`,
+          cursor: "pointer",
+          transition: "all 0.3s ease",
+        }}
+      >
+        {f}
+      </button>
+    ))}
+  </div>
+
+  <div
+    className="insights-grid"
+    style={{
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr 1fr",
+      gap: 48,
+    }}
+  >
+    {filtered
+      .filter((a) => !a.featured)
+      .map((a, i) => (
+        <div
+          key={i}
+          className="reveal service-card"
+          style={{ cursor: "pointer" }}
+          onClick={openArticle}
+        >
+          {a.special ? (
             <div
-              className="reveal"
               style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: 64,
-                alignItems: "center",
+                background: T.teal,
+                padding: 40,
+                height: "100%",
+                minHeight: 360,
               }}
             >
-              <div>
-                <SectionLabel text="Featured Analysis" />
-                <h2
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: "clamp(32px, 4vw, 48px)",
-                    fontWeight: 300,
-                    color: T.teal,
-                    marginBottom: 20,
-                    lineHeight: 1.2,
-                  }}
-                >
-                  {featured.title}
-                </h2>
-                <div className="gold-rule" />
-                <p
-                  style={{
-                    fontSize: 15,
-                    fontWeight: 300,
-                    lineHeight: 1.8,
-                    color: T.textMid,
-                    marginBottom: 32,
-                  }}
-                >
-                  {featured.excerpt}
-                </p>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 24,
-                    marginBottom: 32,
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: 10,
-                      letterSpacing: "0.15em",
-                      textTransform: "uppercase",
-                      color: T.textMuted,
-                      fontFamily: "'Jost', sans-serif",
-                    }}
-                  >
-                    {featured.date}
-                  </span>
-                  <span
-                    style={{
-                      fontSize: 10,
-                      letterSpacing: "0.15em",
-                      textTransform: "uppercase",
-                      color: T.gold,
-                      fontFamily: "'Jost', sans-serif",
-                    }}
-                  >
-                    {featured.read}
-                  </span>
-                </div>
-                <button className="btn btn-teal" onClick={openArticle}>
-                  <span>Read Full Report</span>
-                </button>
-              </div>
+              <span
+                style={{
+                  fontSize: 10,
+                  letterSpacing: "0.15em",
+                  color: T.gold,
+                  textTransform: "uppercase",
+                  fontFamily: "'Jost', sans-serif",
+                }}
+              >
+                Special Report
+              </span>
+              <h3
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: 30,
+                  fontWeight: 300,
+                  color: T.white,
+                  margin: "20px 0",
+                  lineHeight: 1.2,
+                }}
+              >
+                {a.title}
+              </h3>
+              <p
+                style={{
+                  fontSize: 13,
+                  fontWeight: 300,
+                  lineHeight: 1.7,
+                  color: "rgba(245,240,232,0.7)",
+                  marginBottom: 32,
+                }}
+              >
+                {a.excerpt}
+              </p>
+              <button
+                className="btn btn-outline-light"
+                style={{ padding: "10px 24px" }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openArticle();
+                }}
+              >
+                <span>Read Report</span>
+              </button>
+            </div>
+          ) : (
+            <>
               <div
-                style={{ height: 400, overflow: "hidden", cursor: "pointer" }}
-                onClick={openArticle}
+                style={{
+                  height: 220,
+                  overflow: "hidden",
+                  marginBottom: 24,
+                }}
               >
                 <img
-                  src={featured.img}
-                  alt={featured.title}
+                  src={a.img}
+                  alt={a.title}
                   style={{
                     width: "100%",
                     height: "100%",
@@ -292,333 +468,215 @@ export default function InsightsPage({ setPage }) {
                     transition: "transform 0.6s ease",
                   }}
                   onMouseEnter={(e) =>
-                    (e.target.style.transform = "scale(1.05)")
+                    (e.target.style.transform = "scale(1.07)")
                   }
-                  onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
+                  onMouseLeave={(e) =>
+                    (e.target.style.transform = "scale(1)")
+                  }
                 />
               </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Filter + Grid */}
-      <section
-        style={{ padding: "80px 64px", maxWidth: 1200, margin: "0 auto" }}
-      >
-        <div
-          style={{
-            display: "flex",
-            gap: 8,
-            marginBottom: 56,
-            flexWrap: "wrap",
-            borderBottom: `1px solid rgba(13,61,78,0.1)`,
-            paddingBottom: 24,
-          }}
-        >
-          {filters.map((f) => (
-            <button
-              key={f}
-              onClick={() => setActiveFilter(f)}
-              style={{
-                fontFamily: "'Jost', sans-serif",
-                fontSize: 11,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                padding: "8px 20px",
-                background: activeFilter === f ? T.teal : "transparent",
-                color: activeFilter === f ? T.white : T.textMid,
-                border: `1px solid ${activeFilter === f ? T.teal : "rgba(13,61,78,0.2)"}`,
-                cursor: "pointer",
-                transition: "all 0.3s ease",
-              }}
-            >
-              {f}
-            </button>
-          ))}
-        </div>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr",
-            gap: 48,
-          }}
-        >
-          {filtered
-            .filter((a) => !a.featured)
-            .map((a, i) => (
               <div
-                key={i}
-                className="reveal service-card"
-                style={{ cursor: "pointer" }}
-                onClick={openArticle}
+                style={{
+                  fontSize: 10,
+                  letterSpacing: "0.15em",
+                  color: T.gold,
+                  textTransform: "uppercase",
+                  fontFamily: "'Jost', sans-serif",
+                  marginBottom: 12,
+                }}
               >
-                {a.special ? (
-                  <div
-                    style={{
-                      background: T.teal,
-                      padding: 40,
-                      height: "100%",
-                      minHeight: 360,
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontSize: 10,
-                        letterSpacing: "0.15em",
-                        color: T.gold,
-                        textTransform: "uppercase",
-                        fontFamily: "'Jost', sans-serif",
-                      }}
-                    >
-                      Special Report
-                    </span>
-                    <h3
-                      style={{
-                        fontFamily: "'Cormorant Garamond', serif",
-                        fontSize: 30,
-                        fontWeight: 300,
-                        color: T.white,
-                        margin: "20px 0",
-                        lineHeight: 1.2,
-                      }}
-                    >
-                      {a.title}
-                    </h3>
-                    <p
-                      style={{
-                        fontSize: 13,
-                        fontWeight: 300,
-                        lineHeight: 1.7,
-                        color: "rgba(245,240,232,0.7)",
-                        marginBottom: 32,
-                      }}
-                    >
-                      {a.excerpt}
-                    </p>
-                    <button
-                      className="btn btn-outline-light"
-                      style={{ padding: "10px 24px" }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        openArticle();
-                      }}
-                    >
-                      <span>Read Report</span>
-                    </button>
-                  </div>
-                ) : (
-                  <>
-                    <div
-                      style={{
-                        height: 220,
-                        overflow: "hidden",
-                        marginBottom: 24,
-                      }}
-                    >
-                      <img
-                        src={a.img}
-                        alt={a.title}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          display: "block",
-                          transition: "transform 0.6s ease",
-                        }}
-                        onMouseEnter={(e) =>
-                          (e.target.style.transform = "scale(1.07)")
-                        }
-                        onMouseLeave={(e) =>
-                          (e.target.style.transform = "scale(1)")
-                        }
-                      />
-                    </div>
-                    <div
-                      style={{
-                        fontSize: 10,
-                        letterSpacing: "0.15em",
-                        color: T.gold,
-                        textTransform: "uppercase",
-                        fontFamily: "'Jost', sans-serif",
-                        marginBottom: 12,
-                      }}
-                    >
-                      {a.tag}
-                    </div>
-                    <h3
-                      style={{
-                        fontFamily: "'Cormorant Garamond', serif",
-                        fontSize: 24,
-                        fontWeight: 400,
-                        color: T.teal,
-                        marginBottom: 12,
-                        lineHeight: 1.3,
-                      }}
-                    >
-                      {a.title}
-                    </h3>
-                    <p
-                      style={{
-                        fontSize: 13,
-                        fontWeight: 300,
-                        lineHeight: 1.75,
-                        color: T.textMid,
-                        marginBottom: 20,
-                      }}
-                    >
-                      {a.excerpt}
-                    </p>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        borderTop: `1px solid rgba(13,61,78,0.08)`,
-                        paddingTop: 16,
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontSize: 10,
-                          letterSpacing: "0.1em",
-                          color: T.textMuted,
-                          textTransform: "uppercase",
-                          fontFamily: "'Jost', sans-serif",
-                        }}
-                      >
-                        {a.date}
-                      </span>
-                      <span
-                        style={{
-                          fontSize: 11,
-                          color: T.gold,
-                          fontFamily: "'Jost', sans-serif",
-                          letterSpacing: "0.08em",
-                        }}
-                      >
-                        Read More →
-                      </span>
-                    </div>
-                  </>
-                )}
+                {a.tag}
               </div>
-            ))}
-        </div>
-      </section>
-
-      {/* Reports Archive */}
-      <section style={{ background: T.creamAlt, padding: "100px 64px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div
-            className="reveal"
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-end",
-              marginBottom: 56,
-            }}
-          >
-            <div>
-              <SectionLabel text="Research Archive" />
-              <h2
+              <h3
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: "clamp(32px, 4vw, 48px)",
-                  fontWeight: 300,
+                  fontSize: 24,
+                  fontWeight: 400,
                   color: T.teal,
+                  marginBottom: 12,
+                  lineHeight: 1.3,
                 }}
               >
-                White Papers & Global Reports
-              </h2>
-            </div>
-          </div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: 2,
-            }}
-          >
-            {[
-              {
-                title: "2024 Board Diversity Report",
-                d: "Progress, challenges, and the future of inclusive governance.",
-              },
-              {
-                title: "The Digital CEO Playbook",
-                d: "How tech literacy is becoming a prerequisite for the top job.",
-              },
-              {
-                title: "Succession Strategy 2.0",
-                d: "Moving beyond the emergency plan to long-term talent cultivation.",
-              },
-              {
-                title: "Geopolitical Risk in 2025",
-                d: "Strategic implications of global shifts for enterprise leaders.",
-              },
-            ].map((r, i) => (
-              <div
-                key={i}
-                className="reveal service-card"
+                {a.title}
+              </h3>
+              <p
                 style={{
-                  background: T.white,
-                  padding: "40px 28px",
-                  border: `1px solid rgba(13,61,78,0.06)`,
-                  cursor: "pointer",
+                  fontSize: 13,
+                  fontWeight: 300,
+                  lineHeight: 1.75,
+                  color: T.textMid,
+                  marginBottom: 20,
                 }}
-                onClick={openArticle}
               >
-                <div
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 40,
-                    color: T.gold,
-                    opacity: 0.3,
-                    marginBottom: 20,
-                  }}
-                >
-                  ◈
-                </div>
-                <h4
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 22,
-                    fontWeight: 400,
-                    color: T.teal,
-                    marginBottom: 12,
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {r.title}
-                </h4>
-                <p
-                  style={{
-                    fontSize: 12,
-                    fontWeight: 300,
-                    lineHeight: 1.7,
-                    color: T.textMid,
-                    marginBottom: 24,
-                  }}
-                >
-                  {r.d}
-                </p>
+                {a.excerpt}
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  borderTop: `1px solid rgba(13,61,78,0.08)`,
+                  paddingTop: 16,
+                }}
+              >
                 <span
                   style={{
                     fontSize: 10,
-                    letterSpacing: "0.12em",
+                    letterSpacing: "0.1em",
+                    color: T.textMuted,
                     textTransform: "uppercase",
-                    color: T.gold,
                     fontFamily: "'Jost', sans-serif",
                   }}
                 >
-                  Read Report →
+                  {a.date}
+                </span>
+                <span
+                  style={{
+                    fontSize: 11,
+                    color: T.gold,
+                    fontFamily: "'Jost', sans-serif",
+                    letterSpacing: "0.08em",
+                  }}
+                >
+                  Read More →
                 </span>
               </div>
-            ))}
-          </div>
+            </>
+          )}
         </div>
-      </section>
+      ))}
+  </div>
+</section>
+
+      {/* Reports Archive */}
+      <section className="research-archive-section" style={{ background: T.creamAlt, padding: "100px 64px" }}>
+  <style>{`
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .research-archive-grid {
+        grid-template-columns: 1fr 1fr !important;
+      }
+    }
+    @media (max-width: 768px) {
+      .research-archive-section {
+        padding: 72px 24px !important;
+      }
+      .research-archive-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  `}</style>
+
+  <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+    <div
+      className="reveal"
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-end",
+        marginBottom: 56,
+      }}
+    >
+      <div>
+        <SectionLabel text="Research Archive" />
+        <h2
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "clamp(32px, 4vw, 48px)",
+            fontWeight: 300,
+            color: T.teal,
+          }}
+        >
+          White Papers & Global Reports
+        </h2>
+      </div>
+    </div>
+    <div
+      className="research-archive-grid"
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(4, 1fr)",
+        gap: 2,
+      }}
+    >
+      {[
+        {
+          title: "2024 Board Diversity Report",
+          d: "Progress, challenges, and the future of inclusive governance.",
+        },
+        {
+          title: "The Digital CEO Playbook",
+          d: "How tech literacy is becoming a prerequisite for the top job.",
+        },
+        {
+          title: "Succession Strategy 2.0",
+          d: "Moving beyond the emergency plan to long-term talent cultivation.",
+        },
+        {
+          title: "Geopolitical Risk in 2025",
+          d: "Strategic implications of global shifts for enterprise leaders.",
+        },
+      ].map((r, i) => (
+        <div
+          key={i}
+          className="reveal service-card"
+          style={{
+            background: T.white,
+            padding: "40px 28px",
+            border: `1px solid rgba(13,61,78,0.06)`,
+            cursor: "pointer",
+          }}
+          onClick={openArticle}
+        >
+          <div
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: 40,
+              color: T.gold,
+              opacity: 0.3,
+              marginBottom: 20,
+            }}
+          >
+            ◈
+          </div>
+          <h4
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: 22,
+              fontWeight: 400,
+              color: T.teal,
+              marginBottom: 12,
+              lineHeight: 1.3,
+            }}
+          >
+            {r.title}
+          </h4>
+          <p
+            style={{
+              fontSize: 12,
+              fontWeight: 300,
+              lineHeight: 1.7,
+              color: T.textMid,
+              marginBottom: 24,
+            }}
+          >
+            {r.d}
+          </p>
+          <span
+            style={{
+              fontSize: 10,
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              color: T.gold,
+              fontFamily: "'Jost', sans-serif",
+            }}
+          >
+            Read Report →
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* Newsletter */}
       <section
@@ -657,12 +715,11 @@ export default function InsightsPage({ setPage }) {
           <div style={{ display: "flex", gap: 0 }}>
             <input
               type="email"
-              placeholder="Professional Email Address"
+              placeholder="Email Address"
               style={{
                 flex: 1,
                 height: 52,
-                borderColor: "rgba(245,240,232,0.2)",
-                background: "rgba(245,240,232,0.1)",
+                
                 color: T.white,
                 borderRight: "none",
               }}

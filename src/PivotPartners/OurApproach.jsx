@@ -57,6 +57,7 @@ function DrawLine({ delay = 0 }) {
   return (
     <div
       ref={ref}
+      className="approach-drawline"
       style={{
         position: "absolute",
         top: 20,
@@ -110,6 +111,7 @@ export default function OurApproach() {
   return (
     <section
       id="our-approach"
+      className="approach-section"
       style={{
         background: T.cream,
         padding: "100px 64px",
@@ -117,11 +119,53 @@ export default function OurApproach() {
         borderBottom: `1px solid rgba(13,61,78,0.08)`,
       }}
     >
+      <style>{`
+        @media (max-width: 1024px) and (min-width: 769px) {
+          .approach-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+            row-gap: 48px !important;
+          }
+          .approach-drawline {
+            display: none !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .approach-section {
+            padding: 64px 24px !important;
+          }
+          .approach-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 20px !important;
+            margin-bottom: 48px !important;
+          }
+          .approach-header p {
+            max-width: 100% !important;
+          }
+          .approach-grid {
+            grid-template-columns: 1fr 1fr !important;
+            row-gap: 40px !important;
+          }
+          .approach-drawline {
+            display: none !important;
+          }
+          .svc-step {
+            padding: 0 16px 0 0 !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .approach-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
+
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <Fade>
           <SectionLabel text="Our Approach" />
 
           <div
+            className="approach-header"
             style={{
               display: "flex",
               alignItems: "flex-end",
@@ -161,6 +205,7 @@ export default function OurApproach() {
         </Fade>
 
         <div
+          className="approach-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(6, 1fr)",

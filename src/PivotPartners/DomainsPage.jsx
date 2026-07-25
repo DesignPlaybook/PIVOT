@@ -2070,7 +2070,7 @@ export default function DomainsPage({ setPage }) {
             <br />
             Domain
             <br />
-            Expertise.
+            Expertise
           </h1>
           <p
             className="dp-l3"

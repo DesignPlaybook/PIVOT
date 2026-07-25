@@ -125,7 +125,7 @@ function Acc({ title, index, children, openAcc, setOpenAcc }) {
 
   return (
     <div
-      className="acc-row"
+      className={`acc-row ${open ? "acc-open" : ""}`}
       style={{
         position: "relative",
         paddingBottom: open ? 180 : 0,
@@ -174,6 +174,7 @@ function Acc({ title, index, children, openAcc, setOpenAcc }) {
       </button>
 
       <div
+        className="acc-content-wrap"
         style={{
           position: "absolute",
           left: 52,
@@ -920,11 +921,11 @@ function VisionMission() {
                     marginBottom: 24,
                   }}
                 >
-                  Defined by Clarity.
+                  Defined by Clarity
                   <br />
                   Trusted Where
                   <br />
-                  It Matters.
+                  It Matters
                 </h3>
                 <div
                   style={{
@@ -1056,7 +1057,7 @@ function VisionMission() {
                   <br />
                   Leadership
                   <br />
-                  Decisions.
+                  Decisions
                 </h3>
                 <div
                   style={{
@@ -1228,7 +1229,7 @@ export default function AboutPage({ setPage }) {
             <br />
             Consequential
             <br />
-            Decisions.
+            Decisions
           </h1>
           <p
             className="ab-load-3"
@@ -1383,7 +1384,7 @@ export default function AboutPage({ setPage }) {
           >
             A Different Kind
             <br />
-            of Advisory Firm.
+            of Advisory Firm
           </h2>
           <div
             style={{
@@ -1443,158 +1444,188 @@ export default function AboutPage({ setPage }) {
 
       {/* ══════ 6. HOW WE WORK — image with floating block + accordions ══════ */}
       <section
-        id="how-we-work"
-        className="hww-section"
-        style={{ background: T.cream, padding: "130px 64px" }}
-      >
+  id="how-we-work"
+  className="hww-section"
+  style={{ background: T.cream, padding: "130px 64px" }}
+>
+  <style>{`
+    @media (max-width: 768px) {
+      .hww-section {
+        padding: 80px 20px !important;
+      }
+      .hww-grid {
+        grid-template-columns: 1fr !important;
+        gap: 48px !important;
+      }
+      .acc-row {
+        padding-bottom: 0 !important;
+      }
+      .acc-content-wrap {
+        position: static !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none !important;
+        display: none;
+      }
+      .acc-row.acc-open .acc-content-wrap {
+        display: block !important;
+        padding-top: 10px;
+      }
+      .acc-row .acc-content-wrap > div {
+        padding-bottom: 32px !important;
+      }
+    }
+  `}</style>
+
+  <div
+    className="hww-grid"
+    style={{
+      maxWidth: 1200,
+      margin: "0 auto",
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: 100,
+      alignItems: "center",
+    }}
+  >
+    {/* image col */}
+    <Fade style={{ position: "relative" }}>
+      <div style={{ position: "relative" }}>
+        <Wipe
+          src="https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=900&q=80"
+          alt="Our methodology"
+          style={{ height: 580, width: "100%" }}
+        />
+        {/* floating teal accent — overlapping bottom-right */}
         <div
-          className="hww-grid"
+          className="hww-float"
           style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 100,
-            alignItems: "center",
+            position: "absolute",
+            bottom: -32,
+            right: -32,
+            background: T.teal,
+            padding: "40px 48px",
+            zIndex: 2,
+            boxShadow: "0 0 0 1px rgba(184,150,46,0.2)",
           }}
         >
-          {/* image col */}
-          <Fade style={{ position: "relative" }}>
-            <div style={{ position: "relative" }}>
-              <Wipe
-                src="https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=900&q=80"
-                alt="Our methodology"
-                style={{ height: 580, width: "100%" }}
-              />
-              {/* floating teal accent — overlapping bottom-right */}
-              <div
-                className="hww-float"
-                style={{
-                  position: "absolute",
-                  bottom: -32,
-                  right: -32,
-                  background: T.teal,
-                  padding: "40px 48px",
-                  zIndex: 2,
-                  boxShadow: "0 0 0 1px rgba(184,150,46,0.2)",
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: "'Jost',sans-serif",
-                    fontSize: 9,
-                    letterSpacing: "0.22em",
-                    textTransform: "uppercase",
-                    color: "rgba(184,150,46,0.7)",
-                    marginBottom: 12,
-                  }}
-                >
-                  Our Methodology
-                </div>
-                <div
-                  style={{
-                    fontFamily: "'Cormorant Garamond',serif",
-                    fontSize: 34,
-                    fontWeight: 300,
-                    color: T.white,
-                    lineHeight: 1.2,
-                  }}
-                >
-                  Depth.
-                  <br />
-                  Precision.
-                  <br />
-                  Fit.
-                </div>
-              </div>
-            </div>
-          </Fade>
-
-          {/* accordions col */}
-          <Fade delay={200} style={{ paddingBottom: 32 }}>
-            <SectionLabel text="Our Practice" />
-            <h2
-              style={{
-                fontFamily: "'Cormorant Garamond',serif",
-                fontSize: "clamp(34px,4vw,54px)",
-                fontWeight: 300,
-                color: T.teal,
-                lineHeight: 1.1,
-                marginBottom: 48,
-              }}
-            >
-              How We Think.
-              <br />
-              How We Work.
-            </h2>
-
-            <Acc
-              title="How We Work"
-              index={1}
-              openAcc={openAcc}
-              setOpenAcc={setOpenAcc}
-            >
-              <p style={{ marginBottom: 14 }}>
-                Every engagement begins with clarity. We seek to understand the
-                organisation's strategic direction, operational realities,
-                cultural dynamics, and governance expectations before defining
-                the leadership mandate.
-              </p>
-              <p>
-                Our methodology emphasises depth over speed, precision over
-                volume, and fit over familiarity.
-              </p>
-            </Acc>
-            <Acc
-              title="Our Perspective on Leadership"
-              index={2}
-              openAcc={openAcc}
-              setOpenAcc={setOpenAcc}
-            >
-              <p style={{ marginBottom: 14 }}>
-                Leadership effectiveness extends beyond functional competence.
-                It requires strategic judgement, adaptability, ethical
-                grounding, and the ability to mobilise teams in complex
-                environments.
-              </p>
-              <p>
-                We assess leaders not only for what they have achieved, but for
-                how they think, how they decide, and how they build sustainable
-                performance.
-              </p>
-            </Acc>
-            <Acc
-              title="Our Commitment"
-              index={3}
-              openAcc={openAcc}
-              setOpenAcc={setOpenAcc}
-            >
-              <p style={{ marginBottom: 14 }}>
-                We operate with integrity, confidentiality, and professional
-                discipline across every engagement.
-              </p>
-              <p>
-                Our objective is not merely to fill positions, but to strengthen
-                organisations through leadership alignment. When leadership is
-                right, organisations move with confidence.
-              </p>
-            </Acc>
-            <Acc
-              title="What We Work On"
-              index={4}
-              openAcc={openAcc}
-              setOpenAcc={setOpenAcc}
-            >
-              <p>
-                Our work spans Executive Search, Board and Governance
-                appointments, CEO succession, Interim Management, Career
-                Transition advisory, and AI leadership — treated as a horizontal
-                capability across industries.
-              </p>
-            </Acc>
-          </Fade>
+          <div
+            style={{
+              fontFamily: "'Jost',sans-serif",
+              fontSize: 9,
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              color: "rgba(184,150,46,0.7)",
+              marginBottom: 12,
+            }}
+          >
+            Our Methodology
+          </div>
+          <div
+            style={{
+              fontFamily: "'Cormorant Garamond',serif",
+              fontSize: 34,
+              fontWeight: 300,
+              color: T.white,
+              lineHeight: 1.2,
+            }}
+          >
+            Depth
+            <br />
+            Precision
+            <br />
+            Fit
+          </div>
         </div>
-      </section>
+      </div>
+    </Fade>
+
+    {/* accordions col */}
+    <Fade delay={200} style={{ paddingBottom: 32 }}>
+      <SectionLabel text="Our Practice" />
+      <h2
+        style={{
+          fontFamily: "'Cormorant Garamond',serif",
+          fontSize: "clamp(34px,4vw,54px)",
+          fontWeight: 300,
+          color: T.teal,
+          lineHeight: 1.1,
+          marginBottom: 48,
+        }}
+      >
+        How We Think
+        <br />
+        How We Work
+      </h2>
+
+      <Acc
+        title="How We Work"
+        index={1}
+        openAcc={openAcc}
+        setOpenAcc={setOpenAcc}
+      >
+        <p style={{ marginBottom: 14 }}>
+          Every engagement begins with clarity. We seek to understand the
+          organisation's strategic direction, operational realities,
+          cultural dynamics, and governance expectations before defining
+          the leadership mandate.
+        </p>
+        <p>
+          Our methodology emphasises depth over speed, precision over
+          volume, and fit over familiarity.
+        </p>
+      </Acc>
+      <Acc
+        title="Our Perspective on Leadership"
+        index={2}
+        openAcc={openAcc}
+        setOpenAcc={setOpenAcc}
+      >
+        <p style={{ marginBottom: 14 }}>
+          Leadership effectiveness extends beyond functional competence.
+          It requires strategic judgement, adaptability, ethical
+          grounding, and the ability to mobilise teams in complex
+          environments.
+        </p>
+        <p>
+          We assess leaders not only for what they have achieved, but for
+          how they think, how they decide, and how they build sustainable
+          performance.
+        </p>
+      </Acc>
+      <Acc
+        title="Our Commitment"
+        index={3}
+        openAcc={openAcc}
+        setOpenAcc={setOpenAcc}
+      >
+        <p style={{ marginBottom: 14 }}>
+          We operate with integrity, confidentiality, and professional
+          discipline across every engagement.
+        </p>
+        <p>
+          Our objective is not merely to fill positions, but to strengthen
+          organisations through leadership alignment. When leadership is
+          right, organisations move with confidence.
+        </p>
+      </Acc>
+      <Acc
+        title="What We Work On"
+        index={4}
+        openAcc={openAcc}
+        setOpenAcc={setOpenAcc}
+      >
+        <p>
+          Our work spans Executive Search, Board and Governance
+          appointments, CEO succession, Interim Management, Career
+          Transition advisory, and AI leadership — treated as a horizontal
+          capability across industries.
+        </p>
+      </Acc>
+    </Fade>
+  </div>
+</section>
 
       {/* ══════ 7. CORE VALUES — teal with image header ══════ */}
       <section

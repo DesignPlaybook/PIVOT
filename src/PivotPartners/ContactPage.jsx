@@ -464,7 +464,7 @@ export default function ContactPage() {
               Decision
               <br />
               Begins With
-              <br />a Conversation.
+              <br />a Conversation
             </h1>
           </div>
 

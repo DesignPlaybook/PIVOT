@@ -579,7 +579,7 @@ export default function HeroSection({ setPage }) {
             <br />
             That <em>Defines</em>
             <br />
-            Direction.
+            Direction
           </h1>
 
           {/* Gold rule */}
