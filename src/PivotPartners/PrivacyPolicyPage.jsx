@@ -28,6 +28,18 @@ function useIO(threshold = 0) {
   return [ref, vis];
 }
 
+function useViewportWidth() {
+  const [width, setWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 1200,
+  );
+  useEffect(() => {
+    const onResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+  return width;
+}
+
 function Fade({ children, delay = 0, style = {} }) {
   const [ref, vis] = useIO();
   return (
@@ -51,96 +63,165 @@ const SECTIONS = [
     num: "01",
     title: "Introduction",
     content: [
-      "PivotEdge Partners ('we', 'us', or 'our') is committed to protecting the privacy and confidentiality of all personal information entrusted to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal data in connection with our executive search and leadership advisory services.",
-      "This policy applies to all individuals who interact with PivotEdge Partners, including candidates, clients, board members, referees, website visitors, and any other individuals whose personal data we process in the course of our business.",
-      "We process personal data in accordance with applicable data protection legislation, including the General Data Protection Regulation (GDPR), the UK Data Protection Act 2018, and other relevant national laws where applicable. By engaging with our services or our website, you acknowledge the terms set out in this policy.",
+      'PivotEdge Partners ("PivotEdge", "we", "us" or "our") is an executive search and leadership advisory firm. We respect the privacy of our clients, candidates, website visitors and other individuals whose personal data we process, and we are committed to protecting it wherever in the world it is collected or used. This Privacy Policy explains what personal data we collect, why we collect it, how we use and protect it, and the rights available to you.',
+      'Because our clients and candidates are located around the world, this Policy is designed to meet the expectations of multiple data protection frameworks, including the European Union and United Kingdom General Data Protection Regulation ("GDPR"), India\'s Digital Personal Data Protection Act, 2023 ("DPDP Act"), and other applicable data protection and privacy laws. Where a specific law grants you rights beyond what is described below, those rights apply in addition to this Policy.',
     ],
   },
   {
-    id: "data-collected",
+    id: "scope",
     num: "02",
-    title: "Personal Data We Collect",
+    title: "Scope of this Policy",
     content: [
-      "We collect and process personal data that is necessary to fulfil our executive search and advisory mandates. The categories of personal data we may collect include:",
-      "Identity and contact information: full name, date of birth, nationality, postal address, telephone number, and email address. Professional information: current and previous employment history, job titles, responsibilities, achievements, compensation details, educational qualifications, professional certifications, and memberships. Assessment data: competency profiles, psychometric and leadership assessment results, reference reports, and our own evaluation notes prepared during the course of a mandate. Publicly available information: data obtained from publicly accessible sources including LinkedIn, company websites, press releases, published interviews, and regulatory filings. Communications: correspondence, meeting notes, and records of our interactions with you.",
-      "We collect this information directly from you, from client organisations, from referees and professional contacts you provide, and from publicly available sources. We will always aim to inform you when we begin processing your personal data.",
+      "This Policy applies to personal data we collect through our website, by email or telephone, through professional networking platforms, at events, or in the course of providing executive search and advisory services to clients and candidates worldwide. It applies regardless of where you are located or where our engagement with you takes place.",
     ],
   },
   {
-    id: "legal-basis",
+    id: "information-we-collect",
     num: "03",
-    title: "Legal Basis for Processing",
+    title: "Information We Collect",
     content: [
-      "We rely on the following legal bases to process your personal data, depending on the nature of our relationship with you:",
-      "Legitimate interests: The majority of our processing is carried out on the basis of our legitimate interests as an executive search firm, and the legitimate interests of our clients, in identifying and evaluating senior leadership talent. We balance these interests carefully against your right to privacy and will not rely on this basis where your interests or rights override ours.",
-      "Contractual necessity: Where you have engaged us directly — for example as a candidate using our outplacement or career transition services — we process your data to fulfil our contractual obligations to you.",
-      "Consent: In certain circumstances, we will seek your explicit consent before processing particularly sensitive data, or before including you in a specific search process.",
-      "Legal obligation: We may be required to process certain data to comply with applicable laws, court orders, or regulatory requirements.",
+      "We do not knowingly collect special category data (such as health information, religious beliefs or trade union membership) unless you volunteer it, it is relevant to a specific mandate, and its collection is permitted under applicable law.",
     ],
+    list: [
+      "Candidates and prospective candidates: name, contact details, curriculum vitae, employment history, qualifications, compensation expectations, references, interview notes and assessment records, and any other information you or your referees provide during a search assignment.",
+      "Clients and client representatives: name, job title, employer, contact details, and information relating to search mandates and engagements.",
+      "Website visitors: technical data such as IP address, browser type, device information, and usage data collected through cookies and similar technologies (see Section 11).",
+      "Business contacts: information shared with us through LinkedIn, referrals, conferences and industry networking.",
+    ],
+    listBefore: true,
   },
   {
     id: "how-we-use",
     num: "04",
-    title: "How We Use Your Personal Data",
-    content: [
-      "We use personal data for the following purposes: to identify, assess, and evaluate candidates for executive and board-level roles on behalf of our clients; to maintain a professional network and talent database for current and future search mandates; to conduct due diligence, reference checks, and background verifications as appropriate; to provide career transition, succession planning, and leadership advisory services; to communicate with you regarding opportunities, mandates, or our services; and to comply with our legal and regulatory obligations.",
-      "We do not use personal data for automated decision-making or profiling in a manner that produces legal or similarly significant effects. All assessments involve human judgement.",
-      "We do not sell, rent, or trade personal data to third parties for marketing purposes.",
+    title: "How We Use Your Information",
+    content: [],
+    list: [
+      "To identify, assess and present candidates for executive search mandates.",
+      "To manage our relationships with clients and candidates and deliver our advisory services.",
+      "To communicate with you about mandates, opportunities and our services.",
+      "To maintain our candidate and client database for current and future search assignments.",
+      "To comply with legal, regulatory and contractual obligations.",
+      "To operate, secure and improve our website.",
+      "For internal record-keeping, reporting and business analysis.",
     ],
   },
   {
-    id: "data-sharing",
+    id: "legal-basis",
     num: "05",
-    title: "Disclosure and Data Sharing",
+    title: "Legal Basis for Processing (GDPR)",
     content: [
-      "We share personal data only on a strictly need-to-know basis and with appropriate safeguards in place. We may disclose your data to: client organisations for whom we are conducting a specific search mandate, but only with your knowledge and agreement prior to submission; assessment providers and professional advisors engaged in the delivery of a mandate, bound by confidentiality obligations; regulatory authorities, law enforcement bodies, or courts where required by applicable law; and successors or acquirers of our business, in the event of a merger, acquisition, or restructuring.",
-      "We do not disclose personal data to clients or third parties without your prior awareness. Where you are a candidate being considered for a position, we will inform you before presenting your details to a client.",
-      "Third-party service providers acting as data processors on our behalf are subject to binding contractual obligations to process data only on our instructions and in accordance with applicable data protection law.",
+      "Where the GDPR applies, we rely on one or more of the following legal bases to process your personal data: performance of a contract (for example, delivering a search mandate); our legitimate interests (for example, maintaining a candidate database or improving our services), provided these interests are not overridden by your rights; compliance with a legal obligation; and, where required, your consent, which you may withdraw at any time.",
+    ],
+  },
+  {
+    id: "candidate-client-data",
+    num: "06",
+    title: "Candidate and Client Data",
+    content: [
+      "As an executive search firm, we process candidate data to evaluate suitability for specific roles and to build long-term talent relationships. We may retain candidate profiles beyond a single mandate so that we can consider you for future opportunities, unless you ask us not to. We share candidate information with client organisations only to the extent necessary to progress a specific mandate, and we take reasonable steps to ensure candidates are informed before their profile is shared with a named client.",
+    ],
+  },
+  {
+    id: "disclosure-sharing",
+    num: "07",
+    title: "Disclosure and Sharing of Information",
+    content: ["We do not sell personal data. We may share personal data with:"],
+    list: [
+      "Client organisations, in connection with a specific search mandate.",
+      "Service providers who support our operations, such as IT hosting, email and database providers, under appropriate confidentiality and data protection terms.",
+      "Professional advisers, including legal, tax and audit advisers, where necessary.",
+      "Regulators, courts or law enforcement, where required by law.",
+      "A successor entity, in the event of a merger, acquisition or restructuring of our business.",
+    ],
+  },
+  {
+    id: "international-transfers",
+    num: "08",
+    title: "International Data Transfers",
+    content: [
+      "Given the global nature of our client and candidate base, personal data may be transferred to, stored, and processed in countries other than the country in which it was originally collected, including countries that may not have data protection laws equivalent to those in your home jurisdiction. Where we transfer personal data internationally, we use appropriate safeguards, such as standard contractual clauses or equivalent mechanisms recognised under applicable law, to protect that data.",
     ],
   },
   {
     id: "retention",
-    num: "06",
+    num: "09",
     title: "Data Retention",
     content: [
-      "We retain personal data for as long as is reasonably necessary to fulfil the purposes for which it was collected, and in accordance with our legitimate interests as an executive search firm.",
-      "Candidate profiles and professional records are typically retained for a period of seven years from the date of last meaningful engagement, unless you request earlier deletion. This retention period reflects the long-term, relationship-based nature of executive search, where individuals may be considered for multiple mandates over time.",
-      "Where data is held solely on the basis of consent, we will delete or anonymise it promptly upon withdrawal of that consent. Where we have a legal obligation to retain records (such as financial records or records relating to completed contracts), we will retain them for the period prescribed by applicable law.",
-      "We periodically review our data holdings and remove or anonymise records that are no longer necessary.",
+      "We retain personal data for as long as necessary to fulfil the purposes described in this Policy, including maintaining an active candidate pipeline, complying with legal and regulatory obligations, and resolving disputes. Retention periods vary depending on the nature of the data and the requirements of applicable law. You may ask us to review or delete your data at any time, as described in Section 9 — Your Rights.",
     ],
   },
   {
     id: "your-rights",
-    num: "07",
+    num: "10",
     title: "Your Rights",
     content: [
-      "Subject to applicable data protection law, you have the following rights in respect of your personal data held by us:",
-      "Right of access: to request a copy of the personal data we hold about you. Right to rectification: to request correction of inaccurate or incomplete data. Right to erasure: to request deletion of your personal data in certain circumstances. Right to restriction: to request that we limit the processing of your data in certain circumstances. Right to object: to object to processing carried out on the basis of our legitimate interests. Right to data portability: to receive your personal data in a structured, commonly used, and machine-readable format. Right to withdraw consent: where processing is based on consent, to withdraw that consent at any time.",
-      "To exercise any of these rights, please contact us at privacy@pivotedgegroup.com. We will respond within 30 days. We may ask you to verify your identity before acting on a request. You also have the right to lodge a complaint with the relevant supervisory authority in your jurisdiction.",
+      "Depending on where you are located, you may have some or all of the following rights in relation to your personal data:",
     ],
+    list: [
+      "Access – to obtain a copy of the personal data we hold about you.",
+      "Correction – to request that inaccurate or incomplete data be corrected.",
+      "Erasure – to request deletion of your personal data, subject to legal and contractual limits.",
+      "Restriction or objection – to restrict or object to certain processing of your data.",
+      "Portability – to receive your data in a structured, commonly used format.",
+      "Withdrawal of consent – where processing is based on consent, to withdraw it at any time.",
+      "Grievance redressal – for individuals in India, the right to lodge a complaint with our Grievance Officer and, thereafter, with the Data Protection Board of India under the DPDP Act.",
+      "Complaint to a supervisory authority – for individuals in the EU/UK, the right to lodge a complaint with your local data protection authority.",
+    ],
+    after:
+      "To exercise any of these rights, please contact us using the details in Section 14 — Contact Us. We will respond within the timeframe required by applicable law.",
   },
   {
     id: "security",
-    num: "08",
+    num: "11",
     title: "Data Security",
     content: [
-      "We take the security of personal data seriously and implement appropriate technical and organisational measures to protect against unauthorised access, disclosure, alteration, or destruction. These measures include access controls and authentication requirements, encryption of data in transit and at rest, regular security reviews and staff training, and confidentiality obligations binding all staff and partners.",
-      "Notwithstanding these measures, no method of electronic transmission or storage is completely secure. We cannot guarantee absolute security and encourage you to take appropriate steps to protect any personal data you share with us.",
+      "We maintain appropriate technical and organisational measures designed to protect personal data against unauthorised access, alteration, disclosure or destruction. These include access controls, encryption where appropriate, and confidentiality obligations for our personnel and service providers. No method of transmission or storage is completely secure, and we cannot guarantee absolute security.",
+    ],
+  },
+  {
+    id: "cookies",
+    num: "12",
+    title: "Cookies and Tracking Technologies",
+    content: [
+      "Our website may use cookies and similar technologies to operate the site, remember your preferences, and understand how visitors use our website. You can control cookies through your browser settings. Disabling cookies may affect the functionality of our website.",
+    ],
+  },
+  {
+    id: "childrens-privacy",
+    num: "13",
+    title: "Children's Privacy",
+    content: [
+      "Our services are directed at working professionals and organisations. We do not knowingly collect personal data from children, and our website is not intended for use by individuals under the age of 18.",
     ],
   },
   {
     id: "changes",
-    num: "09",
-    title: "Changes to This Policy",
+    num: "14",
+    title: "Changes to this Policy",
     content: [
-      "We may update this Privacy Policy from time to time to reflect changes in our practices, legal requirements, or the services we offer. Material changes will be communicated to individuals with whom we have an active relationship. The current version of this policy is always available on our website.",
-      "This policy was last updated in January 2025.",
+      'We may update this Policy from time to time to reflect changes in our practices or legal requirements. The "Effective date" at the top of this Policy indicates when it was last revised. We encourage you to review this Policy periodically.',
+    ],
+  },
+  {
+    id: "contact",
+    num: "15",
+    title: "Contact Us",
+    content: [
+      "If you have questions about this Policy, wish to exercise your data protection rights, or have a complaint about how we handle your personal data, please contact us at:",
+    ],
+    list: [
+      "PivotEdge Partners",
+      "Email: info@pivotedgegroup.com",
+      "Attention: Data Protection / Grievance Officer",
     ],
   },
 ];
 
 export default function PrivacyPolicyPage() {
   const [active, setActive] = useState("introduction");
+  const width = useViewportWidth();
+  const isMobile = width < 640;
+  const isTablet = width < 1024;
 
   return (
     <div style={{ fontFamily: "'Jost', sans-serif", background: T.cream }}>
@@ -148,7 +229,7 @@ export default function PrivacyPolicyPage() {
       <section
         style={{
           background: T.teal,
-          padding: "160px 64px 96px",
+          padding: isMobile ? "112px 24px 64px" : "160px 64px 96px",
           position: "relative",
           overflow: "hidden",
         }}
@@ -163,24 +244,26 @@ export default function PrivacyPolicyPage() {
             pointerEvents: "none",
           }}
         />
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            right: "8%",
-            transform: "translateY(-50%)",
-            fontFamily: "'Cormorant Garamond',serif",
-            fontSize: 280,
-            fontWeight: 300,
-            color: T.white,
-            opacity: 0.03,
-            lineHeight: 1,
-            pointerEvents: "none",
-            userSelect: "none",
-          }}
-        >
-          PP
-        </div>
+        {!isMobile && (
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              right: "8%",
+              transform: "translateY(-50%)",
+              fontFamily: "'Cormorant Garamond',serif",
+              fontSize: 280,
+              fontWeight: 300,
+              color: T.white,
+              opacity: 0.03,
+              lineHeight: 1,
+              pointerEvents: "none",
+              userSelect: "none",
+            }}
+          >
+            PP
+          </div>
+        )}
         <div
           style={{
             maxWidth: 1200,
@@ -229,14 +312,14 @@ export default function PrivacyPolicyPage() {
             style={{
               marginTop: 40,
               display: "flex",
-              gap: 32,
+              gap: isMobile ? 20 : 32,
               flexWrap: "wrap",
             }}
           >
             {[
-              { label: "Effective Date", value: "January 2025" },
+              { label: "Effective Date", value: "25 July 2026" },
               { label: "Jurisdiction", value: "Global" },
-              { label: "Last Reviewed", value: "January 2025" },
+              { label: "Frameworks", value: "GDPR · DPDP Act" },
             ].map((m) => (
               <div key={m.label}>
                 <div
@@ -272,15 +355,15 @@ export default function PrivacyPolicyPage() {
         style={{
           maxWidth: 1200,
           margin: "0 auto",
-          padding: "80px 64px 120px",
+          padding: isMobile ? "56px 20px 72px" : "80px 64px 120px",
           display: "grid",
-          gridTemplateColumns: "260px 1fr",
-          gap: 80,
+          gridTemplateColumns: isTablet ? "1fr" : "260px 1fr",
+          gap: isMobile ? 40 : isTablet ? 56 : 80,
           alignItems: "start",
         }}
       >
         {/* Sticky sidebar */}
-        <div style={{ position: "sticky", top: 100 }}>
+        <div style={isTablet ? undefined : { position: "sticky", top: 100 }}>
           <div
             style={{
               fontFamily: "'Jost',sans-serif",
@@ -375,7 +458,7 @@ export default function PrivacyPolicyPage() {
               enquiries.
             </p>
             <div style={{ fontSize: 11, color: T.teal, fontWeight: 400 }}>
-              privacy@pivotedgegroup.com
+              info@pivotedgegroup.com
             </div>
           </div>
         </div>
@@ -403,14 +486,14 @@ export default function PrivacyPolicyPage() {
                   style={{
                     display: "flex",
                     alignItems: "flex-start",
-                    gap: 20,
+                    gap: isMobile ? 12 : 20,
                     marginBottom: 24,
                   }}
                 >
                   <span
                     style={{
                       fontFamily: "'Cormorant Garamond',serif",
-                      fontSize: 32,
+                      fontSize: isMobile ? 22 : 32,
                       fontWeight: 300,
                       color: T.gold,
                       opacity: 0.4,
@@ -424,10 +507,10 @@ export default function PrivacyPolicyPage() {
                   <h2
                     style={{
                       fontFamily: "'Cormorant Garamond',serif",
-                      fontSize: "clamp(24px,2.8vw,36px)",
+                      fontSize: "clamp(22px,2.8vw,36px)",
                       fontWeight: 300,
                       color: T.teal,
-                      lineHeight: 1.1,
+                      lineHeight: 1.15,
                       margin: 0,
                     }}
                   >
@@ -441,10 +524,47 @@ export default function PrivacyPolicyPage() {
                     background: T.gold,
                     opacity: 0.5,
                     marginBottom: 24,
-                    marginLeft: 52,
+                    marginLeft: isMobile ? 34 : 52,
                   }}
                 />
-                <div style={{ paddingLeft: 52 }}>
+                <div style={{ paddingLeft: isMobile ? 34 : 52 }}>
+                  {s.listBefore && s.list && (
+                    <ul
+                      style={{
+                        margin: 0,
+                        padding: 0,
+                        listStyle: "none",
+                        marginBottom: s.content.length ? 18 : 0,
+                      }}
+                    >
+                      {s.list.map((item, li) => (
+                        <li
+                          key={li}
+                          style={{
+                            display: "flex",
+                            alignItems: "flex-start",
+                            gap: 12,
+                            fontSize: 14,
+                            fontWeight: 300,
+                            lineHeight: 1.9,
+                            color: T.textMid,
+                            marginBottom: li < s.list.length - 1 ? 14 : 0,
+                          }}
+                        >
+                          <span
+                            style={{
+                              color: T.gold,
+                              flexShrink: 0,
+                              marginTop: 2,
+                            }}
+                          >
+                            —
+                          </span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                   {s.content.map((para, pi) => (
                     <p
                       key={pi}
@@ -453,12 +573,65 @@ export default function PrivacyPolicyPage() {
                         fontWeight: 300,
                         lineHeight: 1.9,
                         color: T.textMid,
-                        marginBottom: pi < s.content.length - 1 ? 18 : 0,
+                        marginBottom:
+                          pi < s.content.length - 1 || (s.list && !s.listBefore)
+                            ? 18
+                            : 0,
                       }}
                     >
                       {para}
                     </p>
                   ))}
+                  {!s.listBefore && s.list && (
+                    <ul
+                      style={{
+                        margin: 0,
+                        padding: 0,
+                        listStyle: "none",
+                        marginBottom: s.after ? 18 : 0,
+                      }}
+                    >
+                      {s.list.map((item, li) => (
+                        <li
+                          key={li}
+                          style={{
+                            display: "flex",
+                            alignItems: "flex-start",
+                            gap: 12,
+                            fontSize: 14,
+                            fontWeight: 300,
+                            lineHeight: 1.9,
+                            color: T.textMid,
+                            marginBottom: li < s.list.length - 1 ? 14 : 0,
+                          }}
+                        >
+                          <span
+                            style={{
+                              color: T.gold,
+                              flexShrink: 0,
+                              marginTop: 2,
+                            }}
+                          >
+                            —
+                          </span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {s.after && (
+                    <p
+                      style={{
+                        fontSize: 14,
+                        fontWeight: 300,
+                        lineHeight: 1.9,
+                        color: T.textMid,
+                        margin: 0,
+                      }}
+                    >
+                      {s.after}
+                    </p>
+                  )}
                 </div>
               </div>
             </Fade>
@@ -468,7 +641,7 @@ export default function PrivacyPolicyPage() {
           <Fade>
             <div
               style={{
-                padding: "32px 40px",
+                padding: isMobile ? "24px 20px" : "32px 40px",
                 background: T.teal,
                 borderLeft: `3px solid ${T.gold}`,
               }}
@@ -497,7 +670,7 @@ export default function PrivacyPolicyPage() {
               <p
                 style={{
                   fontFamily: "'Cormorant Garamond',serif",
-                  fontSize: 18,
+                  fontSize: isMobile ? 16 : 18,
                   fontStyle: "italic",
                   fontWeight: 300,
                   color: "rgba(245,240,232,0.85)",

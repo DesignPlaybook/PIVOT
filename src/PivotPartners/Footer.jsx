@@ -117,7 +117,7 @@ export default function Footer({ setPage }) {
 
   const legalLinks = [
     { label: "Privacy Policy", page: "Privacy" },
-    { label: "Disclaimer", page: "Disclaimer" },
+    { label: "Terms & Conditions", page: "Disclaimer" },
   ];
 
   const handleNav = (page) => {

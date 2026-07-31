@@ -2,6 +2,25 @@ import { useState, useEffect, useRef } from "react";
 import { T } from "./tokens";
 import { SectionLabel } from "./utils";
 import AI from "./AI.svg";
+import industry from "../assets/Icons/industry.svg";
+import realEstate from "../assets/Icons/realEstate.svg";
+import consumer from "../assets/Icons/consumer.svg";
+import healtcareAndLifeSci from "../assets/Icons/healtcare&LifeSci.svg";
+import bankingAndFin from "../assets/Icons/bankingAndFin.svg";
+import telecom from "../assets/Icons/telecom.svg";
+
+/* Order must match the `industries` array below:
+   0 Industrial · 1 Real Estate & Infrastructure · 2 Consumer ·
+   3 Healthcare & Life Sciences · 4 Banking & Financial Services ·
+   5 Technology, Media & Telecom */
+const industryIllustrations = [
+  industry,
+  realEstate,
+  consumer,
+  healtcareAndLifeSci,
+  bankingAndFin,
+  telecom,
+];
 
 /* ─── Shared IntersectionObserver hook ─── */
 function useIO(threshold = 0) {
@@ -72,397 +91,6 @@ function Counter({ target, suffix = "" }) {
     </span>
   );
 }
-
-/* ══════════════════════════════════════════════════════
-   SECTION ILLUSTRATIONS — clean SVG, teal + gold palette
-══════════════════════════════════════════════════════ */
-
-const IndustryIllustration = ({ index }) => {
-  const illustrations = [
-    /* 0 — Industrial */
-    <svg
-      key={0}
-      viewBox="0 0 120 100"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle
-        cx="48"
-        cy="48"
-        r="22"
-        stroke="#0D3D4E"
-        strokeWidth="2"
-        opacity="0.15"
-      />
-      <circle
-        cx="48"
-        cy="48"
-        r="14"
-        stroke="#B8962E"
-        strokeWidth="1.5"
-        opacity="0.6"
-      />
-      <circle cx="48" cy="48" r="5" fill="#B8962E" opacity="0.8" />
-      {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
-        const a = (i / 8) * Math.PI * 2;
-        const x1 = 48 + 17 * Math.cos(a),
-          y1 = 48 + 17 * Math.sin(a);
-        const x2 = 48 + 22 * Math.cos(a),
-          y2 = 48 + 22 * Math.sin(a);
-        return (
-          <line
-            key={i}
-            x1={x1}
-            y1={y1}
-            x2={x2}
-            y2={y2}
-            stroke="#0D3D4E"
-            strokeWidth="4"
-            opacity="0.18"
-            strokeLinecap="round"
-          />
-        );
-      })}
-      <rect x="78" y="72" width="8" height="22" fill="#B8962E" opacity="0.5" />
-      <rect x="90" y="62" width="8" height="32" fill="#B8962E" opacity="0.7" />
-      <rect x="102" y="54" width="8" height="40" fill="#B8962E" opacity="0.4" />
-      <line
-        x1="75"
-        y1="94"
-        x2="114"
-        y2="94"
-        stroke="#0D3D4E"
-        strokeWidth="1"
-        opacity="0.2"
-      />
-    </svg>,
-    /* 1 — Real Estate */
-    <svg
-      key={1}
-      viewBox="0 0 120 100"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        x="20"
-        y="50"
-        width="20"
-        height="44"
-        fill="#0D3D4E"
-        opacity="0.12"
-        stroke="#0D3D4E"
-        strokeWidth="1.2"
-      />
-      <rect
-        x="44"
-        y="30"
-        width="28"
-        height="64"
-        fill="#0D3D4E"
-        opacity="0.18"
-        stroke="#0D3D4E"
-        strokeWidth="1.2"
-      />
-      <rect
-        x="76"
-        y="42"
-        width="22"
-        height="52"
-        fill="#0D3D4E"
-        opacity="0.12"
-        stroke="#0D3D4E"
-        strokeWidth="1.2"
-      />
-      <rect x="50" y="24" width="6" height="6" fill="#B8962E" opacity="0.8" />
-      {[
-        [26, 58],
-        [30, 58],
-        [26, 68],
-        [30, 68],
-        [49, 40],
-        [49, 50],
-        [57, 40],
-        [57, 50],
-        [81, 52],
-        [85, 52],
-        [81, 62],
-        [85, 62],
-      ].map(([x, y], i) => (
-        <rect
-          key={i}
-          x={x}
-          y={y}
-          width="4"
-          height="4"
-          fill="#B8962E"
-          opacity="0.35"
-        />
-      ))}
-      <line
-        x1="15"
-        y1="94"
-        x2="105"
-        y2="94"
-        stroke="#B8962E"
-        strokeWidth="1"
-        opacity="0.4"
-      />
-    </svg>,
-    /* 2 — Consumer */
-    <svg
-      key={2}
-      viewBox="0 0 120 100"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M35 42 L30 88 L90 88 L85 42 Z"
-        stroke="#0D3D4E"
-        strokeWidth="1.5"
-        fill="#0D3D4E"
-        opacity="0.08"
-      />
-      <path
-        d="M42 42 Q42 28 60 28 Q78 28 78 42"
-        stroke="#0D3D4E"
-        strokeWidth="1.8"
-        fill="none"
-        opacity="0.3"
-      />
-      <circle cx="45" cy="88" r="4" fill="#B8962E" opacity="0.7" />
-      <circle cx="75" cy="88" r="4" fill="#B8962E" opacity="0.7" />
-      <polyline
-        points="22,72 40,52 56,62 72,38 90,28"
-        stroke="#B8962E"
-        strokeWidth="2"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        opacity="0.8"
-      />
-      <circle cx="90" cy="28" r="4" fill="#B8962E" opacity="0.9" />
-      <polyline
-        points="82,28 90,28 90,36"
-        stroke="#B8962E"
-        strokeWidth="1.5"
-        fill="none"
-        strokeLinecap="round"
-      />
-    </svg>,
-    /* 3 — Healthcare */
-    <svg
-      key={3}
-      viewBox="0 0 120 100"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle
-        cx="60"
-        cy="50"
-        r="36"
-        stroke="#0D3D4E"
-        strokeWidth="1"
-        opacity="0.1"
-        strokeDasharray="4 6"
-      />
-      <rect
-        x="50"
-        y="26"
-        width="20"
-        height="48"
-        rx="2"
-        fill="#0D3D4E"
-        opacity="0.1"
-        stroke="#0D3D4E"
-        strokeWidth="1.5"
-      />
-      <rect
-        x="36"
-        y="40"
-        width="48"
-        height="20"
-        rx="2"
-        fill="#0D3D4E"
-        opacity="0.1"
-        stroke="#0D3D4E"
-        strokeWidth="1.5"
-      />
-      <rect
-        x="53"
-        y="32"
-        width="14"
-        height="36"
-        rx="1"
-        fill="#B8962E"
-        opacity="0.25"
-      />
-      <rect
-        x="39"
-        y="43"
-        width="42"
-        height="14"
-        rx="1"
-        fill="#B8962E"
-        opacity="0.25"
-      />
-      <polyline
-        points="20,78 32,78 40,58 50,88 60,68 70,78 80,68 90,78 100,78"
-        stroke="#B8962E"
-        strokeWidth="2"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        opacity="0.7"
-      />
-    </svg>,
-    /* 4 — Banking */
-    <svg
-      key={4}
-      viewBox="0 0 120 100"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect x="22" y="40" width="76" height="4" fill="#0D3D4E" opacity="0.2" />
-      <rect x="22" y="84" width="76" height="4" fill="#0D3D4E" opacity="0.2" />
-      <rect
-        x="22"
-        y="30"
-        width="76"
-        height="10"
-        fill="#0D3D4E"
-        opacity="0.12"
-        stroke="#0D3D4E"
-        strokeWidth="1"
-      />
-      {[30, 46, 62, 78].map((x, i) => (
-        <rect
-          key={i}
-          x={x}
-          y={44}
-          width="8"
-          height="40"
-          fill="#0D3D4E"
-          opacity="0.1"
-          stroke="#0D3D4E"
-          strokeWidth="1"
-        />
-      ))}
-      <ellipse
-        cx="88"
-        cy="70"
-        rx="16"
-        ry="6"
-        fill="none"
-        stroke="#B8962E"
-        strokeWidth="1.5"
-        opacity="0.7"
-      />
-      <ellipse
-        cx="88"
-        cy="64"
-        rx="16"
-        ry="6"
-        fill="#EDE8DE"
-        stroke="#B8962E"
-        strokeWidth="1.5"
-        opacity="0.9"
-      />
-      <ellipse
-        cx="88"
-        cy="58"
-        rx="16"
-        ry="6"
-        fill="#EDE8DE"
-        stroke="#B8962E"
-        strokeWidth="1.5"
-        opacity="0.9"
-      />
-      <text
-        x="88"
-        y="62"
-        textAnchor="middle"
-        style={{
-          fontFamily: "serif",
-          fontSize: 9,
-          fill: "#B8962E",
-          opacity: 0.9,
-        }}
-      >
-        ₤
-      </text>
-    </svg>,
-    /* 5 — TMT */
-    <svg
-      key={5}
-      viewBox="0 0 120 100"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="60" cy="54" r="8" fill="#B8962E" opacity="0.8" />
-      <circle
-        cx="60"
-        cy="54"
-        r="18"
-        fill="none"
-        stroke="#B8962E"
-        strokeWidth="1"
-        opacity="0.4"
-        strokeDasharray="3 4"
-      />
-      <circle
-        cx="60"
-        cy="54"
-        r="30"
-        fill="none"
-        stroke="#0D3D4E"
-        strokeWidth="1"
-        opacity="0.15"
-        strokeDasharray="3 6"
-      />
-      <circle
-        cx="60"
-        cy="54"
-        r="42"
-        fill="none"
-        stroke="#0D3D4E"
-        strokeWidth="1"
-        opacity="0.08"
-        strokeDasharray="2 8"
-      />
-      {[
-        [20, 30],
-        [95, 25],
-        [15, 75],
-        [100, 72],
-        [55, 12],
-      ].map(([x, y], i) => (
-        <g key={i}>
-          <circle
-            cx={x}
-            cy={y}
-            r="5"
-            fill="none"
-            stroke="#0D3D4E"
-            strokeWidth="1.2"
-            opacity="0.3"
-          />
-          <circle cx={x} cy={y} r="2" fill="#B8962E" opacity="0.5" />
-          <line
-            x1={x}
-            y1={y}
-            x2={60}
-            y2={54}
-            stroke="#B8962E"
-            strokeWidth="0.8"
-            opacity="0.2"
-            strokeDasharray="3 4"
-          />
-        </g>
-      ))}
-    </svg>,
-  ];
-  return illustrations[index] || illustrations[0];
-};
 
 const FunctionIllustration = ({ name }) => {
   const map = {
@@ -1062,8 +690,16 @@ function IndustryAccordion({ industries }) {
                     paddingLeft: 40,
                   }}
                 >
-                  <div style={{ width: 100, height: 84, marginBottom: 20 }}>
-                    <IndustryIllustration index={i} />
+                  <div style={{ width: 220, height: 180, marginBottom: 20 }}>
+                    <img
+                      src={industryIllustrations[i]}
+                      alt={ind.name}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                      }}
+                    />
                   </div>
                   <p
                     style={{

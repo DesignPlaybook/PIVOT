@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { SectionLabel } from "./utils"; // Assuming your utils folder
 import { T } from "./tokens"; // Assuming your design tokens
 import { useRef, useEffect } from "react";
+import careersHero from "../assets/images/careershero.jpeg";
 
 /* ─── Shared Intersection Observer (from your Domains ref) ─── */
 function useIO(threshold = 0) {
@@ -90,7 +91,7 @@ export default function CareersPage({ setPage }) {
         }}
       >
         <img
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&q=85"
+          src={careersHero}
           alt="Office"
           style={{
             position: "absolute",
@@ -214,10 +215,10 @@ export default function CareersPage({ setPage }) {
 
       {/* ── 2. FOR LEADERSHIP PROFESSIONALS (CANDIDATES) ── */}
       <section
-  className="submit-profile-section"
-  style={{ padding: "120px 64px", maxWidth: 1200, margin: "0 auto" }}
->
-  <style>{`
+        className="submit-profile-section"
+        style={{ padding: "120px 64px", maxWidth: 1200, margin: "0 auto" }}
+      >
+        <style>{`
     @media (max-width: 768px) {
       .submit-profile-section {
         padding: 72px 24px !important;
@@ -232,160 +233,160 @@ export default function CareersPage({ setPage }) {
     }
   `}</style>
 
-  <div
-    className="submit-profile-grid"
-    style={{
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: "100px",
-    }}
-  >
-    <Fade>
-      <SectionLabel text="For Leadership Professionals" />
-      <h2
-        style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: "38px",
-          fontWeight: 300,
-          color: "#0D3D4E",
-          marginBottom: "32px",
-        }}
-      >
-        Your Next Opportunity May Not Yet Be Advertised.
-      </h2>
-      <p
-        style={{
-          fontSize: "15px",
-          lineHeight: "1.8",
-          color: "#4A5568",
-          marginBottom: "24px",
-        }}
-      >
-        Many of the leadership assignments we undertake are conducted on a
-        strictly confidential basis. As a result, some of the most
-        compelling opportunities never appear on public job boards.
-      </p>
-      <p
-        style={{
-          fontSize: "15px",
-          lineHeight: "1.8",
-          color: "#4A5568",
-          marginBottom: "32px",
-        }}
-      >
-        We maintain ongoing relationships with senior executives across
-        sectors. By sharing your profile, you become part of a trusted
-        network we engage when relevant mandates arise.
-      </p>
-
-      <div style={{ marginTop: "40px" }}>
-        <p
-          style={{
-            fontFamily: "'Jost', sans-serif",
-            fontSize: "11px",
-            letterSpacing: "0.1em",
-            textTransform: "uppercase",
-            color: "#B8962E",
-            marginBottom: "16px",
-          }}
-        >
-          Typical Leadership Mandates
-        </p>
         <div
+          className="submit-profile-grid"
           style={{
-            display: "flex",
-            flexWrap: "wrap",
-            marginLeft: "-4px",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "100px",
           }}
         >
-          {[
-            "Board Directors",
-            "Chief Executive Officers",
-            "Chief Financial Officers",
-            "Chief Human Resources Officers",
-            "Business Unit Heads",
-            "AI & Digital Leaders",
-          ].map((role) => (
-            <span key={role} className="role-tag">
-              {role}
-            </span>
-          ))}
+          <Fade>
+            <SectionLabel text="For Leadership Professionals" />
+            <h2
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: "38px",
+                fontWeight: 300,
+                color: "#0D3D4E",
+                marginBottom: "32px",
+              }}
+            >
+              Your Next Opportunity May Not Yet Be Advertised.
+            </h2>
+            <p
+              style={{
+                fontSize: "15px",
+                lineHeight: "1.8",
+                color: "#4A5568",
+                marginBottom: "24px",
+              }}
+            >
+              Many of the leadership assignments we undertake are conducted on a
+              strictly confidential basis. As a result, some of the most
+              compelling opportunities never appear on public job boards.
+            </p>
+            <p
+              style={{
+                fontSize: "15px",
+                lineHeight: "1.8",
+                color: "#4A5568",
+                marginBottom: "32px",
+              }}
+            >
+              We maintain ongoing relationships with senior executives across
+              sectors. By sharing your profile, you become part of a trusted
+              network we engage when relevant mandates arise.
+            </p>
+
+            <div style={{ marginTop: "40px" }}>
+              <p
+                style={{
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: "11px",
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  color: "#B8962E",
+                  marginBottom: "16px",
+                }}
+              >
+                Typical Leadership Mandates
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  marginLeft: "-4px",
+                }}
+              >
+                {[
+                  "Board Directors",
+                  "Chief Executive Officers",
+                  "Chief Financial Officers",
+                  "Chief Human Resources Officers",
+                  "Business Unit Heads",
+                  "AI & Digital Leaders",
+                ].map((role) => (
+                  <span key={role} className="role-tag">
+                    {role}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Fade>
+
+          <Fade delay={200}>
+            <div
+              className="submit-profile-card"
+              style={{
+                background: "#EDE8DE",
+                padding: "60px",
+                border: "1px solid rgba(13,61,78,0.05)",
+              }}
+            >
+              <h3
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "24px",
+                  color: "#010203",
+                  marginBottom: "12px",
+                }}
+              >
+                Submit Your Profile
+              </h3>
+              <p
+                style={{
+                  fontSize: "14px",
+                  color: "#7A8694",
+                  marginBottom: "32px",
+                }}
+              >
+                All profiles are handled with the highest degree of professional
+                discretion.
+              </p>
+
+              <div className="upload-zone">
+                <div
+                  style={{
+                    color: "#B8962E",
+                    fontSize: "32px",
+                    marginBottom: "12px",
+                  }}
+                >
+                  ↑
+                </div>
+                <p
+                  style={{
+                    fontFamily: "'Jost', sans-serif",
+                    fontSize: "12px",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                    color: "#0D3D4E",
+                  }}
+                >
+                  Drop Resume / CV here
+                </p>
+                <p
+                  style={{
+                    fontSize: "11px",
+                    color: "#7A8694",
+                    marginTop: "8px",
+                  }}
+                >
+                  PDF or Word (Max 5MB)
+                </p>
+              </div>
+
+              <button
+                className="btn btn-teal"
+                style={{ width: "100%", marginTop: "24px" }}
+              >
+                <span>Connect with a Consultant</span>
+              </button>
+            </div>
+          </Fade>
         </div>
-      </div>
-    </Fade>
-
-    <Fade delay={200}>
-      <div
-        className="submit-profile-card"
-        style={{
-          background: "#EDE8DE",
-          padding: "60px",
-          border: "1px solid rgba(13,61,78,0.05)",
-        }}
-      >
-        <h3
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "24px",
-            color: "#010203",
-            marginBottom: "12px",
-          }}
-        >
-          Submit Your Profile
-        </h3>
-        <p
-          style={{
-            fontSize: "14px",
-            color: "#7A8694",
-            marginBottom: "32px",
-          }}
-        >
-          All profiles are handled with the highest degree of professional
-          discretion.
-        </p>
-
-        <div className="upload-zone">
-          <div
-            style={{
-              color: "#B8962E",
-              fontSize: "32px",
-              marginBottom: "12px",
-            }}
-          >
-            ↑
-          </div>
-          <p
-            style={{
-              fontFamily: "'Jost', sans-serif",
-              fontSize: "12px",
-              textTransform: "uppercase",
-              letterSpacing: "0.1em",
-              color: "#0D3D4E",
-            }}
-          >
-            Drop Resume / CV here
-          </p>
-          <p
-            style={{
-              fontSize: "11px",
-              color: "#7A8694",
-              marginTop: "8px",
-            }}
-          >
-            PDF or Word (Max 5MB)
-          </p>
-        </div>
-
-        <button
-          className="btn btn-teal"
-          style={{ width: "100%", marginTop: "24px" }}
-        >
-          <span>Connect with a Consultant</span>
-        </button>
-      </div>
-    </Fade>
-  </div>
-</section>
+      </section>
 
       {/* ── 3. JOIN THE TEAM (INTERNAL) ── */}
       <section style={{ background: "#0D3D4E", padding: "120px 64px" }}>
@@ -419,15 +420,15 @@ export default function CareersPage({ setPage }) {
           </Fade>
 
           <div
-  className="career-roles-grid"
-  style={{
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr 1fr",
-    gap: "2px",
-    background: "rgba(245,240,232,0.1)",
-  }}
->
-  <style>{`
+            className="career-roles-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 1fr",
+              gap: "2px",
+              background: "rgba(245,240,232,0.1)",
+            }}
+          >
+            <style>{`
     @media (max-width: 1024px) and (min-width: 769px) {
       .career-roles-grid {
         grid-template-columns: 1fr 1fr !important;
@@ -440,51 +441,51 @@ export default function CareersPage({ setPage }) {
     }
   `}</style>
 
-  {[
-    {
-      title: "Executive Search",
-      desc: "Consultative roles focusing on client mandates and candidate evaluation.",
-    },
-    {
-      title: "Research & Intelligence",
-      desc: "Data-driven roles mapping markets and identifying leadership trends.",
-    },
-    {
-      title: "Operations",
-      desc: "Crucial roles ensuring process precision and client service excellence.",
-    },
-  ].map((item, i) => (
-    <Fade key={i} delay={i * 100}>
-      <div
-        style={{
-          background: "#0D3D4E",
-          padding: "48px 32px",
-          height: "100%",
-        }}
-      >
-        <h4
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "22px",
-            color: "#B8962E",
-            marginBottom: "16px",
-          }}
-        >
-          {item.title}
-        </h4>
-        <p
-          style={{
-            fontSize: "14px",
-            color: "rgba(245,240,232,0.5)",
-            lineHeight: "1.6",
-          }}
-        >
-          {item.desc}
-        </p>
-      </div>
-    </Fade>
-  ))}
-</div>
+            {[
+              {
+                title: "Executive Search",
+                desc: "Consultative roles focusing on client mandates and candidate evaluation.",
+              },
+              {
+                title: "Research & Intelligence",
+                desc: "Data-driven roles mapping markets and identifying leadership trends.",
+              },
+              {
+                title: "Operations",
+                desc: "Crucial roles ensuring process precision and client service excellence.",
+              },
+            ].map((item, i) => (
+              <Fade key={i} delay={i * 100}>
+                <div
+                  style={{
+                    background: "#0D3D4E",
+                    padding: "48px 32px",
+                    height: "100%",
+                  }}
+                >
+                  <h4
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontSize: "22px",
+                      color: "#B8962E",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    {item.title}
+                  </h4>
+                  <p
+                    style={{
+                      fontSize: "14px",
+                      color: "rgba(245,240,232,0.5)",
+                      lineHeight: "1.6",
+                    }}
+                  >
+                    {item.desc}
+                  </p>
+                </div>
+              </Fade>
+            ))}
+          </div>
 
           <Fade delay={400}>
             <div style={{ marginTop: "64px" }}>

@@ -7,6 +7,11 @@ import leader from "./leader.svg";
 import Research from "./Research.svg";
 import GlobalPresence from "./GlobalPresence";
 import OurApproach from "./OurApproach";
+import advisory4 from "../assets/images/advisory4.jpeg";
+import ceo from "../assets/Icons/ceo.svg";
+import boardIcon from "../assets/Icons/boardIcon.svg";
+import aiEmergence from "../assets/Icons/aiEmergence.svg";
+import functionalLeaders from "../assets/Icons/functionalLeaders.svg";
 
 const ABOUT_CSS = `
   .ab-hero-img { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%; }
@@ -207,140 +212,34 @@ function Acc({ title, index, children, openAcc, setOpenAcc }) {
 ══════════════════════════════════════════════════════════ */
 
 const BoardsIcon = () => (
-  <svg
-    width="160"
-    height="160"
-    viewBox="0 0 160 160"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    {/* Large oval boardroom table */}
-    <ellipse
-      cx="80"
-      cy="95"
-      rx="52"
-      ry="22"
-      stroke="#0D3D4E"
-      strokeWidth="2"
-      fill="#EDE8DE"
-    />
-    {/* Table surface shine */}
-    <ellipse cx="72" cy="90" rx="28" ry="9" fill="rgba(255,255,255,0.4)" />
-    {/* 5 chair figures around table */}
-    {[0, 1, 2, 3, 4].map((i) => {
-      const angle = (i / 5) * Math.PI * 2 - Math.PI / 2;
-      const px = 80 + 68 * Math.cos(angle);
-      const py = 95 + 32 * Math.sin(angle);
-      return (
-        <g key={i}>
-          {/* Body */}
-          <ellipse
-            cx={px}
-            cy={py}
-            rx="7"
-            ry="9"
-            fill="#0D3D4E"
-            opacity="0.15"
-          />
-          {/* Head */}
-          <circle cx={px} cy={py - 14} r="6" fill="#0D3D4E" opacity="0.25" />
-          {/* Connection line to table */}
-          <line
-            x1={px}
-            y1={py - 5}
-            x2={80 + 52 * Math.cos(angle) * 0.92}
-            y2={95 + 22 * Math.sin(angle) * 0.92}
-            stroke="#0D3D4E"
-            strokeWidth="1"
-            opacity="0.12"
-          />
-        </g>
-      );
-    })}
-    {/* Gold center accent */}
-    <circle cx="80" cy="95" r="7" fill="#B8962E" opacity="0.7" />
-    <circle cx="80" cy="95" r="3" fill="#B8962E" />
-    {/* Gold governance rays */}
-    {[0, 1, 2, 3, 4].map((i) => {
-      const angle = (i / 5) * Math.PI * 2;
-      return (
-        <line
-          key={i}
-          x1="80"
-          y1="95"
-          x2={80 + 22 * Math.cos(angle)}
-          y2={95 + 10 * Math.sin(angle)}
-          stroke="#B8962E"
-          strokeWidth="1"
-          opacity="0.35"
-        />
-      );
-    })}
-  </svg>
+  <img
+    src={boardIcon}
+    alt="boardIcon"
+    style={{
+      width: "200px",
+      height: "160px",
+      objectFit: "contain",
+      display: "block",
+    }}
+  />
 );
 
 const CEOIcon = () => (
-  <svg
-    width="160"
-    height="160"
-    viewBox="0 0 160 160"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    {/* Person silhouette */}
-    <circle cx="80" cy="54" r="22" fill="#0D3D4E" opacity="0.12" />
-    <circle
-      cx="80"
-      cy="54"
-      r="22"
-      stroke="#0D3D4E"
-      strokeWidth="2"
-      fill="none"
-    />
-    {/* Body */}
-    <path
-      d="M46 130 Q46 100 80 100 Q114 100 114 130"
-      stroke="#0D3D4E"
-      strokeWidth="2"
-      fill="#EDE8DE"
-    />
-    {/* Gold crown above head */}
-    <polyline
-      points="56,36 63,20 72,30 80,14 88,30 97,20 104,36"
-      stroke="#B8962E"
-      strokeWidth="2.5"
-      fill="none"
-      strokeLinejoin="round"
-      strokeLinecap="round"
-    />
-    <line x1="56" y1="36" x2="104" y2="36" stroke="#B8962E" strokeWidth="2" />
-    {/* Crown gems */}
-    <circle cx="63" cy="20" r="3" fill="#B8962E" />
-    <circle cx="80" cy="14" r="4" fill="#B8962E" />
-    <circle cx="97" cy="20" r="3" fill="#B8962E" />
-    {/* Direction arrow */}
-    <line
-      x1="80"
-      y1="136"
-      x2="80"
-      y2="148"
-      stroke="#B8962E"
-      strokeWidth="1.5"
-      strokeDasharray="3 2"
-    />
-    <polyline
-      points="74,143 80,149 86,143"
-      stroke="#B8962E"
-      strokeWidth="1.5"
-      fill="none"
-      strokeLinecap="round"
-    />
-  </svg>
+  <img
+    src={ceo}
+    alt="CEO"
+    style={{
+      width: "200px",
+      height: "160px",
+      objectFit: "contain",
+      display: "block",
+    }}
+  />
 );
 
 const FunctionalIcon = () => (
   <img
-    src={leader}
+    src={functionalLeaders}
     alt="Functional Leaders"
     style={{
       width: "200px",
@@ -352,106 +251,16 @@ const FunctionalIcon = () => (
 );
 
 const AIIcon = () => (
-  <svg
-    width="160"
-    height="160"
-    viewBox="0 0 160 160"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    {/* Central brain/circuit hexagon */}
-    <polygon
-      points="80,28 110,46 110,82 80,100 50,82 50,46"
-      stroke="#0D3D4E"
-      strokeWidth="2"
-      fill="#EDE8DE"
-    />
-    {/* Inner grid lines — circuit board feel */}
-    <line
-      x1="50"
-      y1="64"
-      x2="110"
-      y2="64"
-      stroke="#0D3D4E"
-      strokeWidth="1"
-      opacity="0.18"
-    />
-    <line
-      x1="50"
-      y1="82"
-      x2="110"
-      y2="82"
-      stroke="#0D3D4E"
-      strokeWidth="1"
-      opacity="0.18"
-    />
-    <line
-      x1="65"
-      y1="46"
-      x2="65"
-      y2="100"
-      stroke="#0D3D4E"
-      strokeWidth="1"
-      opacity="0.18"
-    />
-    <line
-      x1="95"
-      y1="46"
-      x2="95"
-      y2="100"
-      stroke="#0D3D4E"
-      strokeWidth="1"
-      opacity="0.18"
-    />
-    {/* Center pulsing core */}
-    <circle cx="80" cy="64" r="12" fill="#B8962E" opacity="0.2" />
-    <circle cx="80" cy="64" r="7" fill="#B8962E" opacity="0.5" />
-    <circle cx="80" cy="64" r="3.5" fill="#B8962E" />
-    {/* 6 external nodes with connection lines */}
-    {[0, 1, 2, 3, 4, 5].map((i) => {
-      const angle = (i / 6) * Math.PI * 2 - Math.PI / 2;
-      const r1 = 58,
-        r2 = 74;
-      const x1 = 80 + r1 * Math.cos(angle);
-      const y1 = 64 + r1 * Math.sin(angle);
-      const x2 = 80 + r2 * Math.cos(angle);
-      const y2 = 64 + r2 * Math.sin(angle);
-      return (
-        <g key={i}>
-          <line
-            x1={x1}
-            y1={y1}
-            x2={x2}
-            y2={y2}
-            stroke="#B8962E"
-            strokeWidth="1.5"
-            opacity="0.6"
-            strokeDasharray={i % 2 === 0 ? "none" : "3 2"}
-          />
-          <circle
-            cx={x2}
-            cy={y2}
-            r="5"
-            fill="none"
-            stroke="#B8962E"
-            strokeWidth="1.5"
-            opacity="0.7"
-          />
-          <circle cx={x2} cy={y2} r="2" fill="#B8962E" opacity="0.6" />
-        </g>
-      );
-    })}
-    {/* Outer ring hint */}
-    <circle
-      cx="80"
-      cy="64"
-      r="76"
-      stroke="#B8962E"
-      strokeWidth="0.8"
-      opacity="0.1"
-      strokeDasharray="4 6"
-    />
-  </svg>
+  <img
+    src={aiEmergence}
+    alt="aiEmergence"
+    style={{
+      width: "200px",
+      height: "160px",
+      objectFit: "contain",
+      display: "block",
+    }}
+  />
 );
 
 const ICONS = [<BoardsIcon />, <CEOIcon />, <FunctionalIcon />, <AIIcon />];
@@ -1358,7 +1167,8 @@ export default function AboutPage({ setPage }) {
         }}
       >
         <Wipe
-          src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1000&q=80"
+          // src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1000&q=80"
+          src={advisory4}
           alt="Advisory team"
           style={{ minHeight: 680 }}
         />
@@ -1444,11 +1254,11 @@ export default function AboutPage({ setPage }) {
 
       {/* ══════ 6. HOW WE WORK — image with floating block + accordions ══════ */}
       <section
-  id="how-we-work"
-  className="hww-section"
-  style={{ background: T.cream, padding: "130px 64px" }}
->
-  <style>{`
+        id="how-we-work"
+        className="hww-section"
+        style={{ background: T.cream, padding: "130px 64px" }}
+      >
+        <style>{`
     @media (max-width: 768px) {
       .hww-section {
         padding: 80px 20px !important;
@@ -1478,154 +1288,154 @@ export default function AboutPage({ setPage }) {
     }
   `}</style>
 
-  <div
-    className="hww-grid"
-    style={{
-      maxWidth: 1200,
-      margin: "0 auto",
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: 100,
-      alignItems: "center",
-    }}
-  >
-    {/* image col */}
-    <Fade style={{ position: "relative" }}>
-      <div style={{ position: "relative" }}>
-        <Wipe
-          src="https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=900&q=80"
-          alt="Our methodology"
-          style={{ height: 580, width: "100%" }}
-        />
-        {/* floating teal accent — overlapping bottom-right */}
         <div
-          className="hww-float"
+          className="hww-grid"
           style={{
-            position: "absolute",
-            bottom: -32,
-            right: -32,
-            background: T.teal,
-            padding: "40px 48px",
-            zIndex: 2,
-            boxShadow: "0 0 0 1px rgba(184,150,46,0.2)",
+            maxWidth: 1200,
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 100,
+            alignItems: "center",
           }}
         >
-          <div
-            style={{
-              fontFamily: "'Jost',sans-serif",
-              fontSize: 9,
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              color: "rgba(184,150,46,0.7)",
-              marginBottom: 12,
-            }}
-          >
-            Our Methodology
-          </div>
-          <div
-            style={{
-              fontFamily: "'Cormorant Garamond',serif",
-              fontSize: 34,
-              fontWeight: 300,
-              color: T.white,
-              lineHeight: 1.2,
-            }}
-          >
-            Depth
-            <br />
-            Precision
-            <br />
-            Fit
-          </div>
+          {/* image col */}
+          <Fade style={{ position: "relative" }}>
+            <div style={{ position: "relative" }}>
+              <Wipe
+                src="https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=900&q=80"
+                alt="Our methodology"
+                style={{ height: 580, width: "100%" }}
+              />
+              {/* floating teal accent — overlapping bottom-right */}
+              <div
+                className="hww-float"
+                style={{
+                  position: "absolute",
+                  bottom: -32,
+                  right: -32,
+                  background: T.teal,
+                  padding: "40px 48px",
+                  zIndex: 2,
+                  boxShadow: "0 0 0 1px rgba(184,150,46,0.2)",
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: "'Jost',sans-serif",
+                    fontSize: 9,
+                    letterSpacing: "0.22em",
+                    textTransform: "uppercase",
+                    color: "rgba(184,150,46,0.7)",
+                    marginBottom: 12,
+                  }}
+                >
+                  Our Methodology
+                </div>
+                <div
+                  style={{
+                    fontFamily: "'Cormorant Garamond',serif",
+                    fontSize: 34,
+                    fontWeight: 300,
+                    color: T.white,
+                    lineHeight: 1.2,
+                  }}
+                >
+                  Depth
+                  <br />
+                  Precision
+                  <br />
+                  Fit
+                </div>
+              </div>
+            </div>
+          </Fade>
+
+          {/* accordions col */}
+          <Fade delay={200} style={{ paddingBottom: 32 }}>
+            <SectionLabel text="Our Practice" />
+            <h2
+              style={{
+                fontFamily: "'Cormorant Garamond',serif",
+                fontSize: "clamp(34px,4vw,54px)",
+                fontWeight: 300,
+                color: T.teal,
+                lineHeight: 1.1,
+                marginBottom: 48,
+              }}
+            >
+              How We Think
+              <br />
+              How We Work
+            </h2>
+
+            <Acc
+              title="How We Work"
+              index={1}
+              openAcc={openAcc}
+              setOpenAcc={setOpenAcc}
+            >
+              <p style={{ marginBottom: 14 }}>
+                Every engagement begins with clarity. We seek to understand the
+                organisation's strategic direction, operational realities,
+                cultural dynamics, and governance expectations before defining
+                the leadership mandate.
+              </p>
+              <p>
+                Our methodology emphasises depth over speed, precision over
+                volume, and fit over familiarity.
+              </p>
+            </Acc>
+            <Acc
+              title="Our Perspective on Leadership"
+              index={2}
+              openAcc={openAcc}
+              setOpenAcc={setOpenAcc}
+            >
+              <p style={{ marginBottom: 14 }}>
+                Leadership effectiveness extends beyond functional competence.
+                It requires strategic judgement, adaptability, ethical
+                grounding, and the ability to mobilise teams in complex
+                environments.
+              </p>
+              <p>
+                We assess leaders not only for what they have achieved, but for
+                how they think, how they decide, and how they build sustainable
+                performance.
+              </p>
+            </Acc>
+            <Acc
+              title="Our Commitment"
+              index={3}
+              openAcc={openAcc}
+              setOpenAcc={setOpenAcc}
+            >
+              <p style={{ marginBottom: 14 }}>
+                We operate with integrity, confidentiality, and professional
+                discipline across every engagement.
+              </p>
+              <p>
+                Our objective is not merely to fill positions, but to strengthen
+                organisations through leadership alignment. When leadership is
+                right, organisations move with confidence.
+              </p>
+            </Acc>
+            <Acc
+              title="What We Work On"
+              index={4}
+              openAcc={openAcc}
+              setOpenAcc={setOpenAcc}
+            >
+              <p>
+                Our work spans Executive Search, Board and Governance
+                appointments, CEO succession, Interim Management, Career
+                Transition advisory, and AI leadership — treated as a horizontal
+                capability across industries.
+              </p>
+            </Acc>
+          </Fade>
         </div>
-      </div>
-    </Fade>
-
-    {/* accordions col */}
-    <Fade delay={200} style={{ paddingBottom: 32 }}>
-      <SectionLabel text="Our Practice" />
-      <h2
-        style={{
-          fontFamily: "'Cormorant Garamond',serif",
-          fontSize: "clamp(34px,4vw,54px)",
-          fontWeight: 300,
-          color: T.teal,
-          lineHeight: 1.1,
-          marginBottom: 48,
-        }}
-      >
-        How We Think
-        <br />
-        How We Work
-      </h2>
-
-      <Acc
-        title="How We Work"
-        index={1}
-        openAcc={openAcc}
-        setOpenAcc={setOpenAcc}
-      >
-        <p style={{ marginBottom: 14 }}>
-          Every engagement begins with clarity. We seek to understand the
-          organisation's strategic direction, operational realities,
-          cultural dynamics, and governance expectations before defining
-          the leadership mandate.
-        </p>
-        <p>
-          Our methodology emphasises depth over speed, precision over
-          volume, and fit over familiarity.
-        </p>
-      </Acc>
-      <Acc
-        title="Our Perspective on Leadership"
-        index={2}
-        openAcc={openAcc}
-        setOpenAcc={setOpenAcc}
-      >
-        <p style={{ marginBottom: 14 }}>
-          Leadership effectiveness extends beyond functional competence.
-          It requires strategic judgement, adaptability, ethical
-          grounding, and the ability to mobilise teams in complex
-          environments.
-        </p>
-        <p>
-          We assess leaders not only for what they have achieved, but for
-          how they think, how they decide, and how they build sustainable
-          performance.
-        </p>
-      </Acc>
-      <Acc
-        title="Our Commitment"
-        index={3}
-        openAcc={openAcc}
-        setOpenAcc={setOpenAcc}
-      >
-        <p style={{ marginBottom: 14 }}>
-          We operate with integrity, confidentiality, and professional
-          discipline across every engagement.
-        </p>
-        <p>
-          Our objective is not merely to fill positions, but to strengthen
-          organisations through leadership alignment. When leadership is
-          right, organisations move with confidence.
-        </p>
-      </Acc>
-      <Acc
-        title="What We Work On"
-        index={4}
-        openAcc={openAcc}
-        setOpenAcc={setOpenAcc}
-      >
-        <p>
-          Our work spans Executive Search, Board and Governance
-          appointments, CEO succession, Interim Management, Career
-          Transition advisory, and AI leadership — treated as a horizontal
-          capability across industries.
-        </p>
-      </Acc>
-    </Fade>
-  </div>
-</section>
+      </section>
 
       {/* ══════ 7. CORE VALUES — teal with image header ══════ */}
       <section

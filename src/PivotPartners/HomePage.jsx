@@ -5,6 +5,10 @@ import Research from "./Research.svg";
 import HeroSection from "./HeroSection";
 import leadership from "./leadership.svg";
 import AI from "./AI.svg";
+import execSearch from "../assets/Icons/exec-search.svg";
+import aiLeader from "../assets/Icons/ai-leader.svg";
+import ceoSuccession from "../assets/Icons/ceo-succession.svg";
+import boardsGovernance from "../assets/Icons/board-governance.svg";
 
 /* ─── Intersection Observer hook for scroll-triggered animations ─── */
 function useIO(threshold = 0) {
@@ -2379,430 +2383,464 @@ export default function HomePage({ setPage }) {
                 title: "Executive Search",
                 desc: "Retained search for Board, CEO, and senior functional leadership roles.",
                 illus: (
-                  <svg
-                    width="160"
-                    height="150"
-                    viewBox="0 0 160 150"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    {/* Background grid */}
-                    {[30, 60, 90, 120].map((y) => (
-                      <line
-                        key={y}
-                        x1="20"
-                        y1={y}
-                        x2="140"
-                        y2={y}
-                        stroke="#0D3D4E"
-                        strokeWidth=".5"
-                        opacity=".08"
-                      />
-                    ))}
-                    {[40, 80, 120].map((x) => (
-                      <line
-                        key={x}
-                        x1={x}
-                        y1="20"
-                        x2={x}
-                        y2="135"
-                        stroke="#0D3D4E"
-                        strokeWidth=".5"
-                        opacity=".08"
-                      />
-                    ))}
-                    {/* Candidate dots */}
-                    {[
-                      [38, 42],
-                      [62, 28],
-                      [100, 48],
-                      [128, 32],
-                      [45, 82],
-                      [118, 95],
-                      [72, 108],
-                      [135, 118],
-                    ].map(([cx, cy], i) => (
-                      <circle
-                        key={i}
-                        cx={cx}
-                        cy={cy}
-                        r="4"
-                        fill="#0D3D4E"
-                        opacity=".18"
-                      />
-                    ))}
-                    {/* Animated magnifying glass */}
-                    <g className="lens-anim">
-                      <circle
-                        cx="80"
-                        cy="68"
-                        r="28"
-                        fill="rgba(184,150,46,0.07)"
-                        stroke="#B8962E"
-                        strokeWidth="2"
-                      />
-                      <line
-                        x1="80"
-                        y1="52"
-                        x2="80"
-                        y2="84"
-                        stroke="#B8962E"
-                        strokeWidth=".8"
-                        opacity=".4"
-                      />
-                      <line
-                        x1="64"
-                        y1="68"
-                        x2="96"
-                        y2="68"
-                        stroke="#B8962E"
-                        strokeWidth=".8"
-                        opacity=".4"
-                      />
-                      <circle
-                        cx="80"
-                        cy="68"
-                        r="6"
-                        fill="#B8962E"
-                        opacity=".7"
-                      />
-                      <circle
-                        cx="80"
-                        cy="62"
-                        r="3.5"
-                        fill="#0D3D4E"
-                        opacity=".5"
-                      />
-                      <ellipse
-                        cx="80"
-                        cy="72"
-                        rx="4.5"
-                        ry="3"
-                        fill="#0D3D4E"
-                        opacity=".35"
-                      />
-                    </g>
-                    {/* Handle */}
-                    <line
-                      x1="101"
-                      y1="89"
-                      x2="122"
-                      y2="113"
-                      stroke="#B8962E"
-                      strokeWidth="3.5"
-                      strokeLinecap="round"
-                      opacity=".75"
-                    />
-                    <line
-                      x1="99"
-                      y1="91"
-                      x2="120"
-                      y2="115"
-                      stroke="rgba(184,150,46,0.25)"
-                      strokeWidth="6"
-                      strokeLinecap="round"
-                    />
-                  </svg>
+                  // <svg
+                  //   width="160"
+                  //   height="150"
+                  //   viewBox="0 0 160 150"
+                  //   fill="none"
+                  //   xmlns="http://www.w3.org/2000/svg"
+                  // >
+                  //   {/* Background grid */}
+                  //   {[30, 60, 90, 120].map((y) => (
+                  //     <line
+                  //       key={y}
+                  //       x1="20"
+                  //       y1={y}
+                  //       x2="140"
+                  //       y2={y}
+                  //       stroke="#0D3D4E"
+                  //       strokeWidth=".5"
+                  //       opacity=".08"
+                  //     />
+                  //   ))}
+                  //   {[40, 80, 120].map((x) => (
+                  //     <line
+                  //       key={x}
+                  //       x1={x}
+                  //       y1="20"
+                  //       x2={x}
+                  //       y2="135"
+                  //       stroke="#0D3D4E"
+                  //       strokeWidth=".5"
+                  //       opacity=".08"
+                  //     />
+                  //   ))}
+                  //   {/* Candidate dots */}
+                  //   {[
+                  //     [38, 42],
+                  //     [62, 28],
+                  //     [100, 48],
+                  //     [128, 32],
+                  //     [45, 82],
+                  //     [118, 95],
+                  //     [72, 108],
+                  //     [135, 118],
+                  //   ].map(([cx, cy], i) => (
+                  //     <circle
+                  //       key={i}
+                  //       cx={cx}
+                  //       cy={cy}
+                  //       r="4"
+                  //       fill="#0D3D4E"
+                  //       opacity=".18"
+                  //     />
+                  //   ))}
+                  //   {/* Animated magnifying glass */}
+                  //   <g className="lens-anim">
+                  //     <circle
+                  //       cx="80"
+                  //       cy="68"
+                  //       r="28"
+                  //       fill="rgba(184,150,46,0.07)"
+                  //       stroke="#B8962E"
+                  //       strokeWidth="2"
+                  //     />
+                  //     <line
+                  //       x1="80"
+                  //       y1="52"
+                  //       x2="80"
+                  //       y2="84"
+                  //       stroke="#B8962E"
+                  //       strokeWidth=".8"
+                  //       opacity=".4"
+                  //     />
+                  //     <line
+                  //       x1="64"
+                  //       y1="68"
+                  //       x2="96"
+                  //       y2="68"
+                  //       stroke="#B8962E"
+                  //       strokeWidth=".8"
+                  //       opacity=".4"
+                  //     />
+                  //     <circle
+                  //       cx="80"
+                  //       cy="68"
+                  //       r="6"
+                  //       fill="#B8962E"
+                  //       opacity=".7"
+                  //     />
+                  //     <circle
+                  //       cx="80"
+                  //       cy="62"
+                  //       r="3.5"
+                  //       fill="#0D3D4E"
+                  //       opacity=".5"
+                  //     />
+                  //     <ellipse
+                  //       cx="80"
+                  //       cy="72"
+                  //       rx="4.5"
+                  //       ry="3"
+                  //       fill="#0D3D4E"
+                  //       opacity=".35"
+                  //     />
+                  //   </g>
+                  //   {/* Handle */}
+                  //   <line
+                  //     x1="101"
+                  //     y1="89"
+                  //     x2="122"
+                  //     y2="113"
+                  //     stroke="#B8962E"
+                  //     strokeWidth="3.5"
+                  //     strokeLinecap="round"
+                  //     opacity=".75"
+                  //   />
+                  //   <line
+                  //     x1="99"
+                  //     y1="91"
+                  //     x2="120"
+                  //     y2="115"
+                  //     stroke="rgba(184,150,46,0.25)"
+                  //     strokeWidth="6"
+                  //     strokeLinecap="round"
+                  //   />
+                  // </svg>
+
+                  <img
+                    src={execSearch}
+                    alt="Executive Search"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      transform: "scale(1)", // reduce size
+                      transformOrigin: "center",
+                    }}
+                  />
                 ),
               },
               {
                 title: "Boards & Governance",
                 desc: "Board composition, director appointments & governance advisoryn.",
                 illus: (
-                  <svg
-                    width="160"
-                    height="150"
-                    viewBox="0 0 160 150"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    {/* Table */}
-                    <ellipse
-                      cx="80"
-                      cy="88"
-                      rx="54"
-                      ry="24"
-                      fill="#EDE8DE"
-                      stroke="#0D3D4E"
-                      strokeWidth="1.5"
-                      opacity=".3"
-                    />
-                    <ellipse
-                      cx="74"
-                      cy="83"
-                      rx="28"
-                      ry="10"
-                      fill="rgba(255,255,255,0.45)"
-                    />
-                    {/* Board members */}
-                    {[
-                      [44, 64, 75],
-                      [80, 56, 67],
-                      [116, 64, 75],
-                      [44, 112, 101],
-                      [116, 112, 101],
-                    ].map(([cx, cy, ey], i) => (
-                      <g key={i}>
-                        <circle
-                          cx={cx}
-                          cy={cy}
-                          r="7"
-                          fill="#0D3D4E"
-                          opacity=".2"
-                        />
-                        <ellipse
-                          cx={cx}
-                          cy={ey}
-                          rx="6"
-                          ry="5"
-                          fill="#0D3D4E"
-                          opacity=".14"
-                        />
-                      </g>
-                    ))}
-                    {/* Gold governance star */}
-                    <circle
-                      cx="80"
-                      cy="88"
-                      r="9"
-                      fill="rgba(184,150,46,0.15)"
-                    />
-                    <circle
-                      cx="80"
-                      cy="88"
-                      r="4.5"
-                      fill="#B8962E"
-                      opacity=".8"
-                    />
-                    {[
-                      [80, 79, 80, 74],
-                      [88, 82, 92, 78],
-                      [88, 94, 92, 98],
-                      [80, 97, 80, 102],
-                      [72, 94, 68, 98],
-                      [72, 82, 68, 78],
-                    ].map(([x1, y1, x2, y2], i) => (
-                      <line
-                        key={i}
-                        x1={x1}
-                        y1={y1}
-                        x2={x2}
-                        y2={y2}
-                        stroke="#B8962E"
-                        strokeWidth="1.2"
-                        opacity=".55"
-                      />
-                    ))}
-                    {/* Gavel */}
-                    <g className="gavel-anim">
-                      <rect
-                        x="122"
-                        y="16"
-                        width="22"
-                        height="10"
-                        rx="2"
-                        fill="#0D3D4E"
-                        opacity=".55"
-                        transform="rotate(-15,133,21)"
-                      />
-                      <line
-                        x1="133"
-                        y1="26"
-                        x2="120"
-                        y2="44"
-                        stroke="#0D3D4E"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        opacity=".4"
-                      />
-                      <rect
-                        x="122"
-                        y="16"
-                        width="22"
-                        height="10"
-                        rx="2"
-                        fill="none"
-                        stroke="#B8962E"
-                        strokeWidth=".8"
-                        opacity=".6"
-                        transform="rotate(-15,133,21)"
-                      />
-                    </g>
-                  </svg>
+                  // <svg
+                  //   width="160"
+                  //   height="150"
+                  //   viewBox="0 0 160 150"
+                  //   fill="none"
+                  //   xmlns="http://www.w3.org/2000/svg"
+                  // >
+                  //   {/* Table */}
+                  //   <ellipse
+                  //     cx="80"
+                  //     cy="88"
+                  //     rx="54"
+                  //     ry="24"
+                  //     fill="#EDE8DE"
+                  //     stroke="#0D3D4E"
+                  //     strokeWidth="1.5"
+                  //     opacity=".3"
+                  //   />
+                  //   <ellipse
+                  //     cx="74"
+                  //     cy="83"
+                  //     rx="28"
+                  //     ry="10"
+                  //     fill="rgba(255,255,255,0.45)"
+                  //   />
+                  //   {/* Board members */}
+                  //   {[
+                  //     [44, 64, 75],
+                  //     [80, 56, 67],
+                  //     [116, 64, 75],
+                  //     [44, 112, 101],
+                  //     [116, 112, 101],
+                  //   ].map(([cx, cy, ey], i) => (
+                  //     <g key={i}>
+                  //       <circle
+                  //         cx={cx}
+                  //         cy={cy}
+                  //         r="7"
+                  //         fill="#0D3D4E"
+                  //         opacity=".2"
+                  //       />
+                  //       <ellipse
+                  //         cx={cx}
+                  //         cy={ey}
+                  //         rx="6"
+                  //         ry="5"
+                  //         fill="#0D3D4E"
+                  //         opacity=".14"
+                  //       />
+                  //     </g>
+                  //   ))}
+                  //   {/* Gold governance star */}
+                  //   <circle
+                  //     cx="80"
+                  //     cy="88"
+                  //     r="9"
+                  //     fill="rgba(184,150,46,0.15)"
+                  //   />
+                  //   <circle
+                  //     cx="80"
+                  //     cy="88"
+                  //     r="4.5"
+                  //     fill="#B8962E"
+                  //     opacity=".8"
+                  //   />
+                  //   {[
+                  //     [80, 79, 80, 74],
+                  //     [88, 82, 92, 78],
+                  //     [88, 94, 92, 98],
+                  //     [80, 97, 80, 102],
+                  //     [72, 94, 68, 98],
+                  //     [72, 82, 68, 78],
+                  //   ].map(([x1, y1, x2, y2], i) => (
+                  //     <line
+                  //       key={i}
+                  //       x1={x1}
+                  //       y1={y1}
+                  //       x2={x2}
+                  //       y2={y2}
+                  //       stroke="#B8962E"
+                  //       strokeWidth="1.2"
+                  //       opacity=".55"
+                  //     />
+                  //   ))}
+                  //   {/* Gavel */}
+                  //   <g className="gavel-anim">
+                  //     <rect
+                  //       x="122"
+                  //       y="16"
+                  //       width="22"
+                  //       height="10"
+                  //       rx="2"
+                  //       fill="#0D3D4E"
+                  //       opacity=".55"
+                  //       transform="rotate(-15,133,21)"
+                  //     />
+                  //     <line
+                  //       x1="133"
+                  //       y1="26"
+                  //       x2="120"
+                  //       y2="44"
+                  //       stroke="#0D3D4E"
+                  //       strokeWidth="2.5"
+                  //       strokeLinecap="round"
+                  //       opacity=".4"
+                  //     />
+                  //     <rect
+                  //       x="122"
+                  //       y="16"
+                  //       width="22"
+                  //       height="10"
+                  //       rx="2"
+                  //       fill="none"
+                  //       stroke="#B8962E"
+                  //       strokeWidth=".8"
+                  //       opacity=".6"
+                  //       transform="rotate(-15,133,21)"
+                  //     />
+                  //   </g>
+                  // </svg>
+                  <img
+                    src={boardsGovernance}
+                    alt="Boards & Governance"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      transform: "scale(1)",
+                      transformOrigin: "center",
+                    }}
+                  />
                 ),
               },
               {
                 title: "CEO Succession",
                 desc: "Identification and evaluation of enterprise leaders aligned to long-term strategy.",
                 illus: (
-                  <svg
-                    width="160"
-                    height="150"
-                    viewBox="0 0 160 150"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    {/* Arc trajectory */}
-                    <path
-                      d="M 22 130 Q 80 20 138 60"
-                      fill="none"
-                      stroke="rgba(184,150,46,0.22)"
-                      strokeWidth="1.2"
-                      strokeDasharray="5 5"
-                    />
-                    {/* Ascending steps */}
-                    <g className="step1">
-                      <rect
-                        x="18"
-                        y="106"
-                        width="40"
-                        height="24"
-                        fill="rgba(13,61,78,0.08)"
-                        stroke="#0D3D4E"
-                        strokeWidth="1"
-                        opacity=".35"
-                      />
-                      <rect
-                        x="18"
-                        y="106"
-                        width="40"
-                        height="2"
-                        fill="#B8962E"
-                        opacity=".3"
-                      />
-                    </g>
-                    <g className="step2">
-                      <rect
-                        x="58"
-                        y="90"
-                        width="44"
-                        height="40"
-                        fill="rgba(13,61,78,0.11)"
-                        stroke="#0D3D4E"
-                        strokeWidth="1"
-                        opacity=".4"
-                      />
-                      <rect
-                        x="58"
-                        y="90"
-                        width="44"
-                        height="2"
-                        fill="#B8962E"
-                        opacity=".4"
-                      />
-                    </g>
-                    <g className="step3">
-                      <rect
-                        x="102"
-                        y="72"
-                        width="46"
-                        height="58"
-                        fill="rgba(13,61,78,0.15)"
-                        stroke="#0D3D4E"
-                        strokeWidth="1.2"
-                        opacity=".45"
-                      />
-                      <rect
-                        x="102"
-                        y="72"
-                        width="46"
-                        height="2"
-                        fill="#B8962E"
-                        opacity=".55"
-                      />
-                    </g>
-                    {/* CEO figure */}
-                    <circle
-                      cx="125"
-                      cy="54"
-                      r="10"
-                      fill="none"
-                      stroke="#0D3D4E"
-                      strokeWidth="1.5"
-                      opacity=".45"
-                    />
-                    <circle
-                      cx="125"
-                      cy="51"
-                      r="5"
-                      fill="#0D3D4E"
-                      opacity=".38"
-                    />
-                    <path
-                      d="M 113 72 Q 113 64 125 64 Q 137 64 137 72"
-                      fill="rgba(13,61,78,0.13)"
-                      stroke="#0D3D4E"
-                      strokeWidth="1.2"
-                      opacity=".45"
-                    />
-                    {/* Crown */}
-                    <g className="crown-anim">
-                      <polyline
-                        points="112,40 116,28 121,35 125,22 129,35 134,28 138,40"
-                        stroke="#B8962E"
-                        strokeWidth="2.2"
-                        fill="none"
-                        strokeLinejoin="round"
-                        strokeLinecap="round"
-                      />
-                      <line
-                        x1="112"
-                        y1="40"
-                        x2="138"
-                        y2="40"
-                        stroke="#B8962E"
-                        strokeWidth="2"
-                      />
-                      <circle cx="116" cy="28" r="2.5" fill="#B8962E" />
-                      <circle cx="125" cy="22" r="3.5" fill="#B8962E" />
-                      <circle cx="134" cy="28" r="2.5" fill="#B8962E" />
-                    </g>
-                    {/* Lower figures */}
-                    <circle cx="38" cy="98" r="6" fill="#0D3D4E" opacity=".2" />
-                    <ellipse
-                      cx="38"
-                      cy="107"
-                      rx="4"
-                      ry="4"
-                      fill="#0D3D4E"
-                      opacity=".15"
-                    />
-                    <circle
-                      cx="80"
-                      cy="80"
-                      r="7"
-                      fill="#0D3D4E"
-                      opacity=".25"
-                    />
-                    <ellipse
-                      cx="80"
-                      cy="90"
-                      rx="5"
-                      ry="4.5"
-                      fill="#0D3D4E"
-                      opacity=".18"
-                    />
-                    {/* Step labels */}
-                    {[
-                      ["01", 30, 122, 0.5],
-                      ["02", 80, 122, 0.5],
-                      ["03", 125, 122, 0.7],
-                    ].map(([t, x, y, o]) => (
-                      <text
-                        key={t}
-                        x={x}
-                        y={y}
-                        textAnchor="middle"
-                        fontFamily="sans-serif"
-                        fontSize="7"
-                        fill="#B8962E"
-                        opacity={o}
-                        letterSpacing="1"
-                      >
-                        {t}
-                      </text>
-                    ))}
-                  </svg>
+                  // <svg
+                  //   width="160"
+                  //   height="150"
+                  //   viewBox="0 0 160 150"
+                  //   fill="none"
+                  //   xmlns="http://www.w3.org/2000/svg"
+                  // >
+                  //   {/* Arc trajectory */}
+                  //   <path
+                  //     d="M 22 130 Q 80 20 138 60"
+                  //     fill="none"
+                  //     stroke="rgba(184,150,46,0.22)"
+                  //     strokeWidth="1.2"
+                  //     strokeDasharray="5 5"
+                  //   />
+                  //   {/* Ascending steps */}
+                  //   <g className="step1">
+                  //     <rect
+                  //       x="18"
+                  //       y="106"
+                  //       width="40"
+                  //       height="24"
+                  //       fill="rgba(13,61,78,0.08)"
+                  //       stroke="#0D3D4E"
+                  //       strokeWidth="1"
+                  //       opacity=".35"
+                  //     />
+                  //     <rect
+                  //       x="18"
+                  //       y="106"
+                  //       width="40"
+                  //       height="2"
+                  //       fill="#B8962E"
+                  //       opacity=".3"
+                  //     />
+                  //   </g>
+                  //   <g className="step2">
+                  //     <rect
+                  //       x="58"
+                  //       y="90"
+                  //       width="44"
+                  //       height="40"
+                  //       fill="rgba(13,61,78,0.11)"
+                  //       stroke="#0D3D4E"
+                  //       strokeWidth="1"
+                  //       opacity=".4"
+                  //     />
+                  //     <rect
+                  //       x="58"
+                  //       y="90"
+                  //       width="44"
+                  //       height="2"
+                  //       fill="#B8962E"
+                  //       opacity=".4"
+                  //     />
+                  //   </g>
+                  //   <g className="step3">
+                  //     <rect
+                  //       x="102"
+                  //       y="72"
+                  //       width="46"
+                  //       height="58"
+                  //       fill="rgba(13,61,78,0.15)"
+                  //       stroke="#0D3D4E"
+                  //       strokeWidth="1.2"
+                  //       opacity=".45"
+                  //     />
+                  //     <rect
+                  //       x="102"
+                  //       y="72"
+                  //       width="46"
+                  //       height="2"
+                  //       fill="#B8962E"
+                  //       opacity=".55"
+                  //     />
+                  //   </g>
+                  //   {/* CEO figure */}
+                  //   <circle
+                  //     cx="125"
+                  //     cy="54"
+                  //     r="10"
+                  //     fill="none"
+                  //     stroke="#0D3D4E"
+                  //     strokeWidth="1.5"
+                  //     opacity=".45"
+                  //   />
+                  //   <circle
+                  //     cx="125"
+                  //     cy="51"
+                  //     r="5"
+                  //     fill="#0D3D4E"
+                  //     opacity=".38"
+                  //   />
+                  //   <path
+                  //     d="M 113 72 Q 113 64 125 64 Q 137 64 137 72"
+                  //     fill="rgba(13,61,78,0.13)"
+                  //     stroke="#0D3D4E"
+                  //     strokeWidth="1.2"
+                  //     opacity=".45"
+                  //   />
+                  //   {/* Crown */}
+                  //   <g className="crown-anim">
+                  //     <polyline
+                  //       points="112,40 116,28 121,35 125,22 129,35 134,28 138,40"
+                  //       stroke="#B8962E"
+                  //       strokeWidth="2.2"
+                  //       fill="none"
+                  //       strokeLinejoin="round"
+                  //       strokeLinecap="round"
+                  //     />
+                  //     <line
+                  //       x1="112"
+                  //       y1="40"
+                  //       x2="138"
+                  //       y2="40"
+                  //       stroke="#B8962E"
+                  //       strokeWidth="2"
+                  //     />
+                  //     <circle cx="116" cy="28" r="2.5" fill="#B8962E" />
+                  //     <circle cx="125" cy="22" r="3.5" fill="#B8962E" />
+                  //     <circle cx="134" cy="28" r="2.5" fill="#B8962E" />
+                  //   </g>
+                  //   {/* Lower figures */}
+                  //   <circle cx="38" cy="98" r="6" fill="#0D3D4E" opacity=".2" />
+                  //   <ellipse
+                  //     cx="38"
+                  //     cy="107"
+                  //     rx="4"
+                  //     ry="4"
+                  //     fill="#0D3D4E"
+                  //     opacity=".15"
+                  //   />
+                  //   <circle
+                  //     cx="80"
+                  //     cy="80"
+                  //     r="7"
+                  //     fill="#0D3D4E"
+                  //     opacity=".25"
+                  //   />
+                  //   <ellipse
+                  //     cx="80"
+                  //     cy="90"
+                  //     rx="5"
+                  //     ry="4.5"
+                  //     fill="#0D3D4E"
+                  //     opacity=".18"
+                  //   />
+                  //   {/* Step labels */}
+                  //   {[
+                  //     ["01", 30, 122, 0.5],
+                  //     ["02", 80, 122, 0.5],
+                  //     ["03", 125, 122, 0.7],
+                  //   ].map(([t, x, y, o]) => (
+                  //     <text
+                  //       key={t}
+                  //       x={x}
+                  //       y={y}
+                  //       textAnchor="middle"
+                  //       fontFamily="sans-serif"
+                  //       fontSize="7"
+                  //       fill="#B8962E"
+                  //       opacity={o}
+                  //       letterSpacing="1"
+                  //     >
+                  //       {t}
+                  //     </text>
+                  //   ))}
+                  // </svg>
+                  <img
+                    src={ceoSuccession}
+                    alt="CEO Succession"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      transform: "scale(1)",
+                      transformOrigin: "center",
+                    }}
+                  />
                 ),
               },
               {
@@ -2810,13 +2848,14 @@ export default function HomePage({ setPage }) {
                 desc: "Search for AI and digital leaders driving intelligent enterprise transformation.",
                 illus: (
                   <img
-                    src={AI}
+                    src={aiLeader}
+                    alt="AI Leadership"
                     style={{
-                      width: "160px",
-                      height: "150px",
+                      width: "100%",
+                      height: "100%",
                       objectFit: "contain",
-                      objectPosition: "center",
-                      display: "block",
+                      transform: "scale(1)",
+                      transformOrigin: "center",
                     }}
                   />
                 ),
@@ -2915,8 +2954,8 @@ export default function HomePage({ setPage }) {
           className="hp-howwework-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 80,
+            gridTemplateColumns: "0.85fr 1.15fr",
+            gap: 64,
             alignItems: "center",
           }}
         >
@@ -2989,6 +3028,7 @@ export default function HomePage({ setPage }) {
               padding: "40px 32px",
               overflow: "hidden",
               minWidth: 0,
+              width: "100%",
             }}
           >
             {/* <ProcessCompassIllustration vis={illusVis2} /> */}
