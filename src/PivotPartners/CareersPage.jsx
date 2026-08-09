@@ -33,7 +33,6 @@ function Fade({ children, delay = 0, style = {} }) {
       ref={ref}
       style={{
         opacity: vis ? 1 : 0,
-        transform: vis ? "translateY(28px)" : "translateY(0)", // Simple toggle for example
         transform: vis ? "translateY(0)" : "translateY(28px)",
         transition: `opacity 0.85s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 0.85s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
         ...style,
@@ -43,6 +42,27 @@ function Fade({ children, delay = 0, style = {} }) {
     </div>
   );
 }
+
+/* ─── Job openings data ───
+   Update this array whenever your sheet changes — Posting ID
+   should match the "Posting ID" column so applicants reference
+   the right role. */
+const JOB_OPENINGS = [
+  {
+    postingId: "CM-001",
+    category: "Client Mandate",
+    title: "VP / SBU Head - Sales & Marketing",
+    sector: "Pharmaceuticals",
+    status: "Open",
+  },
+  {
+    postingId: "PE-001",
+    category: "Careers at PivotEdge",
+    title: "Associate Consultant - Executive Search",
+    sector: "N/A",
+    status: "Open",
+  },
+];
 
 const CAREERS_CSS = `
   .upload-zone {
@@ -73,9 +93,91 @@ const CAREERS_CSS = `
     border-color: #B8962E;
     color: #B8962E;
   }
+  .job-card {
+    background: #fff;
+    border: 1px solid rgba(13,61,78,0.08);
+    padding: 32px;
+    transition: all 0.3s ease;
+  }
+  .job-card:hover {
+    border-color: #B8962E;
+    box-shadow: 0 8px 24px rgba(13,61,78,0.06);
+  }
+  .job-apply-btn {
+    background: none;
+    border: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #B8962E;
+    cursor: pointer;
+    padding: 0;
+    border-bottom: 1px solid #B8962E;
+    padding-bottom: 2px;
+  }
+  .job-apply-btn:hover {
+    color: #0D3D4E;
+    border-color: #0D3D4E;
+  }
 `;
 
 export default function CareersPage({ setPage }) {
+  // ── Resume submission state ──
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [postingId, setPostingId] = useState("");
+  const [resumeFile, setResumeFile] = useState(null);
+  const [status, setStatus] = useState("idle"); // idle | submitting | success | error
+  const fileInputRef = useRef(null);
+  const submitCardRef = useRef(null);
+
+  const FORMINIT_ENDPOINT = "https://forminit.com/f/ulxmb700xwr";
+
+  const handleApplyClick = (jobPostingId) => {
+    setPostingId(jobPostingId);
+    submitCardRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  };
+
+  const handleSubmitProfile = async () => {
+    if (!fullName || !email || !resumeFile) {
+      setStatus("error");
+      return;
+    }
+
+    setStatus("submitting");
+
+    const formData = new FormData();
+    formData.append("fi-sender-fullName", fullName);
+    formData.append("fi-sender-email", email);
+    formData.append("fi-file-resume", resumeFile);
+    if (postingId) {
+      formData.append("fi-text-postingId", postingId);
+    }
+
+    try {
+      const res = await fetch(FORMINIT_ENDPOINT, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        setFullName("");
+        setEmail("");
+        setPostingId("");
+        setResumeFile(null);
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      setStatus("error");
+    }
+  };
+
   return (
     <div style={{ background: "#F5F0E8" }}>
       <style>{CAREERS_CSS}</style>
@@ -213,25 +315,147 @@ export default function CareersPage({ setPage }) {
         </div>
       </section>
 
-      {/* ── 2. FOR LEADERSHIP PROFESSIONALS (CANDIDATES) ── */}
+      {/* ── 2. CURRENT OPENINGS ── */}
+      <section
+        style={{ padding: "120px 64px 0", maxWidth: 1200, margin: "0 auto" }}
+      >
+        <Fade>
+          <div style={{ textAlign: "center", marginBottom: "64px" }}>
+            <SectionLabel text="Current Openings" />
+            <h2
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: "38px",
+                fontWeight: 300,
+                color: "#0D3D4E",
+                marginTop: "16px",
+              }}
+            >
+              Roles We're Actively Hiring For
+            </h2>
+          </div>
+        </Fade>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr",
+            gap: "20px",
+          }}
+        >
+          {JOB_OPENINGS.map((job, i) => (
+            <Fade key={job.postingId} delay={i * 100}>
+              <div
+                className="job-card"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flexWrap: "wrap",
+                  gap: "20px",
+                }}
+              >
+                <div style={{ flex: "1 1 320px" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                      marginBottom: "10px",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "'Jost', sans-serif",
+                        fontSize: "10px",
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase",
+                        color: "#B8962E",
+                        border: "1px solid rgba(184,150,46,0.4)",
+                        padding: "4px 10px",
+                      }}
+                    >
+                      {job.postingId}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "'Jost', sans-serif",
+                        fontSize: "10px",
+                        letterSpacing: "0.08em",
+                        textTransform: "uppercase",
+                        color: "#7A8694",
+                      }}
+                    >
+                      {job.category}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "'Jost', sans-serif",
+                        fontSize: "10px",
+                        letterSpacing: "0.08em",
+                        textTransform: "uppercase",
+                        color: "#3E9B5C",
+                      }}
+                    >
+                      ● {job.status}
+                    </span>
+                  </div>
+                  <h3
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontSize: "24px",
+                      fontWeight: 400,
+                      color: "#0D3D4E",
+                      marginBottom: "6px",
+                    }}
+                  >
+                    {job.title}
+                  </h3>
+                  {job.sector !== "N/A" && (
+                    <p
+                      style={{
+                        fontSize: "13px",
+                        color: "#7A8694",
+                        margin: 0,
+                      }}
+                    >
+                      {job.sector}
+                    </p>
+                  )}
+                </div>
+
+                <button
+                  className="job-apply-btn"
+                  onClick={() => handleApplyClick(job.postingId)}
+                >
+                  Apply Now →
+                </button>
+              </div>
+            </Fade>
+          ))}
+        </div>
+      </section>
+
+      {/* ── 3. FOR LEADERSHIP PROFESSIONALS (CANDIDATES) ── */}
       <section
         className="submit-profile-section"
         style={{ padding: "120px 64px", maxWidth: 1200, margin: "0 auto" }}
       >
         <style>{`
-    @media (max-width: 768px) {
-      .submit-profile-section {
-        padding: 72px 24px !important;
-      }
-      .submit-profile-grid {
-        grid-template-columns: 1fr !important;
-        gap: 48px !important;
-      }
-      .submit-profile-card {
-        padding: 36px 28px !important;
-      }
-    }
-  `}</style>
+          @media (max-width: 768px) {
+            .submit-profile-section {
+              padding: 72px 24px !important;
+            }
+            .submit-profile-grid {
+              grid-template-columns: 1fr !important;
+              gap: 48px !important;
+            }
+            .submit-profile-card {
+              padding: 36px 28px !important;
+            }
+          }
+        `}</style>
 
         <div
           className="submit-profile-grid"
@@ -262,8 +486,8 @@ export default function CareersPage({ setPage }) {
                 marginBottom: "24px",
               }}
             >
-              Many of the leadership assignments we undertake are conducted on a
-              strictly confidential basis. As a result, some of the most
+              Many of the leadership assignments we undertake are conducted on
+              a strictly confidential basis. As a result, some of the most
               compelling opportunities never appear on public job boards.
             </p>
             <p
@@ -317,6 +541,7 @@ export default function CareersPage({ setPage }) {
 
           <Fade delay={200}>
             <div
+              ref={submitCardRef}
               className="submit-profile-card"
               style={{
                 background: "#EDE8DE",
@@ -341,11 +566,79 @@ export default function CareersPage({ setPage }) {
                   marginBottom: "32px",
                 }}
               >
-                All profiles are handled with the highest degree of professional
-                discretion.
+                All profiles are handled with the highest degree of
+                professional discretion.
               </p>
 
-              <div className="upload-zone">
+              {/* Name field */}
+              <input
+                type="text"
+                placeholder="Full Name"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                style={{
+                  width: "100%",
+                  padding: "14px 16px",
+                  marginBottom: "12px",
+                  border: "1px solid rgba(13,61,78,0.15)",
+                  background: "#fff",
+                  fontSize: "14px",
+                  fontFamily: "'Jost', sans-serif",
+                  boxSizing: "border-box",
+                }}
+              />
+
+              {/* Email field */}
+              <input
+                type="email"
+                placeholder="Email Address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                style={{
+                  width: "100%",
+                  padding: "14px 16px",
+                  marginBottom: "12px",
+                  border: "1px solid rgba(13,61,78,0.15)",
+                  background: "#fff",
+                  fontSize: "14px",
+                  fontFamily: "'Jost', sans-serif",
+                  boxSizing: "border-box",
+                }}
+              />
+
+              {/* Posting ID field — optional, pre-filled by "Apply Now" */}
+              <input
+                type="text"
+                placeholder="Posting ID (optional — e.g. CM-001)"
+                value={postingId}
+                onChange={(e) => setPostingId(e.target.value)}
+                style={{
+                  width: "100%",
+                  padding: "14px 16px",
+                  marginBottom: "24px",
+                  border: postingId
+                    ? "1px solid #B8962E"
+                    : "1px solid rgba(13,61,78,0.15)",
+                  background: "#fff",
+                  fontSize: "14px",
+                  fontFamily: "'Jost', sans-serif",
+                  boxSizing: "border-box",
+                }}
+              />
+
+              {/* Hidden native file input, triggered by the styled upload-zone */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".pdf,.doc,.docx"
+                style={{ display: "none" }}
+                onChange={(e) => setResumeFile(e.target.files[0] || null)}
+              />
+
+              <div
+                className="upload-zone"
+                onClick={() => fileInputRef.current?.click()}
+              >
                 <div
                   style={{
                     color: "#B8962E",
@@ -364,7 +657,7 @@ export default function CareersPage({ setPage }) {
                     color: "#0D3D4E",
                   }}
                 >
-                  Drop Resume / CV here
+                  {resumeFile ? resumeFile.name : "Drop Resume / CV here"}
                 </p>
                 <p
                   style={{
@@ -380,15 +673,44 @@ export default function CareersPage({ setPage }) {
               <button
                 className="btn btn-teal"
                 style={{ width: "100%", marginTop: "24px" }}
+                onClick={handleSubmitProfile}
+                disabled={status === "submitting"}
               >
-                <span>Connect with a Consultant</span>
+                <span>
+                  {status === "submitting"
+                    ? "Submitting..."
+                    : "Connect with a Consultant"}
+                </span>
               </button>
+
+              {status === "success" && (
+                <p
+                  style={{
+                    color: "#0D3D4E",
+                    fontSize: "13px",
+                    marginTop: "16px",
+                  }}
+                >
+                  Thank you — your profile has been received.
+                </p>
+              )}
+              {status === "error" && (
+                <p
+                  style={{
+                    color: "#B8962E",
+                    fontSize: "13px",
+                    marginTop: "16px",
+                  }}
+                >
+                  Please fill in your name, email, and attach a resume.
+                </p>
+              )}
             </div>
           </Fade>
         </div>
       </section>
 
-      {/* ── 3. JOIN THE TEAM (INTERNAL) ── */}
+      {/* ── 4. JOIN THE TEAM (INTERNAL) ── */}
       <section style={{ background: "#0D3D4E", padding: "120px 64px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
           <Fade>
@@ -413,9 +735,9 @@ export default function CareersPage({ setPage }) {
                 lineHeight: "1.8",
               }}
             >
-              We are always interested in connecting with individuals who share
-              our passion for leadership, market intelligence, and advisory
-              excellence.
+              We are always interested in connecting with individuals who
+              share our passion for leadership, market intelligence, and
+              advisory excellence.
             </p>
           </Fade>
 
@@ -429,17 +751,17 @@ export default function CareersPage({ setPage }) {
             }}
           >
             <style>{`
-    @media (max-width: 1024px) and (min-width: 769px) {
-      .career-roles-grid {
-        grid-template-columns: 1fr 1fr !important;
-      }
-    }
-    @media (max-width: 768px) {
-      .career-roles-grid {
-        grid-template-columns: 1fr !important;
-      }
-    }
-  `}</style>
+              @media (max-width: 1024px) and (min-width: 769px) {
+                .career-roles-grid {
+                  grid-template-columns: 1fr 1fr !important;
+                }
+              }
+              @media (max-width: 768px) {
+                .career-roles-grid {
+                  grid-template-columns: 1fr !important;
+                }
+              }
+            `}</style>
 
             {[
               {
@@ -497,7 +819,7 @@ export default function CareersPage({ setPage }) {
         </div>
       </section>
 
-      {/* ── 4. CONFIDENTIALITY COMMITMENT ── */}
+      {/* ── 5. CONFIDENTIALITY COMMITMENT ── */}
       <section style={{ padding: "100px 64px" }}>
         <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
           <Fade>
@@ -524,9 +846,9 @@ export default function CareersPage({ setPage }) {
               style={{ fontSize: "14px", lineHeight: "1.8", color: "#7A8694" }}
             >
               All information shared with PivotEdge Partners is treated with
-              strict confidentiality. We never share candidate information with
-              clients or third parties without prior explicit discussion and
-              consent.
+              strict confidentiality. We never share candidate information
+              with clients or third parties without prior explicit discussion
+              and consent.
             </p>
             <div
               style={{
@@ -553,31 +875,6 @@ export default function CareersPage({ setPage }) {
           </Fade>
         </div>
       </section>
-
-      {/* <input
-        type="file"
-        accept=".pdf"
-        onChange={async (e) => {
-          const file = e.target.files[0];
-
-          const formData = new FormData();
-          formData.append("file", file);
-          formData.append("upload_preset", "Resumes");
-
-          const response = await fetch(
-            "https://api.cloudinary.com/v1_1/douvv01ya/auto/upload",
-            {
-              method: "POST",
-              body: formData,
-            },
-          );
-
-          const data = await response.json();
-
-          console.log(data);
-          alert(data.secure_url);
-        }}
-      /> */}
     </div>
   );
 }
