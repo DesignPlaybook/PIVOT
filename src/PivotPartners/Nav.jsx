@@ -36,16 +36,16 @@ const NAV_ITEMS = [
       { label: "Emerging Domain: AI", id: "domains-emerging-domain" },
     ],
   },
-  {
-    label: "Insights",
-    page: "Insights",
-    // items: [
-    //   { label: "Featured Analysis", id: "insights-featured" },
-    //   { label: "Articles", id: "insights-articles" },
-    //   { label: "Research Archive", id: "insights-reports" },
-    // ],
-    dropdown: false,
-  },
+  // {
+  //   label: "Insights",
+  //   page: "Insights",
+  //   items: [
+  //     { label: "Featured Analysis", id: "insights-featured" },
+  //     { label: "Articles", id: "insights-articles" },
+  //     { label: "Research Archive", id: "insights-reports" },
+  //   ],
+  //   dropdown: false,
+  // },
   {
     label: "Careers Page",
     page: "CareersPage",

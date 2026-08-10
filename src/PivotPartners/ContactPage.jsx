@@ -157,7 +157,7 @@ const CMD_CSS = `
     transition: border-color 0.3s ease;
     letter-spacing: 0.01em;
   }
-  .cmd-input::placeholder { color: rgba(13,61,78,0.25); }
+  .cmd-input::placeholder { color: rgba(3, 30, 40, 0.25); }
   .cmd-input:focus { border-bottom-color: #B8962E; }
   .cmd-input-err { border-bottom-color: rgba(180,40,40,0.5) !important; }
 
@@ -531,7 +531,7 @@ export default function ContactPage() {
                   <div
                     style={{
                       fontFamily: "'Jost', sans-serif",
-                      fontSize: 9,
+                      fontSize: 13,
                       letterSpacing: "0.22em",
                       textTransform: "uppercase",
                       color: "rgba(184,150,46,0.6)",

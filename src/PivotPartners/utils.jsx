@@ -27,13 +27,17 @@ export function useScrollNav() {
 }
 
 // ─── Section Label ────────────────────────────────────────────────
-export function SectionLabel({ text, light }) {
+export function SectionLabel({ text, light, style }) {
   return (
     <div className="section-label">
       <span className="rule" />
       <span
         className="label-text"
-        style={light ? { color: "rgba(184,150,46,0.8)" } : {}}
+        style={{
+          fontSize: 14, // ← bump this value to change size site-wide (was likely 11-12px via CSS)
+          ...(light ? { color: "rgba(184,150,46,0.8)" } : {}),
+          ...style,
+        }}
       >
         {text}
       </span>

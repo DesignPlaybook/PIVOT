@@ -128,7 +128,7 @@ const HERO_CSS = `
   }
   .pe-eyebrow-text {
     font-family: 'Jost', sans-serif;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 400;
     letter-spacing: 0.26em;
     text-transform: uppercase;

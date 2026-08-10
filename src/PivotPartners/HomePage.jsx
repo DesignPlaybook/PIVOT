@@ -1838,8 +1838,8 @@ const SECTION_CSS = `
     transition: color 0.3s;
   }
   .wl-intro-link {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 400;
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 400;
     letter-spacing: 0.18em; text-transform: uppercase;
     color: ${T.teal}; border: none; background: none; padding: 0; cursor: pointer;
   }
@@ -1850,7 +1850,7 @@ const SECTION_CSS = `
   .wl-intro-link:hover .wl-intro-link-arrow { width: 44px; }
   .wl-quote-btn {
     margin-top: 36px;
-    font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 400;
+    font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 400;
     letter-spacing: 0.15em; text-transform: uppercase;
     padding: 13px 32px;
     background: transparent; color: rgba(245,240,232,0.85);
@@ -2880,7 +2880,7 @@ export default function HomePage({ setPage }) {
                   >
                     {s.desc}
                   </p>
-                  <div
+                  {/* <div
                     className="what-card-explore"
                     style={{
                       fontSize: 10,
@@ -2892,7 +2892,7 @@ export default function HomePage({ setPage }) {
                     }}
                   >
                     Explore →
-                  </div>
+                  </div> */}
                 </div>
               </div>
             ))}
@@ -2933,7 +2933,7 @@ export default function HomePage({ setPage }) {
                 marginBottom: 32,
               }}
             >
-              Research-Led
+              Research Driven
               <br />
               Structured
               <br />
@@ -3113,9 +3113,7 @@ export default function HomePage({ setPage }) {
               marginBottom: 32,
             }}
           >
-            We believe executive search is a strategic responsibility — not a
-            transactional activity. Advantage begins at the alignment, not the
-            appointment.
+            We believe executive search is a strategic responsibility <br/> When leadership capability aligns precisely with organisational ambition,performance becomes sustainable and governance becomes stronger.
           </p>
 
           <div
@@ -3130,11 +3128,11 @@ export default function HomePage({ setPage }) {
           <div
             style={{
               fontFamily: "'Jost', sans-serif",
-              fontSize: 10,
+              fontSize: 14,
               fontWeight: 400,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "rgba(184,150,46,0.7)",
+              color: "rgba(233, 212, 150, 0.7)",
             }}
           >
             PivotEdge Partners — Leadership Philosophy
@@ -3185,7 +3183,7 @@ export default function HomePage({ setPage }) {
                   fontSize: 22,
                   fontWeight: 900,
                   color: T.gold,
-                  opacity: 0.5,
+                  opacity: 0.75,
                   marginRight: 64,
                   flexShrink: 0,
                 }}
@@ -3295,9 +3293,10 @@ export default function HomePage({ setPage }) {
               </div>
               <div
                 style={{
-                  fontSize: 11,
+                  fontSize: 13,
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
+                  opacity: 2,
                   color: T.gold,
                   fontFamily: "'Jost', sans-serif",
                 }}
@@ -3366,7 +3365,7 @@ export default function HomePage({ setPage }) {
             <h2
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(36px, 4.5vw, 56px)",
+                fontSize: "clamp(3px, 4.5vw, 56px)",
                 fontWeight: 300,
                 color: T.teal,
                 lineHeight: 1.1,
@@ -3408,7 +3407,7 @@ export default function HomePage({ setPage }) {
                     fontWeight: 600,
                     color: T.gold,
                     lineHeight: 1,
-                    opacity: 0.35,
+                    opacity: 0.75,
                   }}
                 >
                   I
@@ -3511,7 +3510,7 @@ export default function HomePage({ setPage }) {
                     fontWeight: 600,
                     color: T.gold,
                     lineHeight: 1,
-                    opacity: 0.35,
+                    opacity: 0.75,
                   }}
                 >
                   II

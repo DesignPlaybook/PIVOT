@@ -387,10 +387,10 @@ function ServicePanel({ num, name, desc, img, reverse = false, id }) {
             <span
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                fontSize: 56,
+                fontSize: 50,
                 fontWeight: 300,
                 color: T.gold,
-                opacity: 0.4,
+                opacity: 1,
                 lineHeight: 1,
               }}
             >
@@ -1731,12 +1731,13 @@ export default function ServicesPage({ setPage }) {
                 fontSize: 15,
                 fontWeight: 300,
                 lineHeight: 1.8,
-                color: T.textMid,
+                color: T.textDark,
                 maxWidth: 520,
                 margin: "24px auto 0",
               }}
             >
-              Advisory orientation rather than transactional placement — five
+              Advisory orientation rather than transactional placement <br/>
+              Five
               principles that define our practice across every engagement.
             </p>
           </Fade>
@@ -1821,10 +1822,10 @@ export default function ServicesPage({ setPage }) {
                       </div>
                       <p
                         style={{
-                          fontSize: 13,
+                          fontSize: 15,
                           fontWeight: 300,
                           lineHeight: 1.7,
-                          color: T.textMid,
+                          color: T.teal,
                         }}
                       >
                         {item.d}
@@ -2005,7 +2006,7 @@ export default function ServicesPage({ setPage }) {
                 marginBottom: 32,
               }}
             >
-              Where We Place
+              Whom We Place
             </h3>
             <div
               style={{
@@ -2018,7 +2019,7 @@ export default function ServicesPage({ setPage }) {
             {[
               "Chief Executive Officers",
               "Chief Financial Officers",
-              "Functional Heads — Finance, HR, Sales & Marketing, Operations, Supply Chain, Technology, Sustainability",
+              "Functional Heads",
               "Business Unit Heads",
               "Transformation & Digital Leaders",
               "Board Directors & Committee Chairs",
@@ -2148,9 +2149,9 @@ export default function ServicesPage({ setPage }) {
               }}
             >
               {[
-                { v: "92%", l: "Retention Rate" },
+                { v: "85%", l: "Conversion Rate" },
                 { v: "500+", l: "Mandates" },
-                { v: "30+", l: "Countries" },
+                { v: "3", l: "Countries" },
               ].map((s, i) => (
                 <div
                   key={i}

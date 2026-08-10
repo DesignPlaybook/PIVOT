@@ -533,7 +533,7 @@ function LeadershipPhilosophy() {
               }}
             >
               We approach every mandate with structured evaluation, market
-              intelligence, and governance awareness — considering not only
+              intelligence, and governance awareness considering not only
               experience but judgement and cultural fit.
             </p>
           </div>
@@ -667,7 +667,7 @@ function LeadershipPhilosophy() {
               }}
             >
               "Our role is to ensure that leadership capability aligns precisely
-              with strategic ambition — considering not only experience, but
+              with strategic ambition considering not only experience, but
               judgement, adaptability, cultural alignment, and long-term
               enterprise impact."
             </p>
@@ -902,7 +902,7 @@ function VisionMission() {
                   <span
                     style={{
                       fontFamily: "'Jost',sans-serif",
-                      fontSize: 9,
+                      fontSize: 12,
                       letterSpacing: "0.28em",
                       textTransform: "uppercase",
                       color: T.gold,
@@ -1034,7 +1034,7 @@ function VisionMission() {
                   <span
                     style={{
                       fontFamily: "'Jost',sans-serif",
-                      fontSize: 9,
+                      fontSize: 12,
                       letterSpacing: "0.28em",
                       textTransform: "uppercase",
                       color: T.gold,
@@ -1661,7 +1661,7 @@ export default function AboutPage({ setPage }) {
             }}
           >
             <Fade>
-              <SectionLabel text="Core Values" light />
+              <SectionLabel text="Core Values" dark />
               <h2
                 style={{
                   fontFamily: "'Cormorant Garamond',serif",

@@ -1145,10 +1145,10 @@ function FunctionGrid() {
             <div
               style={{
                 fontFamily: "'Jost',sans-serif",
-                fontSize: 9,
+                fontSize: 10,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
-                color: "#7A8694",
+                color: "#303c49",
                 lineHeight: 1.5,
               }}
             >
@@ -1714,7 +1714,7 @@ function AISection({ setPage }) {
             >
               Artificial Intelligence and advanced analytics are reshaping
               industries, operating models, and competitive dynamics. The
-              question is no longer whether to adopt AI — but how to embed it
+              question is no longer whether to adopt AI, but how to embed it
               responsibly, strategically, and at scale.
             </p>
             <p
@@ -2075,14 +2075,14 @@ export default function DomainsPage({ setPage }) {
           <p
             className="dp-l3"
             style={{
-              fontSize: 14,
+              fontSize: 18,
               fontWeight: 300,
               fontStyle: "italic",
               color: "rgba(255,255,255,0.45)",
               letterSpacing: "0.04em",
             }}
           >
-            Six sectors. Thirty countries. One standard of rigour.
+            Six sectors. Three countries. One standard of rigour.
           </p>
         </div>
 
@@ -2116,7 +2116,7 @@ export default function DomainsPage({ setPage }) {
               color: "rgba(255,255,255,0.3)",
             }}
           >
-            Explore
+            Scroll
           </span>
         </div>
       </section>
@@ -2203,8 +2203,7 @@ export default function DomainsPage({ setPage }) {
                 margin: "20px auto 0",
               }}
             >
-              Our functional capability spans the full C-suite and board — hover
-              each discipline to see our depth.
+              Our functional capability spans the full C-suite and board.
             </p>
           </Fade>
           <FunctionGrid />

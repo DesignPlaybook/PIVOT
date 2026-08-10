@@ -15,7 +15,7 @@ const OFFICES = [
     lng: 72.8697,
     address:
       "5th Floor, Technopolis\nKnowledge Park\nMahakali Caves Road\nAndheri East\nMumbai 400 093, India",
-    email: "mumbai@pivotedgegroup.com",
+    email: "shweta@pivotedgegroup.com",
     phone: "+91 22 6678 9000",
     mapsUrl:
       "https://maps.google.com/?q=Technopolis+Knowledge+Park+Andheri+East+Mumbai",
@@ -33,7 +33,7 @@ const OFFICES = [
     lat: 25.1181,
     lng: 55.378,
     address: "2201, Tower 6\nDubai Silicon Oasis\nDubai, UAE",
-    email: "dubai@pivotedgegroup.com",
+    email: "Myron.ferro@pivotedgegroup.com",
     phone: "+971 4 388 7000",
     mapsUrl: "https://maps.google.com/?q=Tower+6+Dubai+Silicon+Oasis+Dubai",
     // desc: "Our Middle East hub serves sovereign wealth, regional conglomerates, and multinational leaders across the GCC and wider Africa region.",
@@ -51,7 +51,7 @@ const OFFICES = [
     lng: 151.2069,
     address:
       "Suite 48, Level 4\nDymocks Building\n428 George Street\nSydney NSW 2000\nAustralia",
-    email: "sydney@pivotedgegroup.com",
+    email: "manish@pivotedgegroup.com",
     phone: "+61 2 9000 7500",
     mapsUrl:
       "https://maps.google.com/?q=428+George+Street+Sydney+NSW+Australia",
@@ -982,10 +982,10 @@ export default function GlobalPresence() {
                 <div
                   style={{
                     fontFamily: "'Jost', sans-serif",
-                    fontSize: 9,
+                    fontSize: 13,
                     letterSpacing: "0.2em",
                     textTransform: "uppercase",
-                    color: "rgba(184,150,46,0.8)",
+                    color: "rgba(113, 89, 16, 0.8)",
                     marginBottom: 5,
                   }}
                 >

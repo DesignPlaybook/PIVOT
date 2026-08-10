@@ -64,7 +64,7 @@ function DrawLine({ delay = 0 }) {
         left: 0,
         right: 0,
         height: 1,
-        background: `linear-gradient(to right, ${T.gold}, rgba(184,150,46,0.15) 80%, transparent)`,
+        background: `linear-gradient(to right, ${T.gold}, rgba(177, 174, 162, 0.15) 80%, transparent)`,
         opacity: 0.5,
         transformOrigin: "left",
         transform: vis ? "scaleX(1)" : "scaleX(0)",
@@ -116,7 +116,7 @@ export default function OurApproach() {
         background: T.cream,
         padding: "100px 64px",
         overflow: "hidden",
-        borderBottom: `1px solid rgba(13,61,78,0.08)`,
+        borderBottom: `1px solid rgba(186, 192, 195, 0.08)`,
       }}
     >
       <style>{`
@@ -241,10 +241,10 @@ export default function OurApproach() {
                 <div
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 44,
+                    fontSize: 40,
                     fontWeight: 300,
                     color: T.teal,
-                    opacity: 0.18,
+                    opacity: 0.68,
                     lineHeight: 1,
                     marginBottom: 12,
                   }}

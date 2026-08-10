@@ -158,10 +158,10 @@ export default function CareersPage({ setPage }) {
 
               <p
                 style={{
-                  fontSize: 14,
+                  fontSize: 20,
                   fontWeight: 300,
                   fontStyle: "italic",
-                  color: "rgba(255,255,255,0.45)",
+                  color: "rgba(255, 243, 243, 0.45)",
                   letterSpacing: "0.04em",
                   maxWidth: "620px",
                   lineHeight: 1.8,
@@ -299,12 +299,13 @@ export default function CareersPage({ setPage }) {
           }}
         >
           {[
-            "Board Directors",
+            "Board Directors & Committee Chairs",
             "Chief Executive Officers",
             "Chief Financial Officers",
             "Chief Human Resources Officers",
             "Business Unit Heads",
-            "AI & Digital Leaders",
+            // "AI & Digital Leaders",
+            "Functional Heads",
           ].map((role) => (
             <span key={role} className="role-tag">
               {role}
@@ -489,7 +490,7 @@ export default function CareersPage({ setPage }) {
           <Fade delay={400}>
             <div style={{ marginTop: "64px" }}>
               <button className="btn btn-outline-light">
-                <span>View Internal Openings</span>
+                <span>Apply now</span>
               </button>
             </div>
           </Fade>
@@ -520,7 +521,7 @@ export default function CareersPage({ setPage }) {
               "Trust is fundamental to our profession."
             </h3>
             <p
-              style={{ fontSize: "14px", lineHeight: "1.8", color: "#7A8694" }}
+              style={{ fontSize: "16px", lineHeight: "1.8", color: "#7A8694" }}
             >
               All information shared with PivotEdge Partners is treated with
               strict confidentiality. We never share candidate information with
@@ -539,7 +540,7 @@ export default function CareersPage({ setPage }) {
                 href="mailto:careers@pivotedgegroup.com"
                 style={{
                   fontFamily: "'Jost', sans-serif",
-                  fontSize: "12px",
+                  fontSize: "15px",
                   color: "#0D3D4E",
                   textDecoration: "none",
                   borderBottom: "1px solid #B8962E",
